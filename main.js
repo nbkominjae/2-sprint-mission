@@ -1,5 +1,5 @@
-import { getArticle,getArticlelist,createArticle,patchArticle,deleteArticle } from "./ArticleService";
-import { getProduct, getProductList,createProduct,patchProduct,deleteProduct } from "./ProductService";
+import { getArticle,getArticlelist,createArticle,patchArticle,deleteArticle } from "./ArticleService.js";
+import { getProduct, getProductList,createProduct,patchProduct,deleteProduct } from "./ProductService.js";
 
 
 
@@ -12,7 +12,7 @@ class Product{
         this.price = price;
         this.tags = tags;
         this.images = images;
-        this.favoriteCount =favoriteCount;
+        this.favoriteCount = favoriteCount;
 
     }
     favorite(){
@@ -21,14 +21,10 @@ class Product{
 
 }
 
-const product = new Product('')
-console.log(product);
-
-
-
 class ElectronicProduct extends Product{
     constructor(name,description,price,tags,images,favoriteCount,manufacturer){
         super(name,description,price,tags,images,favoriteCount)
+        this.manufacturer = manufacturer;
     }
 }
 
@@ -38,6 +34,7 @@ class Article{
         this.content = content;
         this.writer = writer;
         this.likeCount = likeCount;
+        this.createdAt = new Date();
     }
     like(){
         this.likeCount += 1;
