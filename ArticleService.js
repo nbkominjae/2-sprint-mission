@@ -51,12 +51,16 @@ export function createArticle(articleData) {
     .catch((error) => {console.log(error)}) 
 }
 
-const artPatch = {};
+const artPatch = {
+    image: "패치내용",
+    content: "패치 내용입니다.",
+    title: "패치 제목입니다.",
+};
 
 export function patchArticle(id,artPatch) {
      fetch(`https://panda-market-api-crud.vercel.app/articles/${id}`,{
         method: "PATCH",
-        body: JSON.stringify(patchArticle),
+        body: JSON.stringify(artPatch),
         headers: {
             'Content-Type':'application/json'
         },      
