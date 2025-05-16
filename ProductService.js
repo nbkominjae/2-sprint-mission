@@ -11,6 +11,7 @@ export async function getProductList(){
         console.log('오류발생', error)
      }  
 }
+// console.log(await getProductList());
 
 export async function getProduct(id){
     try{
@@ -26,9 +27,8 @@ export async function getProduct(id){
    }catch(error){
     console.log('오류발생',error)
    }
-    
 }
-
+//console.log(await getProduct(837));
 
 const productData = {
     images: [
@@ -41,7 +41,6 @@ const productData = {
     description: "string",
     name: "상품 이름"
 };
-
 
 export async function createProduct(productData){
     try{
@@ -59,12 +58,12 @@ export async function createProduct(productData){
     }   
 }
 
+// console.log(await createProduct(productData));
 
 const patchData = {
     name: '수정된 상품명',
     price: 3000,
 }
-
 
 export async function patchProduct(id,patchData){
     try{
@@ -80,8 +79,8 @@ export async function patchProduct(id,patchData){
     }catch(error){
         console.log('에러발생')
     }
-    
 }
+//console.log(await patchProduct(837,patchData));
 
 export async function deleteProduct(id){
     try{
@@ -97,4 +96,4 @@ export async function deleteProduct(id){
         console.log('에러발생')
     }  
 }
-
+// console.log(await deleteProduct(838));
