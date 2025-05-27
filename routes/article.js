@@ -12,8 +12,8 @@ router.get('/detail/:id' , async function(req,res,next){
     where : {id : id}
   });
   if(!detailArticle){
-    res.status(404).json({message : '없는 게시물입니다.'})
-    return;
+    return res.status(404).json({message : '없는 게시물입니다.'})
+    
   }
   res.json(detailArticle);
   }catch(err){
@@ -53,7 +53,7 @@ router.get('/list', async function(req,res,next){
 
 
 // 게시물 등록 API 
-router.post('/register', async function (req,res,next) {
+router.post('/create', async function (req,res,next) {
   try{
   const {title , content} = req.body;
   const article = await db.article.create ({

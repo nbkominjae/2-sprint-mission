@@ -96,7 +96,7 @@ router.patch('/change/:id', async function (req,res,next ) {
 router.delete('/remove/:id', async function (req,res,next){
   try{
   const id = Number(req.params.id);
-  const deleteProduct = await db.product.deleteMany({
+  const deleteProduct = await db.product.delete({
     where : {id : id}
   })
   res.json(deleteProduct);
