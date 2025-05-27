@@ -104,3 +104,4 @@ router.delete('/remove/:id', async function(req,res,next){
   }
 });
 
+module.exports = router;

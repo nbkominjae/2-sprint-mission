@@ -133,4 +133,4 @@ router.get('/article/list/:article_id', async function(req,res,next){
 });
 
 
-
+module.exports = router;
