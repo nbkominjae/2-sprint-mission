@@ -1,5 +1,7 @@
 var express = require('express');
 const { db } = require ('../utils/db');
+const { articleDto } = require ('../dtos/article.dto');
+const { assert } = require ('superstruct');
 var router = express.Router();
 
 
@@ -54,6 +56,7 @@ router.get('/list', async function(req,res,next){
 
 // 게시물 등록 API 
 router.post('/create', async function (req,res,next) {
+  assert (req.body , articleDto);
   try{
   const {title , content} = req.body;
   const article = await db.article.create ({

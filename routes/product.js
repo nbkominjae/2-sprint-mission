@@ -1,5 +1,7 @@
 var express = require('express');
 const { db } = require('../utils/db');
+const { assert } = require ('superstruct')
+const { createDto} = require('../dtos/product.dto')
 var router = express.Router();
 
 
@@ -58,6 +60,8 @@ router.get('/list', async function (req,res,next) {
 // 상품 등록 API
 
 router.post('/create', async function(req,res,next) {
+  assert( req.body , createDto);
+
   try{
   const {name, description, price, tags} = req.body;
   
