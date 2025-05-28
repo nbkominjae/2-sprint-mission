@@ -1,12 +1,10 @@
-const { object, size, string, integer } = require("superstruct");
+import { object, size, string, integer, array} from "superstruct";
 
 
-var createDto = object({
+export const createDto = object({
   name : size(string(),1,20),
   description:size(string(), 1 , 300),
   price : integer(),
+  tags: array(string()),
 });
 
-module.exports = {
-  createDto,
-};

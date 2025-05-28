@@ -1,8 +1,9 @@
-var express = require('express');
-const { db } = require ('../utils/db');
-const { articleDto } = require ('../dtos/article.dto');
-const { assert } = require ('superstruct');
-var router = express.Router();
+import express from "express";
+import { db }  from '../utils/db.js';
+import { articleDto } from '../dtos/article.dto.js';
+import { assert } from 'superstruct';
+
+const router = express.Router();
 
 
 // 게시글 상세 조회 API
@@ -104,4 +105,4 @@ router.delete('/remove/:id', async function(req,res,next){
   }
 });
 
-module.exports = router;
+export default router;

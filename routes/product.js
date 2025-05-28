@@ -1,8 +1,9 @@
-var express = require('express');
-const { db } = require('../utils/db');
-const { assert } = require ('superstruct')
-const { createDto} = require('../dtos/product.dto')
-var router = express.Router();
+import express from 'express';
+import { db } from '../utils/db.js';
+import { assert } from 'superstruct';
+import { createDto} from '../dtos/product.dto.js';
+
+const router = express.Router();
 
 
 // 상품 상세조회 API
@@ -60,6 +61,7 @@ router.get('/list', async function (req,res,next) {
 // 상품 등록 API
 
 router.post('/create', async function(req,res,next) {
+  console.log('req.body:', req.body);
   assert( req.body , createDto);
 
   try{
@@ -108,7 +110,7 @@ router.delete('/remove/:id', async function (req,res,next){
     console.log(err);
     res.status(500).json({message :'서버에러'});
   }
-}), 
+}) 
 
-module.exports = router;
+export default router;
 

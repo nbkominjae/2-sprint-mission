@@ -1,6 +1,6 @@
-var express = require('express');
-var { db } = require('../utils/db');
-var router = express.Router();
+import express from "express";
+import { db }  from '../utils/db.js';
+const router = express.Router();
 
 
 // 중고마켓 댓글 등록 API 
@@ -98,8 +98,15 @@ router.get('/product/list/:product_id', async function(req,res,next){
       id : true,
       content : true,
       createdAt : true,
-    }
+    },
+    take : 10,
+    skip : 0,
+    cursor: { id : 1 },
+    orderBy : {id : 'asc'}
   })
+  if(pdCommentList.length === 0){
+    return res.status(404).json({message : '댓글을 찾지 못했습니다.'})
+  }
   res.json(pdCommentList);
   }catch(err){
     console.log(err);
@@ -123,8 +130,10 @@ router.get('/article/list/:article_id', async function(req,res,next){
     skip : 0,
     cursor: { id : 1 },
     orderBy : {id : 'asc'}
-
   })
+  if(artCommentList.length === 0){
+    return res.status(404).json({message : '댓글을 찾지 못했습니다.'});
+  }
   res.json(artCommentList);
   }catch(err){
     console.log(err);
@@ -133,4 +142,4 @@ router.get('/article/list/:article_id', async function(req,res,next){
 });
 
 
-module.exports = router;
+export default router;

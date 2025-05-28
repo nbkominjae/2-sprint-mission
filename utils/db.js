@@ -1,5 +1,5 @@
-var Prisma = require("../generated/prisma");
+import Prisma from "../generated/prisma/index.js";
 
-var db = new Prisma.PrismaClient();
+const db = new Prisma.PrismaClient();
 
-module.exports = { db };
+export { db };

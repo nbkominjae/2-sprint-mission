@@ -1,11 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var path = require('path');
-var fs = require('fs');
-var multer = require('multer');
-var { db } = require('../utils/db');
+import express from 'express';
+import path from 'path';
+import fs from 'fs';
+import multer from 'multer';
+const router = express.Router();
 
-const uploadDir = path.join(__dirname,'..', 'uploads');
+const uploadDir = path.join(process.cwd(), 'uploads');
 
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
@@ -27,4 +26,4 @@ router.post('/upload', upload.single('attachment'),(req,res) => {
   });
 });
 
-module.exports = router;
+export default router;
