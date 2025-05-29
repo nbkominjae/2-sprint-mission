@@ -29,7 +29,18 @@ router.get('/detail/:id' , async function(req,res,next){
 
 router.get('/list', async function(req,res,next){
   try{
-  const { title = '' , content = ''} = req.query; 
+  const { title = '' , content = '' , offset = 0 , limit = 10 , order = "newest"} = req.query; 
+  let orderBy;
+  switch (order){
+    case 'newest' :
+      orderBy = {createdAt : "desc"}
+      break;
+    case 'oldest' :
+      orderBy = {createdAt : 'asc'}
+      break;
+    default :
+      orderBy = {createdAt : 'desc'}
+  }
   const article = await db.article.findMany({
     where: {
       OR : [
@@ -43,9 +54,9 @@ router.get('/list', async function(req,res,next){
       content : true,
       createdAt : true
     },
-    orderBy : {createdAt : 'desc'},
-    skip : 0 ,
-    take : 10
+    orderBy,
+    skip : parseInt(offset),
+    take : parseInt(limit),
   });
   res.json(article);
   }catch(err){
@@ -55,16 +66,20 @@ router.get('/list', async function(req,res,next){
 });
 
 
-// 게시물 등록 API 
+// 게시물 등록 API assert사용
 router.post('/create', async function (req,res,next) {
-  assert (req.body , articleDto);
+  
   try{
+  assert (req.body , articleDto);
   const {title , content} = req.body;
   const article = await db.article.create ({
     data : {title , content}
   });
   res.json(article);
   }catch(err){
+    if(err.name === 'StructError'){
+      return res.status(400).json({message : "유효성검증에러"})
+    }
     console.log(err);
     res.status(500).json({message :'서버에러'});
   }
