@@ -2,9 +2,9 @@ POST http://localhost:3000/users/create
 Content-Type: application/json
 
 {
-  "email" : "email1",
-  "nickname": "testuser1",
-  "password": "testpassword1"
+  "email" : "email3",
+  "nickname": "testuser3",
+  "password": "testpassword3"
 }
 
 ###
@@ -13,15 +13,15 @@ POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-  "nickname": "testuser1",
-  "password": "testpassword1"
+  "nickname": "testuser2",
+  "password": "testpassword2"
 }
 
 
 ###
 #상품등록 
 POST http://localhost:3000/product/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzUwODM4ODIwLCJleHAiOjE3NTA4NDI0MjB9.WCD-bnGivbE94BnzVHrFUrhJC22BbNrY_DdhncENspY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwODQzMDUzLCJleHAiOjE3NTA4NDY2NTN9.lK6F7lR78y__7dv1YH7fMX5i5POotcmLakD6BYX0ZW4
 Content-Type: application/json
 
 {
@@ -49,3 +49,37 @@ Content-Type: application/json
 DELETE http://localhost:3000/product/remove/3
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzUwODM4ODIwLCJleHAiOjE3NTA4NDI0MjB9.WCD-bnGivbE94BnzVHrFUrhJC22BbNrY_DdhncENspY
 
+###
+#상품목록조회
+GET http://localhost:3000/product/list
+
+
+###
+#게시글 등록
+POST http://localhost:3000/article/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwODQzMDUzLCJleHAiOjE3NTA4NDY2NTN9.lK6F7lR78y__7dv1YH7fMX5i5POotcmLakD6BYX0ZW4
+Content-Type: application/json
+
+{
+  "title" : "test제목1", 
+  "content" : "test내용1"
+}
+###
+#게시글 수정
+PATCH  http://localhost:3000/article/change/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwODQzMDUzLCJleHAiOjE3NTA4NDY2NTN9.lK6F7lR78y__7dv1YH7fMX5i5POotcmLakD6BYX0ZW4
+Content-Type: application/json
+
+{
+  "title" : "수정된제목1", 
+  "content" : "수정된내용1"
+}
+
+###
+#게시글 삭제
+DELETE http://localhost:3000/article/remove/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwODQzMDUzLCJleHAiOjE3NTA4NDY2NTN9.lK6F7lR78y__7dv1YH7fMX5i5POotcmLakD6BYX0ZW4
+
+###
+#게시글 조회
+GET http://localhost:3000/article/list 
