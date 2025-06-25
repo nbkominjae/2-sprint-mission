@@ -1,15 +1,13 @@
 import express from 'express';
 import { db } from '../utils/db.js';
 import bcrypt from 'bcrypt';
-
+import { createToken } from '../lib/token.js';
 
 const router = express.Router();
-router.post('/register', createUser);
+router.post('/create', createUser);
 router.post('/login', login);
 
 // 회원가입 API
-
-
 
 async function createUser(req, res) {
   const { email, nickname, password } = req.body;
@@ -22,6 +20,8 @@ async function createUser(req, res) {
   const { password : _,  ...userWithoutPassword} = user;
   res.status(201).send(userWithoutPassword)
 };
+
+// 로그인 
 
 async function login(req,res){
   const {nickname, password} = req.body;
@@ -36,10 +36,11 @@ async function login(req,res){
   if(!isPasswordValid) {
     return res.status(401).json({message : "유효하지 않은 비밀번호"})
   }
-  // 토큰 생성 
+  const { accessToken , refreshToken } = createToken(user.id);
+  return res.status(200).json( {accessToken , refreshToken});
+  
+};
 
-
-}
 
 
 export default router;
