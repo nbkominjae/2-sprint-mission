@@ -2,9 +2,9 @@ POST http://localhost:3000/users/create
 Content-Type: application/json
 
 {
-  "email" : "312332",
-  "nickname": "testuser",
-  "password": "testpassword"
+  "email" : "email1",
+  "nickname": "testuser1",
+  "password": "testpassword1"
 }
 
 ###
@@ -13,6 +13,21 @@ POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-  "nickname": "testuser",
-  "password": "testpassword"
+  "nickname": "testuser1",
+  "password": "testpassword1"
 }
+
+
+###
+#상품등록 
+POST http://localhost:3000/product/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzUwODM4ODIwLCJleHAiOjE3NTA4NDI0MjB9.WCD-bnGivbE94BnzVHrFUrhJC22BbNrY_DdhncENspY
+Content-Type: application/json
+
+{
+  "name" : "노트북", 
+  "description" : "최신형이에요", 
+  "price" : 330000, 
+  "tags": ["가성비"]
+}
+

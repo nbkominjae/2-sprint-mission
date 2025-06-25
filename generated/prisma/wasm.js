@@ -137,7 +137,8 @@ exports.Prisma.ProductScalarFieldEnum = {
   price: 'price',
   tags: 'tags',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  userId: 'userId'
 };
 
 exports.Prisma.ArticleScalarFieldEnum = {
@@ -145,7 +146,8 @@ exports.Prisma.ArticleScalarFieldEnum = {
   title: 'title',
   content: 'content',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  userId: 'userId'
 };
 
 exports.Prisma.CommentScalarFieldEnum = {
@@ -153,7 +155,8 @@ exports.Prisma.CommentScalarFieldEnum = {
   product_id: 'product_id',
   article_id: 'article_id',
   content: 'content',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  userId: 'userId'
 };
 
 exports.Prisma.SortOrder = {
