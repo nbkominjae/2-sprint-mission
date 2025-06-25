@@ -83,3 +83,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxN
 ###
 #게시글 조회
 GET http://localhost:3000/article/list 
+
+
+
+###
+#중고마켓 댓글 등록
+POST http://localhost:3000/comment/product/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwODQzMDUzLCJleHAiOjE3NTA4NDY2NTN9.lK6F7lR78y__7dv1YH7fMX5i5POotcmLakD6BYX0ZW4
+Content-Type: application/json
+
+{
+  "product_id" : 1,
+  "content" : "댓글쓸게요"
+}

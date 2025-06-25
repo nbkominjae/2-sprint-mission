@@ -1,25 +1,31 @@
 import express from "express";
 import { db }  from '../utils/db.js';
+import authenticate from "../middlewares/authenticate.js";
+
 const router = express.Router();
 
 
 // 중고마켓 댓글 등록 API 
 
-router.post('/product/create', async function(req,res,next){
+router.post('/product/create', authenticate ,  async function(req,res,next){
   try{
   const { content , product_id } = req.body;
+  const user = req.user;
+
   const product = await db.product.findUnique({
     where: {id : product_id}
   });
   if(!product){
     return res.status(404).json({message : '없는 제품입니다.'})
   }
+
   const productComments = await db.comment.create({
     data : {
+      userId : user.id,
       product_id,
       content,
     }
-  })
+  });
   res.json({ productComments });
   }catch(err){
     console.log(err);
