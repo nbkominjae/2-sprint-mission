@@ -31,3 +31,21 @@ Content-Type: application/json
   "tags": ["가성비"]
 }
 
+###
+#상품수정 
+PATCH http://localhost:3000/product/change/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzUwODM4ODIwLCJleHAiOjE3NTA4NDI0MjB9.WCD-bnGivbE94BnzVHrFUrhJC22BbNrY_DdhncENspY
+Content-Type: application/json
+
+{
+  "name" : "세탁기", 
+  "description" : "상태안좋아요", 
+  "price" : 230000, 
+  "tags": ["가성비"]
+}
+
+###
+#상품삭제
+DELETE http://localhost:3000/product/remove/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzUwODM4ODIwLCJleHAiOjE3NTA4NDI0MjB9.WCD-bnGivbE94BnzVHrFUrhJC22BbNrY_DdhncENspY
+
