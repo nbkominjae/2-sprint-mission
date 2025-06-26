@@ -1,20 +1,21 @@
+###회원가입 
 POST http://localhost:3000/users/create
 Content-Type: application/json
 
 {
-  "email" : "email4",
-  "nickname": "testuser4",
-  "password": "testpassword4"
+  "email" : "email5",
+  "nickname": "testuser5",
+  "password": "testpassword5"
 }
 
-###
+###로그인 (ACCESSTOKEN 발급)
 
 POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-  "nickname": "testuser4",
-  "password": "testpassword4"
+  "nickname": "testuser5",
+  "password": "testpassword5"
 }
 
 
@@ -123,3 +124,19 @@ Content-Type: application/json
 #댓글 삭제
 DELETE http://localhost:3000/comment/remove/13
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzUwOTAyMTA5LCJleHAiOjE3NTA5MDU3MDl9.uFU8fSxyOxlW1kqvm9R-1xHcSIL1wbawsfafeXcDEN0
+
+###
+#중고마켓 댓글 조회 
+
+GET http://localhost:3000/comment/product/list
+
+
+###
+#게시판 댓글 조회 
+GET http://localhost:3000/comment/article/list
+
+
+###
+#유저 정보 조회 
+GET http://localhost:3000/users/info
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzUwOTA1ODY2LCJleHAiOjE3NTA5OTIyNjZ9.F_Jp8GWYh7mbeF4fCru0hqw07VOzhuXQechWTTdxsTg

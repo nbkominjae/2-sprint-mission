@@ -2,10 +2,13 @@ import express from 'express';
 import { db } from '../utils/db.js';
 import bcrypt from 'bcrypt';
 import { createToken } from '../lib/token.js';
+import authenticate from '../middlewares/authenticate.js';
 
 const router = express.Router();
 router.post('/create', createUser);
 router.post('/login', login);
+router.get('/info', authenticate, inform);
+
 
 // 회원가입 API
 
@@ -41,6 +44,24 @@ async function login(req,res){
   
 };
 
+
+// 유저 정보 조회 
+
+async function inform(req,res) {
+  const user = req.user;
+  const userInform = await db.user.findUnique({
+    where: { id : user.id },
+    select : {
+      id : true,
+      email :true,
+      nickname : true,
+      image : true,
+      createdAt : true,
+      updatedAt : true,
+    }
+  });
+  res.json(userInform);
+};
 
 
 export default router;

@@ -3,8 +3,8 @@ import { db } from '../utils/db.js';
 import { assert } from 'superstruct';
 import { createDto } from '../dtos/product.dto.js';
 import authenticate from '../middlewares/authenticate.js';
-const router = express.Router();
 
+const router = express.Router();
 
 // 상품 상세조회 API
 
@@ -66,7 +66,6 @@ router.get('/list', async function (req, res, next) {
     res.status(500).json({ message: '서버에러' });
   }
 });
-
 
 // 상품 등록 API assert로 유효성검증, authenticate로 인증 
 

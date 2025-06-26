@@ -3,8 +3,8 @@ import { db } from '../utils/db.js';
 import { articleDto } from '../dtos/article.dto.js';
 import { assert } from 'superstruct';
 import authenticate from "../middlewares/authenticate.js";
-const router = express.Router();
 
+const router = express.Router();
 
 // 게시글 상세 조회 API
 
@@ -65,7 +65,6 @@ router.get('/list', async function (req, res, next) {
   }
 });
 
-
 // 게시물 등록 API assert , authenticate로 유저 인증 
 router.post('/create', authenticate, async function (req, res, next) {
 
@@ -85,7 +84,6 @@ router.post('/create', authenticate, async function (req, res, next) {
     res.status(500).json({ message: '서버에러' });
   }
 });
-
 
 // 게시글 수정: 로그인된 유저, 본인 게시물만 수정 가능  
 
