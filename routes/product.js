@@ -150,43 +150,96 @@ router.delete('/remove/:id', authenticate, async function (req, res, next) {
 
 router.post('/likes/:productId', authenticate, async function (req, res, next) {
   const productId = Number(req.params.productId);
+  const userId = req.user.id;
   const product = await db.product.findUnique({
     where: { id: productId },
   });
   if (!product) {
     return res.status(404).json({ message: '상품을 찾을 수 없습니다.' });
   }
-  const productLike = await db.product.update({
-    where: { id: productId },
-    data: {
-      likeCount: { increment: 1 }
-    }
+  const alreadyLike = await db.productLike.findUnique({
+    where : {userId_productId : {
+      userId,
+      productId
+    }}
   });
-  return res.json({ likeCount: productLike.likeCount });
+
+  if(alreadyLike) {
+    return res.status(409).json({ message: '이미 좋아요를 누르셨습니다.' });
+  }
+  const productLike = await db.productLike.create({
+    data: {
+      userId,
+      productId,
+    }
+  }); 
+  return res.json(productLike);
 
 });
 
 // 로그인한 유저의 상품 좋아요 취소
 router.delete('/likesCancel/:productId', authenticate, async function (req, res, next) {
   const productId = Number(req.params.productId);
+  const userId = req.user.id;
+
   const product = await db.product.findUnique({
     where: { id: productId },
   });
   if (!product) {
     return res.status(404).json({ message: '상품을 찾을 수 없습니다.' });
   }
-  if (product.likeCount > 0) {
-    const productLikeCancel = await db.product.update({
-      where: { id: productId },
-      data: {
-        likeCount: { decrement: 1 }
+  const existLike = await db.productLike.findUnique({
+    where: { userId_productId : {
+      userId,
+      productId
+    }}
+  })
+
+  if(existLike) {
+    const removeLike = await db.productLike.delete({
+      where: {userId_productId :{
+        userId,
+        productId
+      }}
+    })
+    return res.json(removeLike)
+  }
+  return res.status(404).json({ message: '좋아요를 누른 적이 없습니다.' });
+
+
+});
+
+
+// 유저가 좋아요한 상품 목록 조회 
+router.get('/likesList' , authenticate , async function(req,res, next) {
+  const user = req.user;
+  const likeProduct = await db.productLike.findMany({
+    where: {userId : user.id},
+    select : {
+      productId : true
+    }
+  })
+  const likeProductIds = likeProduct.map(lp => lp.productId)
+  const products = await db.product.findMany({
+      where: {
+        id: { in: likeProductIds }
+      },
+      select: {
+        id: true,
+        name: true,
+        price: true,
+        createdAt: true
+        // 필요한 필드 추가 가능
       }
     });
-    return res.json({ likeCount: productLikeCancel.likeCount });
-  } else {
-    return res.status(400).json({ message: '좋아요는 0보다 작아질 수 없습니다.' });
-  }
-});
+
+    res.json(products);
+
+  })
+
+
+
+
 
 export default router;
 

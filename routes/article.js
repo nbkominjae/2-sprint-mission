@@ -122,11 +122,11 @@ router.delete('/remove/:id', authenticate, async function (req, res, next) {
     const article = await db.article.findUnique({
       where: { id: id }
     })
-    if(!article){
-      return res.status(404).json({message : "없는 게시물입니다."})
+    if (!article) {
+      return res.status(404).json({ message: "없는 게시물입니다." })
     }
-    if(article.userId !== user.id){
-      return res.status(401).json({message : "권한이 없습니다."})
+    if (article.userId !== user.id) {
+      return res.status(401).json({ message: "권한이 없습니다." })
     }
     const deleteArticle = await db.article.delete({
       where: { id: id }
@@ -142,19 +142,34 @@ router.delete('/remove/:id', authenticate, async function (req, res, next) {
 
 router.post('/likes/:articleId', authenticate, async function (req, res, next) {
   const articleId = Number(req.params.articleId);
+  const userId = req.user.id;
   const article = await db.article.findUnique({
     where: { id: articleId },
   });
   if (!article) {
-    return res.status(404).json({ message: '게시글을 찾을 수 없습니다.' });
+    return res.status(404).json({ message: '상품을 찾을 수 없습니다.' });
   }
-  const articleLike = await db.article.update({
-    where: { id: articleId },
-    data: {
-      likeCount: { increment: 1 }
+  const alreadyLike = await db.articleLike.findUnique({
+    where: {
+      userId_articleId: {
+        userId,
+        articleId
+      }
     }
   });
-  return res.json({ likeCount: articleLike.likeCount });
+
+  if (alreadyLike) {
+    return res.status(409).json({ message: '이미 좋아요를 누르셨습니다.' });
+  }
+  const articleLike = await db.articleLike.create({
+    data: {
+      userId,
+      articleId,
+    }
+  });
+
+
+  return res.json(articleLike);
 
 });
 
@@ -162,23 +177,37 @@ router.post('/likes/:articleId', authenticate, async function (req, res, next) {
 
 router.delete('/likesCancel/:articleId', authenticate, async function (req, res, next) {
   const articleId = Number(req.params.articleId);
+  const userId = req.user.id;
+
   const article = await db.article.findUnique({
     where: { id: articleId },
   });
   if (!article) {
     return res.status(404).json({ message: '상품을 찾을 수 없습니다.' });
   }
-  if (article.likeCount > 0) {
-    const articleLikeCancel = await db.article.update({
-      where: { id: articleId },
-      data: {
-        likeCount: { decrement: 1 }
+  const existLike = await db.articleLike.findUnique({
+    where: {
+      userId_articleId: {
+        userId,
+        articleId
+      }
+    }
+  });
+
+  if (existLike) {
+    const removeLike = await db.articleLike.delete({
+      where: {
+        userId_articleId: {
+          userId,
+          articleId
+        }
       }
     });
-    return res.json({ likeCount: articleLikeCancel.likeCount });
-  } else {
-    return res.status(400).json({ message: '좋아요는 0보다 작아질 수 없습니다.' });
+    return res.json(removeLike)
   }
+  return res.status(404).json({ message: '좋아요를 누른 적이 없습니다.' });
+
 });
+
 
 export default router;
