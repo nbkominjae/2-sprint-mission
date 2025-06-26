@@ -2,9 +2,9 @@ POST http://localhost:3000/users/create
 Content-Type: application/json
 
 {
-  "email" : "email3",
-  "nickname": "testuser3",
-  "password": "testpassword3"
+  "email" : "email4",
+  "nickname": "testuser4",
+  "password": "testpassword4"
 }
 
 ###
@@ -13,15 +13,15 @@ POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-  "nickname": "testuser2",
-  "password": "testpassword2"
+  "nickname": "testuser4",
+  "password": "testpassword4"
 }
 
 
 ###
 #상품등록 
 POST http://localhost:3000/product/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwODQzMDUzLCJleHAiOjE3NTA4NDY2NTN9.lK6F7lR78y__7dv1YH7fMX5i5POotcmLakD6BYX0ZW4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzUwODk3Mjk0LCJleHAiOjE3NTA5MDA4OTR9.SwW-HbNhEuQ_hqvMDaf5DdR9lo23MVXytBvbypq5QMc
 Content-Type: application/json
 
 {
@@ -57,7 +57,7 @@ GET http://localhost:3000/product/list
 ###
 #게시글 등록
 POST http://localhost:3000/article/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwODQzMDUzLCJleHAiOjE3NTA4NDY2NTN9.lK6F7lR78y__7dv1YH7fMX5i5POotcmLakD6BYX0ZW4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzUwODk3Mjk0LCJleHAiOjE3NTA5MDA4OTR9.SwW-HbNhEuQ_hqvMDaf5DdR9lo23MVXytBvbypq5QMc
 Content-Type: application/json
 
 {
@@ -89,10 +89,37 @@ GET http://localhost:3000/article/list
 ###
 #중고마켓 댓글 등록
 POST http://localhost:3000/comment/product/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwODQzMDUzLCJleHAiOjE3NTA4NDY2NTN9.lK6F7lR78y__7dv1YH7fMX5i5POotcmLakD6BYX0ZW4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzUwOTAyMTA5LCJleHAiOjE3NTA5MDU3MDl9.uFU8fSxyOxlW1kqvm9R-1xHcSIL1wbawsfafeXcDEN0
 Content-Type: application/json
 
 {
   "product_id" : 1,
   "content" : "댓글쓸게요"
 }
+
+###
+#게시판 댓글 등록
+POST http://localhost:3000/comment/article/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzUwODk3Mjk0LCJleHAiOjE3NTA5MDA4OTR9.SwW-HbNhEuQ_hqvMDaf5DdR9lo23MVXytBvbypq5QMc
+Content-Type: application/json
+
+{
+  "article_id" : 3,
+  "content" : "게시판에 댓글쓸게요"
+}
+
+###
+#댓글 수정
+PATCH  http://localhost:3000/comment/change/11
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzUwOTAxNTM5LCJleHAiOjE3NTA5MDUxMzl9.06C275jkwHW29e70WnwuqWP9C7h5PBO-FBEQXuDaTOs
+Content-Type: application/json
+
+{
+  "content" : "댓글수정할게요123"
+}
+
+
+###
+#댓글 삭제
+DELETE http://localhost:3000/comment/remove/13
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzUwOTAyMTA5LCJleHAiOjE3NTA5MDU3MDl9.uFU8fSxyOxlW1kqvm9R-1xHcSIL1wbawsfafeXcDEN0
