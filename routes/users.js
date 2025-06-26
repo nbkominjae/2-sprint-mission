@@ -1,13 +1,15 @@
 import express from 'express';
 import { db } from '../utils/db.js';
 import bcrypt from 'bcrypt';
-import { createToken } from '../lib/token.js';
+import { createToken, verifyRefreshToken } from '../lib/token.js';
 import authenticate from '../middlewares/authenticate.js';
+import { REFRESH_TOKEN_COOKIE_NAME } from '../lib/constants.js';
 
 const router = express.Router();
 
 router.post('/create', createUser);
 router.post('/login', login);
+router.post('/refresh', refreshTokens);
 router.get('/info', authenticate, inform);
 router.patch('/change', authenticate, change);
 router.get('/productList', authenticate, productList);
@@ -42,7 +44,42 @@ async function login(req, res) {
     return res.status(401).json({ message: "유효하지 않은 비밀번호" })
   }
   const { accessToken, refreshToken } = createToken(user.id);
-  return res.status(200).json({ accessToken, refreshToken });
+  setTokenCookies( res, refreshToken);
+  return res.status(200).json({ accessToken });
+  
+
+};
+
+// refresh 토큰 
+
+async function refreshTokens(req, res) {
+  const refreshToken = req.cookies[REFRESH_TOKEN_COOKIE_NAME];
+  if (!refreshToken) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+  const { userId } = verifyRefreshToken(refreshToken);
+
+  const user = await db.user.findUnique({
+    where: { id: userId }
+  })
+  if (!user) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+  const { accessToken, refreshToken: newRefreshToken } = createToken(user.id);
+  setTokenCookies(res, newRefreshToken);
+  res.status(200).json({ accessToken });
+}
+
+// refresh 토큰 저장 방식
+
+function setTokenCookies(res, refreshToken) {
+  res.cookie(REFRESH_TOKEN_COOKIE_NAME, refreshToken, {
+    httpOnly: true,
+    secure: false,
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    path: '/users',
+  });
+  console.log(REFRESH_TOKEN_COOKIE_NAME);
 
 };
 

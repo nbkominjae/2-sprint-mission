@@ -3,9 +3,9 @@ POST http://localhost:3000/users/create
 Content-Type: application/json
 
 {
-  "email" : "email5",
-  "nickname": "testuser5",
-  "password": "testpassword5"
+  "email" : "email7",
+  "nickname": "testuser7",
+  "password": "testpassword7"
 }
 
 ###로그인 (ACCESSTOKEN 발급)
@@ -14,19 +14,19 @@ POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-  "nickname": "testuser5",
-  "password": "testpassword5"
+  "nickname": "testuser7",
+  "password": "testpassword7"
 }
 
 
 ###
 #상품등록 
 POST http://localhost:3000/product/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzUwOTA1ODY2LCJleHAiOjE3NTA5OTIyNjZ9.F_Jp8GWYh7mbeF4fCru0hqw07VOzhuXQechWTTdxsTg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNzUwOTE4Mzg0LCJleHAiOjE3NTA5MTg2ODR9.mroZSzArI2l3bUtrnsu5zwHPLREcYCmpI0gir16mBTA
 Content-Type: application/json
 
 {
-  "name" : "user8이 등록한 상품3", 
+  "name" : "리프레쉬 등록", 
   "description" : "최신형이에요", 
   "price" : 33032000, 
   "tags": ["가성비"]
@@ -58,11 +58,11 @@ GET http://localhost:3000/product/list
 ###
 #게시글 등록
 POST http://localhost:3000/article/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzUwODk3Mjk0LCJleHAiOjE3NTA5MDA4OTR9.SwW-HbNhEuQ_hqvMDaf5DdR9lo23MVXytBvbypq5QMc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNzUwOTE4Mzg0LCJleHAiOjE3NTA5MTg2ODR9.mroZSzArI2l3bUtrnsu5zwHPLREcYCmpI0gir16mBTA
 Content-Type: application/json
 
 {
-  "title" : "test제목1", 
+  "title" : "refreshtest제목1", 
   "content" : "test내용1"
 }
 ###
@@ -139,8 +139,7 @@ GET http://localhost:3000/comment/article/list
 ###
 #유저 정보 조회 
 GET http://localhost:3000/users/info
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzUwOTA1ODY2LCJleHAiOjE3NTA5OTIyNjZ9.F_Jp8GWYh7mbeF4fCru0hqw07VOzhuXQechWTTdxsTg
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MTc1MDkyMzQ4OCwiZXhwIjoxNzUwOTIzNTE4fQ.wWq0lP0d_x3Uw2a85blpBd--QCKZsm8YNvN_iFCnS6I
 ###
 #유저 정보 수정
 PATCH http://localhost:3000/users/change
@@ -157,4 +156,9 @@ Content-Type: application/json
 ###
 #유저 상품 조회 
 GET http://localhost:3000/users/productList
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzUwOTA1ODY2LCJleHAiOjE3NTA5OTIyNjZ9.F_Jp8GWYh7mbeF4fCru0hqw07VOzhuXQechWTTdxsTg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MTc1MDkyMzQ4OCwiZXhwIjoxNzUwOTIzNTE4fQ.wWq0lP0d_x3Uw2a85blpBd--QCKZsm8YNvN_iFCnS6I
+
+###
+# refresh 토큰 
+POST http://localhost:3000/users/refresh
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MTc1MDkxOTIwNywiZXhwIjoxNzUxNTI0MDA3fQ.v-BguPeGEZOx3jAxzwNVUG1qnZioYmLjTTQtMJfB2fA
