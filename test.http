@@ -22,13 +22,13 @@ Content-Type: application/json
 ###
 #상품등록 
 POST http://localhost:3000/product/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzUwODk3Mjk0LCJleHAiOjE3NTA5MDA4OTR9.SwW-HbNhEuQ_hqvMDaf5DdR9lo23MVXytBvbypq5QMc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzUwOTA1ODY2LCJleHAiOjE3NTA5OTIyNjZ9.F_Jp8GWYh7mbeF4fCru0hqw07VOzhuXQechWTTdxsTg
 Content-Type: application/json
 
 {
-  "name" : "노트북", 
+  "name" : "user8이 등록한 상품3", 
   "description" : "최신형이에요", 
-  "price" : 330000, 
+  "price" : 33032000, 
   "tags": ["가성비"]
 }
 
@@ -139,4 +139,22 @@ GET http://localhost:3000/comment/article/list
 ###
 #유저 정보 조회 
 GET http://localhost:3000/users/info
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzUwOTA1ODY2LCJleHAiOjE3NTA5OTIyNjZ9.F_Jp8GWYh7mbeF4fCru0hqw07VOzhuXQechWTTdxsTg
+
+###
+#유저 정보 수정
+PATCH http://localhost:3000/users/change
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzUwOTA1ODY2LCJleHAiOjE3NTA5OTIyNjZ9.F_Jp8GWYh7mbeF4fCru0hqw07VOzhuXQechWTTdxsTg
+Content-Type: application/json
+
+{
+  "email" : "email수정",
+  "nickname" : "아이디수정",
+  "password" : "비밀번호수정",
+  "image" : "이미지수정"
+}
+
+###
+#유저 상품 조회 
+GET http://localhost:3000/users/productList
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzUwOTA1ODY2LCJleHAiOjE3NTA5OTIyNjZ9.F_Jp8GWYh7mbeF4fCru0hqw07VOzhuXQechWTTdxsTg
