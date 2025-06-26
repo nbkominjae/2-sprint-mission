@@ -24,10 +24,20 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  */
 export type Product = $Result.DefaultSelection<Prisma.$ProductPayload>
 /**
+ * Model ProductLike
+ * 
+ */
+export type ProductLike = $Result.DefaultSelection<Prisma.$ProductLikePayload>
+/**
  * Model Article
  * 
  */
 export type Article = $Result.DefaultSelection<Prisma.$ArticlePayload>
+/**
+ * Model ArticleLike
+ * 
+ */
+export type ArticleLike = $Result.DefaultSelection<Prisma.$ArticleLikePayload>
 /**
  * Model Comment
  * 
@@ -180,6 +190,16 @@ export class PrismaClient<
   get product(): Prisma.ProductDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.productLike`: Exposes CRUD operations for the **ProductLike** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProductLikes
+    * const productLikes = await prisma.productLike.findMany()
+    * ```
+    */
+  get productLike(): Prisma.ProductLikeDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.article`: Exposes CRUD operations for the **Article** model.
     * Example usage:
     * ```ts
@@ -188,6 +208,16 @@ export class PrismaClient<
     * ```
     */
   get article(): Prisma.ArticleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.articleLike`: Exposes CRUD operations for the **ArticleLike** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ArticleLikes
+    * const articleLikes = await prisma.articleLike.findMany()
+    * ```
+    */
+  get articleLike(): Prisma.ArticleLikeDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.comment`: Exposes CRUD operations for the **Comment** model.
@@ -640,7 +670,9 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Product: 'Product',
+    ProductLike: 'ProductLike',
     Article: 'Article',
+    ArticleLike: 'ArticleLike',
     Comment: 'Comment'
   };
 
@@ -660,7 +692,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "product" | "article" | "comment"
+      modelProps: "user" | "product" | "productLike" | "article" | "articleLike" | "comment"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -812,6 +844,80 @@ export namespace Prisma {
           }
         }
       }
+      ProductLike: {
+        payload: Prisma.$ProductLikePayload<ExtArgs>
+        fields: Prisma.ProductLikeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProductLikeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductLikePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProductLikeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductLikePayload>
+          }
+          findFirst: {
+            args: Prisma.ProductLikeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductLikePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProductLikeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductLikePayload>
+          }
+          findMany: {
+            args: Prisma.ProductLikeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductLikePayload>[]
+          }
+          create: {
+            args: Prisma.ProductLikeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductLikePayload>
+          }
+          createMany: {
+            args: Prisma.ProductLikeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProductLikeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductLikePayload>[]
+          }
+          delete: {
+            args: Prisma.ProductLikeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductLikePayload>
+          }
+          update: {
+            args: Prisma.ProductLikeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductLikePayload>
+          }
+          deleteMany: {
+            args: Prisma.ProductLikeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProductLikeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProductLikeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductLikePayload>[]
+          }
+          upsert: {
+            args: Prisma.ProductLikeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductLikePayload>
+          }
+          aggregate: {
+            args: Prisma.ProductLikeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProductLike>
+          }
+          groupBy: {
+            args: Prisma.ProductLikeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProductLikeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProductLikeCountArgs<ExtArgs>
+            result: $Utils.Optional<ProductLikeCountAggregateOutputType> | number
+          }
+        }
+      }
       Article: {
         payload: Prisma.$ArticlePayload<ExtArgs>
         fields: Prisma.ArticleFieldRefs
@@ -883,6 +989,80 @@ export namespace Prisma {
           count: {
             args: Prisma.ArticleCountArgs<ExtArgs>
             result: $Utils.Optional<ArticleCountAggregateOutputType> | number
+          }
+        }
+      }
+      ArticleLike: {
+        payload: Prisma.$ArticleLikePayload<ExtArgs>
+        fields: Prisma.ArticleLikeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ArticleLikeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ArticleLikePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ArticleLikeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ArticleLikePayload>
+          }
+          findFirst: {
+            args: Prisma.ArticleLikeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ArticleLikePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ArticleLikeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ArticleLikePayload>
+          }
+          findMany: {
+            args: Prisma.ArticleLikeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ArticleLikePayload>[]
+          }
+          create: {
+            args: Prisma.ArticleLikeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ArticleLikePayload>
+          }
+          createMany: {
+            args: Prisma.ArticleLikeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ArticleLikeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ArticleLikePayload>[]
+          }
+          delete: {
+            args: Prisma.ArticleLikeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ArticleLikePayload>
+          }
+          update: {
+            args: Prisma.ArticleLikeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ArticleLikePayload>
+          }
+          deleteMany: {
+            args: Prisma.ArticleLikeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ArticleLikeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ArticleLikeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ArticleLikePayload>[]
+          }
+          upsert: {
+            args: Prisma.ArticleLikeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ArticleLikePayload>
+          }
+          aggregate: {
+            args: Prisma.ArticleLikeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateArticleLike>
+          }
+          groupBy: {
+            args: Prisma.ArticleLikeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ArticleLikeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ArticleLikeCountArgs<ExtArgs>
+            result: $Utils.Optional<ArticleLikeCountAggregateOutputType> | number
           }
         }
       }
@@ -1046,7 +1226,9 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     product?: ProductOmit
+    productLike?: ProductLikeOmit
     article?: ArticleOmit
+    articleLike?: ArticleLikeOmit
     comment?: CommentOmit
   }
 
@@ -1145,12 +1327,16 @@ export namespace Prisma {
     products: number
     articles: number
     comments: number
+    ProductLikes: number
+    ArticleLikes: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     products?: boolean | UserCountOutputTypeCountProductsArgs
     articles?: boolean | UserCountOutputTypeCountArticlesArgs
     comments?: boolean | UserCountOutputTypeCountCommentsArgs
+    ProductLikes?: boolean | UserCountOutputTypeCountProductLikesArgs
+    ArticleLikes?: boolean | UserCountOutputTypeCountArticleLikesArgs
   }
 
   // Custom InputTypes
@@ -1185,6 +1371,20 @@ export namespace Prisma {
     where?: CommentWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountProductLikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductLikeWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountArticleLikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ArticleLikeWhereInput
+  }
+
 
   /**
    * Count Type ProductCountOutputType
@@ -1192,10 +1392,12 @@ export namespace Prisma {
 
   export type ProductCountOutputType = {
     comments: number
+    likes: number
   }
 
   export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comments?: boolean | ProductCountOutputTypeCountCommentsArgs
+    likes?: boolean | ProductCountOutputTypeCountLikesArgs
   }
 
   // Custom InputTypes
@@ -1216,6 +1418,13 @@ export namespace Prisma {
     where?: CommentWhereInput
   }
 
+  /**
+   * ProductCountOutputType without action
+   */
+  export type ProductCountOutputTypeCountLikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductLikeWhereInput
+  }
+
 
   /**
    * Count Type ArticleCountOutputType
@@ -1223,10 +1432,12 @@ export namespace Prisma {
 
   export type ArticleCountOutputType = {
     comments: number
+    likes: number
   }
 
   export type ArticleCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comments?: boolean | ArticleCountOutputTypeCountCommentsArgs
+    likes?: boolean | ArticleCountOutputTypeCountLikesArgs
   }
 
   // Custom InputTypes
@@ -1245,6 +1456,13 @@ export namespace Prisma {
    */
   export type ArticleCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CommentWhereInput
+  }
+
+  /**
+   * ArticleCountOutputType without action
+   */
+  export type ArticleCountOutputTypeCountLikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ArticleLikeWhereInput
   }
 
 
@@ -1469,6 +1687,8 @@ export namespace Prisma {
     products?: boolean | User$productsArgs<ExtArgs>
     articles?: boolean | User$articlesArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
+    ProductLikes?: boolean | User$ProductLikesArgs<ExtArgs>
+    ArticleLikes?: boolean | User$ArticleLikesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1507,6 +1727,8 @@ export namespace Prisma {
     products?: boolean | User$productsArgs<ExtArgs>
     articles?: boolean | User$articlesArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
+    ProductLikes?: boolean | User$ProductLikesArgs<ExtArgs>
+    ArticleLikes?: boolean | User$ArticleLikesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1518,6 +1740,8 @@ export namespace Prisma {
       products: Prisma.$ProductPayload<ExtArgs>[]
       articles: Prisma.$ArticlePayload<ExtArgs>[]
       comments: Prisma.$CommentPayload<ExtArgs>[]
+      ProductLikes: Prisma.$ProductLikePayload<ExtArgs>[]
+      ArticleLikes: Prisma.$ArticleLikePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1924,6 +2148,8 @@ export namespace Prisma {
     products<T extends User$productsArgs<ExtArgs> = {}>(args?: Subset<T, User$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     articles<T extends User$articlesArgs<ExtArgs> = {}>(args?: Subset<T, User$articlesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArticlePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends User$commentsArgs<ExtArgs> = {}>(args?: Subset<T, User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ProductLikes<T extends User$ProductLikesArgs<ExtArgs> = {}>(args?: Subset<T, User$ProductLikesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ArticleLikes<T extends User$ArticleLikesArgs<ExtArgs> = {}>(args?: Subset<T, User$ArticleLikesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArticleLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2420,6 +2646,54 @@ export namespace Prisma {
   }
 
   /**
+   * User.ProductLikes
+   */
+  export type User$ProductLikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductLike
+     */
+    select?: ProductLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductLike
+     */
+    omit?: ProductLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductLikeInclude<ExtArgs> | null
+    where?: ProductLikeWhereInput
+    orderBy?: ProductLikeOrderByWithRelationInput | ProductLikeOrderByWithRelationInput[]
+    cursor?: ProductLikeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProductLikeScalarFieldEnum | ProductLikeScalarFieldEnum[]
+  }
+
+  /**
+   * User.ArticleLikes
+   */
+  export type User$ArticleLikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ArticleLike
+     */
+    select?: ArticleLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ArticleLike
+     */
+    omit?: ArticleLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ArticleLikeInclude<ExtArgs> | null
+    where?: ArticleLikeWhereInput
+    orderBy?: ArticleLikeOrderByWithRelationInput | ArticleLikeOrderByWithRelationInput[]
+    cursor?: ArticleLikeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ArticleLikeScalarFieldEnum | ArticleLikeScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2666,6 +2940,7 @@ export namespace Prisma {
     userId?: boolean
     comments?: boolean | Product$commentsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    likes?: boolean | Product$likesArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -2708,6 +2983,7 @@ export namespace Prisma {
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comments?: boolean | Product$commentsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    likes?: boolean | Product$likesArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2722,6 +2998,7 @@ export namespace Prisma {
     objects: {
       comments: Prisma.$CommentPayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
+      likes: Prisma.$ProductLikePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3128,6 +3405,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     comments<T extends Product$commentsArgs<ExtArgs> = {}>(args?: Subset<T, Product$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    likes<T extends Product$likesArgs<ExtArgs> = {}>(args?: Subset<T, Product$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3585,6 +3863,30 @@ export namespace Prisma {
   }
 
   /**
+   * Product.likes
+   */
+  export type Product$likesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductLike
+     */
+    select?: ProductLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductLike
+     */
+    omit?: ProductLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductLikeInclude<ExtArgs> | null
+    where?: ProductLikeWhereInput
+    orderBy?: ProductLikeOrderByWithRelationInput | ProductLikeOrderByWithRelationInput[]
+    cursor?: ProductLikeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProductLikeScalarFieldEnum | ProductLikeScalarFieldEnum[]
+  }
+
+  /**
    * Product without action
    */
   export type ProductDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3600,6 +3902,1101 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ProductInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProductLike
+   */
+
+  export type AggregateProductLike = {
+    _count: ProductLikeCountAggregateOutputType | null
+    _avg: ProductLikeAvgAggregateOutputType | null
+    _sum: ProductLikeSumAggregateOutputType | null
+    _min: ProductLikeMinAggregateOutputType | null
+    _max: ProductLikeMaxAggregateOutputType | null
+  }
+
+  export type ProductLikeAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    productId: number | null
+  }
+
+  export type ProductLikeSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    productId: number | null
+  }
+
+  export type ProductLikeMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    productId: number | null
+    createdAt: Date | null
+  }
+
+  export type ProductLikeMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    productId: number | null
+    createdAt: Date | null
+  }
+
+  export type ProductLikeCountAggregateOutputType = {
+    id: number
+    userId: number
+    productId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ProductLikeAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    productId?: true
+  }
+
+  export type ProductLikeSumAggregateInputType = {
+    id?: true
+    userId?: true
+    productId?: true
+  }
+
+  export type ProductLikeMinAggregateInputType = {
+    id?: true
+    userId?: true
+    productId?: true
+    createdAt?: true
+  }
+
+  export type ProductLikeMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    productId?: true
+    createdAt?: true
+  }
+
+  export type ProductLikeCountAggregateInputType = {
+    id?: true
+    userId?: true
+    productId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ProductLikeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProductLike to aggregate.
+     */
+    where?: ProductLikeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductLikes to fetch.
+     */
+    orderBy?: ProductLikeOrderByWithRelationInput | ProductLikeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProductLikeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductLikes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductLikes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProductLikes
+    **/
+    _count?: true | ProductLikeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProductLikeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProductLikeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProductLikeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProductLikeMaxAggregateInputType
+  }
+
+  export type GetProductLikeAggregateType<T extends ProductLikeAggregateArgs> = {
+        [P in keyof T & keyof AggregateProductLike]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProductLike[P]>
+      : GetScalarType<T[P], AggregateProductLike[P]>
+  }
+
+
+
+
+  export type ProductLikeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductLikeWhereInput
+    orderBy?: ProductLikeOrderByWithAggregationInput | ProductLikeOrderByWithAggregationInput[]
+    by: ProductLikeScalarFieldEnum[] | ProductLikeScalarFieldEnum
+    having?: ProductLikeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProductLikeCountAggregateInputType | true
+    _avg?: ProductLikeAvgAggregateInputType
+    _sum?: ProductLikeSumAggregateInputType
+    _min?: ProductLikeMinAggregateInputType
+    _max?: ProductLikeMaxAggregateInputType
+  }
+
+  export type ProductLikeGroupByOutputType = {
+    id: number
+    userId: number
+    productId: number
+    createdAt: Date
+    _count: ProductLikeCountAggregateOutputType | null
+    _avg: ProductLikeAvgAggregateOutputType | null
+    _sum: ProductLikeSumAggregateOutputType | null
+    _min: ProductLikeMinAggregateOutputType | null
+    _max: ProductLikeMaxAggregateOutputType | null
+  }
+
+  type GetProductLikeGroupByPayload<T extends ProductLikeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProductLikeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProductLikeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProductLikeGroupByOutputType[P]>
+            : GetScalarType<T[P], ProductLikeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProductLikeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    productId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["productLike"]>
+
+  export type ProductLikeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    productId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["productLike"]>
+
+  export type ProductLikeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    productId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["productLike"]>
+
+  export type ProductLikeSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    productId?: boolean
+    createdAt?: boolean
+  }
+
+  export type ProductLikeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "productId" | "createdAt", ExtArgs["result"]["productLike"]>
+  export type ProductLikeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+  }
+  export type ProductLikeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+  }
+  export type ProductLikeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+  }
+
+  export type $ProductLikePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProductLike"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      product: Prisma.$ProductPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      productId: number
+      createdAt: Date
+    }, ExtArgs["result"]["productLike"]>
+    composites: {}
+  }
+
+  type ProductLikeGetPayload<S extends boolean | null | undefined | ProductLikeDefaultArgs> = $Result.GetResult<Prisma.$ProductLikePayload, S>
+
+  type ProductLikeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProductLikeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProductLikeCountAggregateInputType | true
+    }
+
+  export interface ProductLikeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProductLike'], meta: { name: 'ProductLike' } }
+    /**
+     * Find zero or one ProductLike that matches the filter.
+     * @param {ProductLikeFindUniqueArgs} args - Arguments to find a ProductLike
+     * @example
+     * // Get one ProductLike
+     * const productLike = await prisma.productLike.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProductLikeFindUniqueArgs>(args: SelectSubset<T, ProductLikeFindUniqueArgs<ExtArgs>>): Prisma__ProductLikeClient<$Result.GetResult<Prisma.$ProductLikePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProductLike that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProductLikeFindUniqueOrThrowArgs} args - Arguments to find a ProductLike
+     * @example
+     * // Get one ProductLike
+     * const productLike = await prisma.productLike.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProductLikeFindUniqueOrThrowArgs>(args: SelectSubset<T, ProductLikeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProductLikeClient<$Result.GetResult<Prisma.$ProductLikePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProductLike that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductLikeFindFirstArgs} args - Arguments to find a ProductLike
+     * @example
+     * // Get one ProductLike
+     * const productLike = await prisma.productLike.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProductLikeFindFirstArgs>(args?: SelectSubset<T, ProductLikeFindFirstArgs<ExtArgs>>): Prisma__ProductLikeClient<$Result.GetResult<Prisma.$ProductLikePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProductLike that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductLikeFindFirstOrThrowArgs} args - Arguments to find a ProductLike
+     * @example
+     * // Get one ProductLike
+     * const productLike = await prisma.productLike.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProductLikeFindFirstOrThrowArgs>(args?: SelectSubset<T, ProductLikeFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProductLikeClient<$Result.GetResult<Prisma.$ProductLikePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProductLikes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductLikeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProductLikes
+     * const productLikes = await prisma.productLike.findMany()
+     * 
+     * // Get first 10 ProductLikes
+     * const productLikes = await prisma.productLike.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const productLikeWithIdOnly = await prisma.productLike.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProductLikeFindManyArgs>(args?: SelectSubset<T, ProductLikeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProductLike.
+     * @param {ProductLikeCreateArgs} args - Arguments to create a ProductLike.
+     * @example
+     * // Create one ProductLike
+     * const ProductLike = await prisma.productLike.create({
+     *   data: {
+     *     // ... data to create a ProductLike
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProductLikeCreateArgs>(args: SelectSubset<T, ProductLikeCreateArgs<ExtArgs>>): Prisma__ProductLikeClient<$Result.GetResult<Prisma.$ProductLikePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProductLikes.
+     * @param {ProductLikeCreateManyArgs} args - Arguments to create many ProductLikes.
+     * @example
+     * // Create many ProductLikes
+     * const productLike = await prisma.productLike.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProductLikeCreateManyArgs>(args?: SelectSubset<T, ProductLikeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProductLikes and returns the data saved in the database.
+     * @param {ProductLikeCreateManyAndReturnArgs} args - Arguments to create many ProductLikes.
+     * @example
+     * // Create many ProductLikes
+     * const productLike = await prisma.productLike.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProductLikes and only return the `id`
+     * const productLikeWithIdOnly = await prisma.productLike.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProductLikeCreateManyAndReturnArgs>(args?: SelectSubset<T, ProductLikeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductLikePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProductLike.
+     * @param {ProductLikeDeleteArgs} args - Arguments to delete one ProductLike.
+     * @example
+     * // Delete one ProductLike
+     * const ProductLike = await prisma.productLike.delete({
+     *   where: {
+     *     // ... filter to delete one ProductLike
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProductLikeDeleteArgs>(args: SelectSubset<T, ProductLikeDeleteArgs<ExtArgs>>): Prisma__ProductLikeClient<$Result.GetResult<Prisma.$ProductLikePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProductLike.
+     * @param {ProductLikeUpdateArgs} args - Arguments to update one ProductLike.
+     * @example
+     * // Update one ProductLike
+     * const productLike = await prisma.productLike.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProductLikeUpdateArgs>(args: SelectSubset<T, ProductLikeUpdateArgs<ExtArgs>>): Prisma__ProductLikeClient<$Result.GetResult<Prisma.$ProductLikePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProductLikes.
+     * @param {ProductLikeDeleteManyArgs} args - Arguments to filter ProductLikes to delete.
+     * @example
+     * // Delete a few ProductLikes
+     * const { count } = await prisma.productLike.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProductLikeDeleteManyArgs>(args?: SelectSubset<T, ProductLikeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProductLikes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductLikeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProductLikes
+     * const productLike = await prisma.productLike.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProductLikeUpdateManyArgs>(args: SelectSubset<T, ProductLikeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProductLikes and returns the data updated in the database.
+     * @param {ProductLikeUpdateManyAndReturnArgs} args - Arguments to update many ProductLikes.
+     * @example
+     * // Update many ProductLikes
+     * const productLike = await prisma.productLike.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProductLikes and only return the `id`
+     * const productLikeWithIdOnly = await prisma.productLike.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProductLikeUpdateManyAndReturnArgs>(args: SelectSubset<T, ProductLikeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductLikePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProductLike.
+     * @param {ProductLikeUpsertArgs} args - Arguments to update or create a ProductLike.
+     * @example
+     * // Update or create a ProductLike
+     * const productLike = await prisma.productLike.upsert({
+     *   create: {
+     *     // ... data to create a ProductLike
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProductLike we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProductLikeUpsertArgs>(args: SelectSubset<T, ProductLikeUpsertArgs<ExtArgs>>): Prisma__ProductLikeClient<$Result.GetResult<Prisma.$ProductLikePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProductLikes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductLikeCountArgs} args - Arguments to filter ProductLikes to count.
+     * @example
+     * // Count the number of ProductLikes
+     * const count = await prisma.productLike.count({
+     *   where: {
+     *     // ... the filter for the ProductLikes we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProductLikeCountArgs>(
+      args?: Subset<T, ProductLikeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProductLikeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProductLike.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductLikeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProductLikeAggregateArgs>(args: Subset<T, ProductLikeAggregateArgs>): Prisma.PrismaPromise<GetProductLikeAggregateType<T>>
+
+    /**
+     * Group by ProductLike.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductLikeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProductLikeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProductLikeGroupByArgs['orderBy'] }
+        : { orderBy?: ProductLikeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProductLikeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProductLikeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProductLike model
+   */
+  readonly fields: ProductLikeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProductLike.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProductLikeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProductLike model
+   */
+  interface ProductLikeFieldRefs {
+    readonly id: FieldRef<"ProductLike", 'Int'>
+    readonly userId: FieldRef<"ProductLike", 'Int'>
+    readonly productId: FieldRef<"ProductLike", 'Int'>
+    readonly createdAt: FieldRef<"ProductLike", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProductLike findUnique
+   */
+  export type ProductLikeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductLike
+     */
+    select?: ProductLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductLike
+     */
+    omit?: ProductLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductLikeInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductLike to fetch.
+     */
+    where: ProductLikeWhereUniqueInput
+  }
+
+  /**
+   * ProductLike findUniqueOrThrow
+   */
+  export type ProductLikeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductLike
+     */
+    select?: ProductLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductLike
+     */
+    omit?: ProductLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductLikeInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductLike to fetch.
+     */
+    where: ProductLikeWhereUniqueInput
+  }
+
+  /**
+   * ProductLike findFirst
+   */
+  export type ProductLikeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductLike
+     */
+    select?: ProductLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductLike
+     */
+    omit?: ProductLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductLikeInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductLike to fetch.
+     */
+    where?: ProductLikeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductLikes to fetch.
+     */
+    orderBy?: ProductLikeOrderByWithRelationInput | ProductLikeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProductLikes.
+     */
+    cursor?: ProductLikeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductLikes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductLikes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProductLikes.
+     */
+    distinct?: ProductLikeScalarFieldEnum | ProductLikeScalarFieldEnum[]
+  }
+
+  /**
+   * ProductLike findFirstOrThrow
+   */
+  export type ProductLikeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductLike
+     */
+    select?: ProductLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductLike
+     */
+    omit?: ProductLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductLikeInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductLike to fetch.
+     */
+    where?: ProductLikeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductLikes to fetch.
+     */
+    orderBy?: ProductLikeOrderByWithRelationInput | ProductLikeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProductLikes.
+     */
+    cursor?: ProductLikeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductLikes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductLikes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProductLikes.
+     */
+    distinct?: ProductLikeScalarFieldEnum | ProductLikeScalarFieldEnum[]
+  }
+
+  /**
+   * ProductLike findMany
+   */
+  export type ProductLikeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductLike
+     */
+    select?: ProductLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductLike
+     */
+    omit?: ProductLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductLikeInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductLikes to fetch.
+     */
+    where?: ProductLikeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductLikes to fetch.
+     */
+    orderBy?: ProductLikeOrderByWithRelationInput | ProductLikeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProductLikes.
+     */
+    cursor?: ProductLikeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductLikes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductLikes.
+     */
+    skip?: number
+    distinct?: ProductLikeScalarFieldEnum | ProductLikeScalarFieldEnum[]
+  }
+
+  /**
+   * ProductLike create
+   */
+  export type ProductLikeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductLike
+     */
+    select?: ProductLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductLike
+     */
+    omit?: ProductLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductLikeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProductLike.
+     */
+    data: XOR<ProductLikeCreateInput, ProductLikeUncheckedCreateInput>
+  }
+
+  /**
+   * ProductLike createMany
+   */
+  export type ProductLikeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProductLikes.
+     */
+    data: ProductLikeCreateManyInput | ProductLikeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProductLike createManyAndReturn
+   */
+  export type ProductLikeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductLike
+     */
+    select?: ProductLikeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductLike
+     */
+    omit?: ProductLikeOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProductLikes.
+     */
+    data: ProductLikeCreateManyInput | ProductLikeCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductLikeIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProductLike update
+   */
+  export type ProductLikeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductLike
+     */
+    select?: ProductLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductLike
+     */
+    omit?: ProductLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductLikeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProductLike.
+     */
+    data: XOR<ProductLikeUpdateInput, ProductLikeUncheckedUpdateInput>
+    /**
+     * Choose, which ProductLike to update.
+     */
+    where: ProductLikeWhereUniqueInput
+  }
+
+  /**
+   * ProductLike updateMany
+   */
+  export type ProductLikeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProductLikes.
+     */
+    data: XOR<ProductLikeUpdateManyMutationInput, ProductLikeUncheckedUpdateManyInput>
+    /**
+     * Filter which ProductLikes to update
+     */
+    where?: ProductLikeWhereInput
+    /**
+     * Limit how many ProductLikes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProductLike updateManyAndReturn
+   */
+  export type ProductLikeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductLike
+     */
+    select?: ProductLikeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductLike
+     */
+    omit?: ProductLikeOmit<ExtArgs> | null
+    /**
+     * The data used to update ProductLikes.
+     */
+    data: XOR<ProductLikeUpdateManyMutationInput, ProductLikeUncheckedUpdateManyInput>
+    /**
+     * Filter which ProductLikes to update
+     */
+    where?: ProductLikeWhereInput
+    /**
+     * Limit how many ProductLikes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductLikeIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProductLike upsert
+   */
+  export type ProductLikeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductLike
+     */
+    select?: ProductLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductLike
+     */
+    omit?: ProductLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductLikeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProductLike to update in case it exists.
+     */
+    where: ProductLikeWhereUniqueInput
+    /**
+     * In case the ProductLike found by the `where` argument doesn't exist, create a new ProductLike with this data.
+     */
+    create: XOR<ProductLikeCreateInput, ProductLikeUncheckedCreateInput>
+    /**
+     * In case the ProductLike was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProductLikeUpdateInput, ProductLikeUncheckedUpdateInput>
+  }
+
+  /**
+   * ProductLike delete
+   */
+  export type ProductLikeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductLike
+     */
+    select?: ProductLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductLike
+     */
+    omit?: ProductLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductLikeInclude<ExtArgs> | null
+    /**
+     * Filter which ProductLike to delete.
+     */
+    where: ProductLikeWhereUniqueInput
+  }
+
+  /**
+   * ProductLike deleteMany
+   */
+  export type ProductLikeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProductLikes to delete
+     */
+    where?: ProductLikeWhereInput
+    /**
+     * Limit how many ProductLikes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProductLike without action
+   */
+  export type ProductLikeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductLike
+     */
+    select?: ProductLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductLike
+     */
+    omit?: ProductLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductLikeInclude<ExtArgs> | null
   }
 
 
@@ -3815,6 +5212,7 @@ export namespace Prisma {
     userId?: boolean
     comments?: boolean | Article$commentsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    likes?: boolean | Article$likesArgs<ExtArgs>
     _count?: boolean | ArticleCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["article"]>
 
@@ -3851,6 +5249,7 @@ export namespace Prisma {
   export type ArticleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comments?: boolean | Article$commentsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    likes?: boolean | Article$likesArgs<ExtArgs>
     _count?: boolean | ArticleCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ArticleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3865,6 +5264,7 @@ export namespace Prisma {
     objects: {
       comments: Prisma.$CommentPayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
+      likes: Prisma.$ArticleLikePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -4269,6 +5669,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     comments<T extends Article$commentsArgs<ExtArgs> = {}>(args?: Subset<T, Article$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    likes<T extends Article$likesArgs<ExtArgs> = {}>(args?: Subset<T, Article$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArticleLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4724,6 +6125,30 @@ export namespace Prisma {
   }
 
   /**
+   * Article.likes
+   */
+  export type Article$likesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ArticleLike
+     */
+    select?: ArticleLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ArticleLike
+     */
+    omit?: ArticleLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ArticleLikeInclude<ExtArgs> | null
+    where?: ArticleLikeWhereInput
+    orderBy?: ArticleLikeOrderByWithRelationInput | ArticleLikeOrderByWithRelationInput[]
+    cursor?: ArticleLikeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ArticleLikeScalarFieldEnum | ArticleLikeScalarFieldEnum[]
+  }
+
+  /**
    * Article without action
    */
   export type ArticleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4739,6 +6164,1101 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ArticleInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ArticleLike
+   */
+
+  export type AggregateArticleLike = {
+    _count: ArticleLikeCountAggregateOutputType | null
+    _avg: ArticleLikeAvgAggregateOutputType | null
+    _sum: ArticleLikeSumAggregateOutputType | null
+    _min: ArticleLikeMinAggregateOutputType | null
+    _max: ArticleLikeMaxAggregateOutputType | null
+  }
+
+  export type ArticleLikeAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    articleId: number | null
+  }
+
+  export type ArticleLikeSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    articleId: number | null
+  }
+
+  export type ArticleLikeMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    articleId: number | null
+    createdAt: Date | null
+  }
+
+  export type ArticleLikeMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    articleId: number | null
+    createdAt: Date | null
+  }
+
+  export type ArticleLikeCountAggregateOutputType = {
+    id: number
+    userId: number
+    articleId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ArticleLikeAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    articleId?: true
+  }
+
+  export type ArticleLikeSumAggregateInputType = {
+    id?: true
+    userId?: true
+    articleId?: true
+  }
+
+  export type ArticleLikeMinAggregateInputType = {
+    id?: true
+    userId?: true
+    articleId?: true
+    createdAt?: true
+  }
+
+  export type ArticleLikeMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    articleId?: true
+    createdAt?: true
+  }
+
+  export type ArticleLikeCountAggregateInputType = {
+    id?: true
+    userId?: true
+    articleId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ArticleLikeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ArticleLike to aggregate.
+     */
+    where?: ArticleLikeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ArticleLikes to fetch.
+     */
+    orderBy?: ArticleLikeOrderByWithRelationInput | ArticleLikeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ArticleLikeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ArticleLikes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ArticleLikes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ArticleLikes
+    **/
+    _count?: true | ArticleLikeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ArticleLikeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ArticleLikeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ArticleLikeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ArticleLikeMaxAggregateInputType
+  }
+
+  export type GetArticleLikeAggregateType<T extends ArticleLikeAggregateArgs> = {
+        [P in keyof T & keyof AggregateArticleLike]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateArticleLike[P]>
+      : GetScalarType<T[P], AggregateArticleLike[P]>
+  }
+
+
+
+
+  export type ArticleLikeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ArticleLikeWhereInput
+    orderBy?: ArticleLikeOrderByWithAggregationInput | ArticleLikeOrderByWithAggregationInput[]
+    by: ArticleLikeScalarFieldEnum[] | ArticleLikeScalarFieldEnum
+    having?: ArticleLikeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ArticleLikeCountAggregateInputType | true
+    _avg?: ArticleLikeAvgAggregateInputType
+    _sum?: ArticleLikeSumAggregateInputType
+    _min?: ArticleLikeMinAggregateInputType
+    _max?: ArticleLikeMaxAggregateInputType
+  }
+
+  export type ArticleLikeGroupByOutputType = {
+    id: number
+    userId: number
+    articleId: number
+    createdAt: Date
+    _count: ArticleLikeCountAggregateOutputType | null
+    _avg: ArticleLikeAvgAggregateOutputType | null
+    _sum: ArticleLikeSumAggregateOutputType | null
+    _min: ArticleLikeMinAggregateOutputType | null
+    _max: ArticleLikeMaxAggregateOutputType | null
+  }
+
+  type GetArticleLikeGroupByPayload<T extends ArticleLikeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ArticleLikeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ArticleLikeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ArticleLikeGroupByOutputType[P]>
+            : GetScalarType<T[P], ArticleLikeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ArticleLikeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    articleId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    article?: boolean | ArticleDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["articleLike"]>
+
+  export type ArticleLikeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    articleId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    article?: boolean | ArticleDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["articleLike"]>
+
+  export type ArticleLikeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    articleId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    article?: boolean | ArticleDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["articleLike"]>
+
+  export type ArticleLikeSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    articleId?: boolean
+    createdAt?: boolean
+  }
+
+  export type ArticleLikeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "articleId" | "createdAt", ExtArgs["result"]["articleLike"]>
+  export type ArticleLikeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    article?: boolean | ArticleDefaultArgs<ExtArgs>
+  }
+  export type ArticleLikeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    article?: boolean | ArticleDefaultArgs<ExtArgs>
+  }
+  export type ArticleLikeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    article?: boolean | ArticleDefaultArgs<ExtArgs>
+  }
+
+  export type $ArticleLikePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ArticleLike"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      article: Prisma.$ArticlePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      articleId: number
+      createdAt: Date
+    }, ExtArgs["result"]["articleLike"]>
+    composites: {}
+  }
+
+  type ArticleLikeGetPayload<S extends boolean | null | undefined | ArticleLikeDefaultArgs> = $Result.GetResult<Prisma.$ArticleLikePayload, S>
+
+  type ArticleLikeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ArticleLikeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ArticleLikeCountAggregateInputType | true
+    }
+
+  export interface ArticleLikeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ArticleLike'], meta: { name: 'ArticleLike' } }
+    /**
+     * Find zero or one ArticleLike that matches the filter.
+     * @param {ArticleLikeFindUniqueArgs} args - Arguments to find a ArticleLike
+     * @example
+     * // Get one ArticleLike
+     * const articleLike = await prisma.articleLike.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ArticleLikeFindUniqueArgs>(args: SelectSubset<T, ArticleLikeFindUniqueArgs<ExtArgs>>): Prisma__ArticleLikeClient<$Result.GetResult<Prisma.$ArticleLikePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ArticleLike that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ArticleLikeFindUniqueOrThrowArgs} args - Arguments to find a ArticleLike
+     * @example
+     * // Get one ArticleLike
+     * const articleLike = await prisma.articleLike.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ArticleLikeFindUniqueOrThrowArgs>(args: SelectSubset<T, ArticleLikeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ArticleLikeClient<$Result.GetResult<Prisma.$ArticleLikePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ArticleLike that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ArticleLikeFindFirstArgs} args - Arguments to find a ArticleLike
+     * @example
+     * // Get one ArticleLike
+     * const articleLike = await prisma.articleLike.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ArticleLikeFindFirstArgs>(args?: SelectSubset<T, ArticleLikeFindFirstArgs<ExtArgs>>): Prisma__ArticleLikeClient<$Result.GetResult<Prisma.$ArticleLikePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ArticleLike that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ArticleLikeFindFirstOrThrowArgs} args - Arguments to find a ArticleLike
+     * @example
+     * // Get one ArticleLike
+     * const articleLike = await prisma.articleLike.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ArticleLikeFindFirstOrThrowArgs>(args?: SelectSubset<T, ArticleLikeFindFirstOrThrowArgs<ExtArgs>>): Prisma__ArticleLikeClient<$Result.GetResult<Prisma.$ArticleLikePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ArticleLikes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ArticleLikeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ArticleLikes
+     * const articleLikes = await prisma.articleLike.findMany()
+     * 
+     * // Get first 10 ArticleLikes
+     * const articleLikes = await prisma.articleLike.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const articleLikeWithIdOnly = await prisma.articleLike.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ArticleLikeFindManyArgs>(args?: SelectSubset<T, ArticleLikeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArticleLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ArticleLike.
+     * @param {ArticleLikeCreateArgs} args - Arguments to create a ArticleLike.
+     * @example
+     * // Create one ArticleLike
+     * const ArticleLike = await prisma.articleLike.create({
+     *   data: {
+     *     // ... data to create a ArticleLike
+     *   }
+     * })
+     * 
+     */
+    create<T extends ArticleLikeCreateArgs>(args: SelectSubset<T, ArticleLikeCreateArgs<ExtArgs>>): Prisma__ArticleLikeClient<$Result.GetResult<Prisma.$ArticleLikePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ArticleLikes.
+     * @param {ArticleLikeCreateManyArgs} args - Arguments to create many ArticleLikes.
+     * @example
+     * // Create many ArticleLikes
+     * const articleLike = await prisma.articleLike.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ArticleLikeCreateManyArgs>(args?: SelectSubset<T, ArticleLikeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ArticleLikes and returns the data saved in the database.
+     * @param {ArticleLikeCreateManyAndReturnArgs} args - Arguments to create many ArticleLikes.
+     * @example
+     * // Create many ArticleLikes
+     * const articleLike = await prisma.articleLike.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ArticleLikes and only return the `id`
+     * const articleLikeWithIdOnly = await prisma.articleLike.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ArticleLikeCreateManyAndReturnArgs>(args?: SelectSubset<T, ArticleLikeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArticleLikePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ArticleLike.
+     * @param {ArticleLikeDeleteArgs} args - Arguments to delete one ArticleLike.
+     * @example
+     * // Delete one ArticleLike
+     * const ArticleLike = await prisma.articleLike.delete({
+     *   where: {
+     *     // ... filter to delete one ArticleLike
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ArticleLikeDeleteArgs>(args: SelectSubset<T, ArticleLikeDeleteArgs<ExtArgs>>): Prisma__ArticleLikeClient<$Result.GetResult<Prisma.$ArticleLikePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ArticleLike.
+     * @param {ArticleLikeUpdateArgs} args - Arguments to update one ArticleLike.
+     * @example
+     * // Update one ArticleLike
+     * const articleLike = await prisma.articleLike.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ArticleLikeUpdateArgs>(args: SelectSubset<T, ArticleLikeUpdateArgs<ExtArgs>>): Prisma__ArticleLikeClient<$Result.GetResult<Prisma.$ArticleLikePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ArticleLikes.
+     * @param {ArticleLikeDeleteManyArgs} args - Arguments to filter ArticleLikes to delete.
+     * @example
+     * // Delete a few ArticleLikes
+     * const { count } = await prisma.articleLike.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ArticleLikeDeleteManyArgs>(args?: SelectSubset<T, ArticleLikeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ArticleLikes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ArticleLikeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ArticleLikes
+     * const articleLike = await prisma.articleLike.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ArticleLikeUpdateManyArgs>(args: SelectSubset<T, ArticleLikeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ArticleLikes and returns the data updated in the database.
+     * @param {ArticleLikeUpdateManyAndReturnArgs} args - Arguments to update many ArticleLikes.
+     * @example
+     * // Update many ArticleLikes
+     * const articleLike = await prisma.articleLike.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ArticleLikes and only return the `id`
+     * const articleLikeWithIdOnly = await prisma.articleLike.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ArticleLikeUpdateManyAndReturnArgs>(args: SelectSubset<T, ArticleLikeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArticleLikePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ArticleLike.
+     * @param {ArticleLikeUpsertArgs} args - Arguments to update or create a ArticleLike.
+     * @example
+     * // Update or create a ArticleLike
+     * const articleLike = await prisma.articleLike.upsert({
+     *   create: {
+     *     // ... data to create a ArticleLike
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ArticleLike we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ArticleLikeUpsertArgs>(args: SelectSubset<T, ArticleLikeUpsertArgs<ExtArgs>>): Prisma__ArticleLikeClient<$Result.GetResult<Prisma.$ArticleLikePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ArticleLikes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ArticleLikeCountArgs} args - Arguments to filter ArticleLikes to count.
+     * @example
+     * // Count the number of ArticleLikes
+     * const count = await prisma.articleLike.count({
+     *   where: {
+     *     // ... the filter for the ArticleLikes we want to count
+     *   }
+     * })
+    **/
+    count<T extends ArticleLikeCountArgs>(
+      args?: Subset<T, ArticleLikeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ArticleLikeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ArticleLike.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ArticleLikeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ArticleLikeAggregateArgs>(args: Subset<T, ArticleLikeAggregateArgs>): Prisma.PrismaPromise<GetArticleLikeAggregateType<T>>
+
+    /**
+     * Group by ArticleLike.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ArticleLikeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ArticleLikeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ArticleLikeGroupByArgs['orderBy'] }
+        : { orderBy?: ArticleLikeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ArticleLikeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetArticleLikeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ArticleLike model
+   */
+  readonly fields: ArticleLikeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ArticleLike.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ArticleLikeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    article<T extends ArticleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ArticleDefaultArgs<ExtArgs>>): Prisma__ArticleClient<$Result.GetResult<Prisma.$ArticlePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ArticleLike model
+   */
+  interface ArticleLikeFieldRefs {
+    readonly id: FieldRef<"ArticleLike", 'Int'>
+    readonly userId: FieldRef<"ArticleLike", 'Int'>
+    readonly articleId: FieldRef<"ArticleLike", 'Int'>
+    readonly createdAt: FieldRef<"ArticleLike", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ArticleLike findUnique
+   */
+  export type ArticleLikeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ArticleLike
+     */
+    select?: ArticleLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ArticleLike
+     */
+    omit?: ArticleLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ArticleLikeInclude<ExtArgs> | null
+    /**
+     * Filter, which ArticleLike to fetch.
+     */
+    where: ArticleLikeWhereUniqueInput
+  }
+
+  /**
+   * ArticleLike findUniqueOrThrow
+   */
+  export type ArticleLikeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ArticleLike
+     */
+    select?: ArticleLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ArticleLike
+     */
+    omit?: ArticleLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ArticleLikeInclude<ExtArgs> | null
+    /**
+     * Filter, which ArticleLike to fetch.
+     */
+    where: ArticleLikeWhereUniqueInput
+  }
+
+  /**
+   * ArticleLike findFirst
+   */
+  export type ArticleLikeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ArticleLike
+     */
+    select?: ArticleLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ArticleLike
+     */
+    omit?: ArticleLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ArticleLikeInclude<ExtArgs> | null
+    /**
+     * Filter, which ArticleLike to fetch.
+     */
+    where?: ArticleLikeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ArticleLikes to fetch.
+     */
+    orderBy?: ArticleLikeOrderByWithRelationInput | ArticleLikeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ArticleLikes.
+     */
+    cursor?: ArticleLikeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ArticleLikes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ArticleLikes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ArticleLikes.
+     */
+    distinct?: ArticleLikeScalarFieldEnum | ArticleLikeScalarFieldEnum[]
+  }
+
+  /**
+   * ArticleLike findFirstOrThrow
+   */
+  export type ArticleLikeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ArticleLike
+     */
+    select?: ArticleLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ArticleLike
+     */
+    omit?: ArticleLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ArticleLikeInclude<ExtArgs> | null
+    /**
+     * Filter, which ArticleLike to fetch.
+     */
+    where?: ArticleLikeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ArticleLikes to fetch.
+     */
+    orderBy?: ArticleLikeOrderByWithRelationInput | ArticleLikeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ArticleLikes.
+     */
+    cursor?: ArticleLikeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ArticleLikes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ArticleLikes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ArticleLikes.
+     */
+    distinct?: ArticleLikeScalarFieldEnum | ArticleLikeScalarFieldEnum[]
+  }
+
+  /**
+   * ArticleLike findMany
+   */
+  export type ArticleLikeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ArticleLike
+     */
+    select?: ArticleLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ArticleLike
+     */
+    omit?: ArticleLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ArticleLikeInclude<ExtArgs> | null
+    /**
+     * Filter, which ArticleLikes to fetch.
+     */
+    where?: ArticleLikeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ArticleLikes to fetch.
+     */
+    orderBy?: ArticleLikeOrderByWithRelationInput | ArticleLikeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ArticleLikes.
+     */
+    cursor?: ArticleLikeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ArticleLikes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ArticleLikes.
+     */
+    skip?: number
+    distinct?: ArticleLikeScalarFieldEnum | ArticleLikeScalarFieldEnum[]
+  }
+
+  /**
+   * ArticleLike create
+   */
+  export type ArticleLikeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ArticleLike
+     */
+    select?: ArticleLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ArticleLike
+     */
+    omit?: ArticleLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ArticleLikeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ArticleLike.
+     */
+    data: XOR<ArticleLikeCreateInput, ArticleLikeUncheckedCreateInput>
+  }
+
+  /**
+   * ArticleLike createMany
+   */
+  export type ArticleLikeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ArticleLikes.
+     */
+    data: ArticleLikeCreateManyInput | ArticleLikeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ArticleLike createManyAndReturn
+   */
+  export type ArticleLikeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ArticleLike
+     */
+    select?: ArticleLikeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ArticleLike
+     */
+    omit?: ArticleLikeOmit<ExtArgs> | null
+    /**
+     * The data used to create many ArticleLikes.
+     */
+    data: ArticleLikeCreateManyInput | ArticleLikeCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ArticleLikeIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ArticleLike update
+   */
+  export type ArticleLikeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ArticleLike
+     */
+    select?: ArticleLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ArticleLike
+     */
+    omit?: ArticleLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ArticleLikeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ArticleLike.
+     */
+    data: XOR<ArticleLikeUpdateInput, ArticleLikeUncheckedUpdateInput>
+    /**
+     * Choose, which ArticleLike to update.
+     */
+    where: ArticleLikeWhereUniqueInput
+  }
+
+  /**
+   * ArticleLike updateMany
+   */
+  export type ArticleLikeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ArticleLikes.
+     */
+    data: XOR<ArticleLikeUpdateManyMutationInput, ArticleLikeUncheckedUpdateManyInput>
+    /**
+     * Filter which ArticleLikes to update
+     */
+    where?: ArticleLikeWhereInput
+    /**
+     * Limit how many ArticleLikes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ArticleLike updateManyAndReturn
+   */
+  export type ArticleLikeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ArticleLike
+     */
+    select?: ArticleLikeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ArticleLike
+     */
+    omit?: ArticleLikeOmit<ExtArgs> | null
+    /**
+     * The data used to update ArticleLikes.
+     */
+    data: XOR<ArticleLikeUpdateManyMutationInput, ArticleLikeUncheckedUpdateManyInput>
+    /**
+     * Filter which ArticleLikes to update
+     */
+    where?: ArticleLikeWhereInput
+    /**
+     * Limit how many ArticleLikes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ArticleLikeIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ArticleLike upsert
+   */
+  export type ArticleLikeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ArticleLike
+     */
+    select?: ArticleLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ArticleLike
+     */
+    omit?: ArticleLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ArticleLikeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ArticleLike to update in case it exists.
+     */
+    where: ArticleLikeWhereUniqueInput
+    /**
+     * In case the ArticleLike found by the `where` argument doesn't exist, create a new ArticleLike with this data.
+     */
+    create: XOR<ArticleLikeCreateInput, ArticleLikeUncheckedCreateInput>
+    /**
+     * In case the ArticleLike was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ArticleLikeUpdateInput, ArticleLikeUncheckedUpdateInput>
+  }
+
+  /**
+   * ArticleLike delete
+   */
+  export type ArticleLikeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ArticleLike
+     */
+    select?: ArticleLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ArticleLike
+     */
+    omit?: ArticleLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ArticleLikeInclude<ExtArgs> | null
+    /**
+     * Filter which ArticleLike to delete.
+     */
+    where: ArticleLikeWhereUniqueInput
+  }
+
+  /**
+   * ArticleLike deleteMany
+   */
+  export type ArticleLikeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ArticleLikes to delete
+     */
+    where?: ArticleLikeWhereInput
+    /**
+     * Limit how many ArticleLikes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ArticleLike without action
+   */
+  export type ArticleLikeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ArticleLike
+     */
+    select?: ArticleLikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ArticleLike
+     */
+    omit?: ArticleLikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ArticleLikeInclude<ExtArgs> | null
   }
 
 
@@ -5954,6 +8474,16 @@ export namespace Prisma {
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
 
 
+  export const ProductLikeScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    productId: 'productId',
+    createdAt: 'createdAt'
+  };
+
+  export type ProductLikeScalarFieldEnum = (typeof ProductLikeScalarFieldEnum)[keyof typeof ProductLikeScalarFieldEnum]
+
+
   export const ArticleScalarFieldEnum: {
     id: 'id',
     title: 'title',
@@ -5964,6 +8494,16 @@ export namespace Prisma {
   };
 
   export type ArticleScalarFieldEnum = (typeof ArticleScalarFieldEnum)[keyof typeof ArticleScalarFieldEnum]
+
+
+  export const ArticleLikeScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    articleId: 'articleId',
+    createdAt: 'createdAt'
+  };
+
+  export type ArticleLikeScalarFieldEnum = (typeof ArticleLikeScalarFieldEnum)[keyof typeof ArticleLikeScalarFieldEnum]
 
 
   export const CommentScalarFieldEnum: {
@@ -6080,6 +8620,8 @@ export namespace Prisma {
     products?: ProductListRelationFilter
     articles?: ArticleListRelationFilter
     comments?: CommentListRelationFilter
+    ProductLikes?: ProductLikeListRelationFilter
+    ArticleLikes?: ArticleLikeListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -6093,6 +8635,8 @@ export namespace Prisma {
     products?: ProductOrderByRelationAggregateInput
     articles?: ArticleOrderByRelationAggregateInput
     comments?: CommentOrderByRelationAggregateInput
+    ProductLikes?: ProductLikeOrderByRelationAggregateInput
+    ArticleLikes?: ArticleLikeOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -6109,6 +8653,8 @@ export namespace Prisma {
     products?: ProductListRelationFilter
     articles?: ArticleListRelationFilter
     comments?: CommentListRelationFilter
+    ProductLikes?: ProductLikeListRelationFilter
+    ArticleLikes?: ArticleLikeListRelationFilter
   }, "id" | "email" | "nickname">
 
   export type UserOrderByWithAggregationInput = {
@@ -6153,6 +8699,7 @@ export namespace Prisma {
     userId?: IntFilter<"Product"> | number
     comments?: CommentListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    likes?: ProductLikeListRelationFilter
   }
 
   export type ProductOrderByWithRelationInput = {
@@ -6166,6 +8713,7 @@ export namespace Prisma {
     userId?: SortOrder
     comments?: CommentOrderByRelationAggregateInput
     user?: UserOrderByWithRelationInput
+    likes?: ProductLikeOrderByRelationAggregateInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -6182,6 +8730,7 @@ export namespace Prisma {
     userId?: IntFilter<"Product"> | number
     comments?: CommentListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    likes?: ProductLikeListRelationFilter
   }, "id">
 
   export type ProductOrderByWithAggregationInput = {
@@ -6214,6 +8763,62 @@ export namespace Prisma {
     userId?: IntWithAggregatesFilter<"Product"> | number
   }
 
+  export type ProductLikeWhereInput = {
+    AND?: ProductLikeWhereInput | ProductLikeWhereInput[]
+    OR?: ProductLikeWhereInput[]
+    NOT?: ProductLikeWhereInput | ProductLikeWhereInput[]
+    id?: IntFilter<"ProductLike"> | number
+    userId?: IntFilter<"ProductLike"> | number
+    productId?: IntFilter<"ProductLike"> | number
+    createdAt?: DateTimeFilter<"ProductLike"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+  }
+
+  export type ProductLikeOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    productId?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    product?: ProductOrderByWithRelationInput
+  }
+
+  export type ProductLikeWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId_productId?: ProductLikeUserIdProductIdCompoundUniqueInput
+    AND?: ProductLikeWhereInput | ProductLikeWhereInput[]
+    OR?: ProductLikeWhereInput[]
+    NOT?: ProductLikeWhereInput | ProductLikeWhereInput[]
+    userId?: IntFilter<"ProductLike"> | number
+    productId?: IntFilter<"ProductLike"> | number
+    createdAt?: DateTimeFilter<"ProductLike"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+  }, "id" | "userId_productId">
+
+  export type ProductLikeOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    productId?: SortOrder
+    createdAt?: SortOrder
+    _count?: ProductLikeCountOrderByAggregateInput
+    _avg?: ProductLikeAvgOrderByAggregateInput
+    _max?: ProductLikeMaxOrderByAggregateInput
+    _min?: ProductLikeMinOrderByAggregateInput
+    _sum?: ProductLikeSumOrderByAggregateInput
+  }
+
+  export type ProductLikeScalarWhereWithAggregatesInput = {
+    AND?: ProductLikeScalarWhereWithAggregatesInput | ProductLikeScalarWhereWithAggregatesInput[]
+    OR?: ProductLikeScalarWhereWithAggregatesInput[]
+    NOT?: ProductLikeScalarWhereWithAggregatesInput | ProductLikeScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ProductLike"> | number
+    userId?: IntWithAggregatesFilter<"ProductLike"> | number
+    productId?: IntWithAggregatesFilter<"ProductLike"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"ProductLike"> | Date | string
+  }
+
   export type ArticleWhereInput = {
     AND?: ArticleWhereInput | ArticleWhereInput[]
     OR?: ArticleWhereInput[]
@@ -6226,6 +8831,7 @@ export namespace Prisma {
     userId?: IntFilter<"Article"> | number
     comments?: CommentListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    likes?: ArticleLikeListRelationFilter
   }
 
   export type ArticleOrderByWithRelationInput = {
@@ -6237,6 +8843,7 @@ export namespace Prisma {
     userId?: SortOrder
     comments?: CommentOrderByRelationAggregateInput
     user?: UserOrderByWithRelationInput
+    likes?: ArticleLikeOrderByRelationAggregateInput
   }
 
   export type ArticleWhereUniqueInput = Prisma.AtLeast<{
@@ -6251,6 +8858,7 @@ export namespace Prisma {
     userId?: IntFilter<"Article"> | number
     comments?: CommentListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    likes?: ArticleLikeListRelationFilter
   }, "id">
 
   export type ArticleOrderByWithAggregationInput = {
@@ -6277,6 +8885,62 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Article"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Article"> | Date | string
     userId?: IntWithAggregatesFilter<"Article"> | number
+  }
+
+  export type ArticleLikeWhereInput = {
+    AND?: ArticleLikeWhereInput | ArticleLikeWhereInput[]
+    OR?: ArticleLikeWhereInput[]
+    NOT?: ArticleLikeWhereInput | ArticleLikeWhereInput[]
+    id?: IntFilter<"ArticleLike"> | number
+    userId?: IntFilter<"ArticleLike"> | number
+    articleId?: IntFilter<"ArticleLike"> | number
+    createdAt?: DateTimeFilter<"ArticleLike"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    article?: XOR<ArticleScalarRelationFilter, ArticleWhereInput>
+  }
+
+  export type ArticleLikeOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    articleId?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    article?: ArticleOrderByWithRelationInput
+  }
+
+  export type ArticleLikeWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId_articleId?: ArticleLikeUserIdArticleIdCompoundUniqueInput
+    AND?: ArticleLikeWhereInput | ArticleLikeWhereInput[]
+    OR?: ArticleLikeWhereInput[]
+    NOT?: ArticleLikeWhereInput | ArticleLikeWhereInput[]
+    userId?: IntFilter<"ArticleLike"> | number
+    articleId?: IntFilter<"ArticleLike"> | number
+    createdAt?: DateTimeFilter<"ArticleLike"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    article?: XOR<ArticleScalarRelationFilter, ArticleWhereInput>
+  }, "id" | "userId_articleId">
+
+  export type ArticleLikeOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    articleId?: SortOrder
+    createdAt?: SortOrder
+    _count?: ArticleLikeCountOrderByAggregateInput
+    _avg?: ArticleLikeAvgOrderByAggregateInput
+    _max?: ArticleLikeMaxOrderByAggregateInput
+    _min?: ArticleLikeMinOrderByAggregateInput
+    _sum?: ArticleLikeSumOrderByAggregateInput
+  }
+
+  export type ArticleLikeScalarWhereWithAggregatesInput = {
+    AND?: ArticleLikeScalarWhereWithAggregatesInput | ArticleLikeScalarWhereWithAggregatesInput[]
+    OR?: ArticleLikeScalarWhereWithAggregatesInput[]
+    NOT?: ArticleLikeScalarWhereWithAggregatesInput | ArticleLikeScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ArticleLike"> | number
+    userId?: IntWithAggregatesFilter<"ArticleLike"> | number
+    articleId?: IntWithAggregatesFilter<"ArticleLike"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"ArticleLike"> | Date | string
   }
 
   export type CommentWhereInput = {
@@ -6357,6 +9021,8 @@ export namespace Prisma {
     products?: ProductCreateNestedManyWithoutUserInput
     articles?: ArticleCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
+    ProductLikes?: ProductLikeCreateNestedManyWithoutUserInput
+    ArticleLikes?: ArticleLikeCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -6370,6 +9036,8 @@ export namespace Prisma {
     products?: ProductUncheckedCreateNestedManyWithoutUserInput
     articles?: ArticleUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
+    ProductLikes?: ProductLikeUncheckedCreateNestedManyWithoutUserInput
+    ArticleLikes?: ArticleLikeUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -6382,6 +9050,8 @@ export namespace Prisma {
     products?: ProductUpdateManyWithoutUserNestedInput
     articles?: ArticleUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
+    ProductLikes?: ProductLikeUpdateManyWithoutUserNestedInput
+    ArticleLikes?: ArticleLikeUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -6395,6 +9065,8 @@ export namespace Prisma {
     products?: ProductUncheckedUpdateManyWithoutUserNestedInput
     articles?: ArticleUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    ProductLikes?: ProductLikeUncheckedUpdateManyWithoutUserNestedInput
+    ArticleLikes?: ArticleLikeUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -6435,6 +9107,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     comments?: CommentCreateNestedManyWithoutProductInput
     user: UserCreateNestedOneWithoutProductsInput
+    likes?: ProductLikeCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateInput = {
@@ -6447,6 +9120,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     userId: number
     comments?: CommentUncheckedCreateNestedManyWithoutProductInput
+    likes?: ProductLikeUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductUpdateInput = {
@@ -6458,6 +9132,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: CommentUpdateManyWithoutProductNestedInput
     user?: UserUpdateOneRequiredWithoutProductsNestedInput
+    likes?: ProductLikeUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
@@ -6470,6 +9145,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     comments?: CommentUncheckedUpdateManyWithoutProductNestedInput
+    likes?: ProductLikeUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductCreateManyInput = {
@@ -6503,6 +9179,50 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
   }
 
+  export type ProductLikeCreateInput = {
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutProductLikesInput
+    product: ProductCreateNestedOneWithoutLikesInput
+  }
+
+  export type ProductLikeUncheckedCreateInput = {
+    id?: number
+    userId: number
+    productId: number
+    createdAt?: Date | string
+  }
+
+  export type ProductLikeUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutProductLikesNestedInput
+    product?: ProductUpdateOneRequiredWithoutLikesNestedInput
+  }
+
+  export type ProductLikeUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductLikeCreateManyInput = {
+    id?: number
+    userId: number
+    productId: number
+    createdAt?: Date | string
+  }
+
+  export type ProductLikeUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductLikeUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ArticleCreateInput = {
     title: string
     content: string
@@ -6510,6 +9230,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     comments?: CommentCreateNestedManyWithoutArticleInput
     user: UserCreateNestedOneWithoutArticlesInput
+    likes?: ArticleLikeCreateNestedManyWithoutArticleInput
   }
 
   export type ArticleUncheckedCreateInput = {
@@ -6520,6 +9241,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     userId: number
     comments?: CommentUncheckedCreateNestedManyWithoutArticleInput
+    likes?: ArticleLikeUncheckedCreateNestedManyWithoutArticleInput
   }
 
   export type ArticleUpdateInput = {
@@ -6529,6 +9251,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: CommentUpdateManyWithoutArticleNestedInput
     user?: UserUpdateOneRequiredWithoutArticlesNestedInput
+    likes?: ArticleLikeUpdateManyWithoutArticleNestedInput
   }
 
   export type ArticleUncheckedUpdateInput = {
@@ -6539,6 +9262,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     comments?: CommentUncheckedUpdateManyWithoutArticleNestedInput
+    likes?: ArticleLikeUncheckedUpdateManyWithoutArticleNestedInput
   }
 
   export type ArticleCreateManyInput = {
@@ -6564,6 +9288,50 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ArticleLikeCreateInput = {
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutArticleLikesInput
+    article: ArticleCreateNestedOneWithoutLikesInput
+  }
+
+  export type ArticleLikeUncheckedCreateInput = {
+    id?: number
+    userId: number
+    articleId: number
+    createdAt?: Date | string
+  }
+
+  export type ArticleLikeUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutArticleLikesNestedInput
+    article?: ArticleUpdateOneRequiredWithoutLikesNestedInput
+  }
+
+  export type ArticleLikeUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    articleId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ArticleLikeCreateManyInput = {
+    id?: number
+    userId: number
+    articleId: number
+    createdAt?: Date | string
+  }
+
+  export type ArticleLikeUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ArticleLikeUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    articleId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CommentCreateInput = {
@@ -6693,6 +9461,18 @@ export namespace Prisma {
     none?: CommentWhereInput
   }
 
+  export type ProductLikeListRelationFilter = {
+    every?: ProductLikeWhereInput
+    some?: ProductLikeWhereInput
+    none?: ProductLikeWhereInput
+  }
+
+  export type ArticleLikeListRelationFilter = {
+    every?: ArticleLikeWhereInput
+    some?: ArticleLikeWhereInput
+    none?: ArticleLikeWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -6707,6 +9487,14 @@ export namespace Prisma {
   }
 
   export type CommentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProductLikeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ArticleLikeOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -6870,6 +9658,49 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
+  export type ProductScalarRelationFilter = {
+    is?: ProductWhereInput
+    isNot?: ProductWhereInput
+  }
+
+  export type ProductLikeUserIdProductIdCompoundUniqueInput = {
+    userId: number
+    productId: number
+  }
+
+  export type ProductLikeCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    productId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProductLikeAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    productId?: SortOrder
+  }
+
+  export type ProductLikeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    productId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProductLikeMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    productId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProductLikeSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    productId?: SortOrder
+  }
+
   export type ArticleCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
@@ -6905,6 +9736,49 @@ export namespace Prisma {
   export type ArticleSumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+  }
+
+  export type ArticleScalarRelationFilter = {
+    is?: ArticleWhereInput
+    isNot?: ArticleWhereInput
+  }
+
+  export type ArticleLikeUserIdArticleIdCompoundUniqueInput = {
+    userId: number
+    articleId: number
+  }
+
+  export type ArticleLikeCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    articleId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ArticleLikeAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    articleId?: SortOrder
+  }
+
+  export type ArticleLikeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    articleId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ArticleLikeMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    articleId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ArticleLikeSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    articleId?: SortOrder
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -7006,6 +9880,20 @@ export namespace Prisma {
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
+  export type ProductLikeCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProductLikeCreateWithoutUserInput, ProductLikeUncheckedCreateWithoutUserInput> | ProductLikeCreateWithoutUserInput[] | ProductLikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProductLikeCreateOrConnectWithoutUserInput | ProductLikeCreateOrConnectWithoutUserInput[]
+    createMany?: ProductLikeCreateManyUserInputEnvelope
+    connect?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+  }
+
+  export type ArticleLikeCreateNestedManyWithoutUserInput = {
+    create?: XOR<ArticleLikeCreateWithoutUserInput, ArticleLikeUncheckedCreateWithoutUserInput> | ArticleLikeCreateWithoutUserInput[] | ArticleLikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ArticleLikeCreateOrConnectWithoutUserInput | ArticleLikeCreateOrConnectWithoutUserInput[]
+    createMany?: ArticleLikeCreateManyUserInputEnvelope
+    connect?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+  }
+
   export type ProductUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ProductCreateWithoutUserInput, ProductUncheckedCreateWithoutUserInput> | ProductCreateWithoutUserInput[] | ProductUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutUserInput | ProductCreateOrConnectWithoutUserInput[]
@@ -7025,6 +9913,20 @@ export namespace Prisma {
     connectOrCreate?: CommentCreateOrConnectWithoutUserInput | CommentCreateOrConnectWithoutUserInput[]
     createMany?: CommentCreateManyUserInputEnvelope
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
+  export type ProductLikeUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProductLikeCreateWithoutUserInput, ProductLikeUncheckedCreateWithoutUserInput> | ProductLikeCreateWithoutUserInput[] | ProductLikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProductLikeCreateOrConnectWithoutUserInput | ProductLikeCreateOrConnectWithoutUserInput[]
+    createMany?: ProductLikeCreateManyUserInputEnvelope
+    connect?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+  }
+
+  export type ArticleLikeUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ArticleLikeCreateWithoutUserInput, ArticleLikeUncheckedCreateWithoutUserInput> | ArticleLikeCreateWithoutUserInput[] | ArticleLikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ArticleLikeCreateOrConnectWithoutUserInput | ArticleLikeCreateOrConnectWithoutUserInput[]
+    createMany?: ArticleLikeCreateManyUserInputEnvelope
+    connect?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -7081,6 +9983,34 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
+  export type ProductLikeUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProductLikeCreateWithoutUserInput, ProductLikeUncheckedCreateWithoutUserInput> | ProductLikeCreateWithoutUserInput[] | ProductLikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProductLikeCreateOrConnectWithoutUserInput | ProductLikeCreateOrConnectWithoutUserInput[]
+    upsert?: ProductLikeUpsertWithWhereUniqueWithoutUserInput | ProductLikeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProductLikeCreateManyUserInputEnvelope
+    set?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+    disconnect?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+    delete?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+    connect?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+    update?: ProductLikeUpdateWithWhereUniqueWithoutUserInput | ProductLikeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProductLikeUpdateManyWithWhereWithoutUserInput | ProductLikeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProductLikeScalarWhereInput | ProductLikeScalarWhereInput[]
+  }
+
+  export type ArticleLikeUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ArticleLikeCreateWithoutUserInput, ArticleLikeUncheckedCreateWithoutUserInput> | ArticleLikeCreateWithoutUserInput[] | ArticleLikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ArticleLikeCreateOrConnectWithoutUserInput | ArticleLikeCreateOrConnectWithoutUserInput[]
+    upsert?: ArticleLikeUpsertWithWhereUniqueWithoutUserInput | ArticleLikeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ArticleLikeCreateManyUserInputEnvelope
+    set?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+    disconnect?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+    delete?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+    connect?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+    update?: ArticleLikeUpdateWithWhereUniqueWithoutUserInput | ArticleLikeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ArticleLikeUpdateManyWithWhereWithoutUserInput | ArticleLikeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ArticleLikeScalarWhereInput | ArticleLikeScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -7131,6 +10061,34 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
+  export type ProductLikeUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProductLikeCreateWithoutUserInput, ProductLikeUncheckedCreateWithoutUserInput> | ProductLikeCreateWithoutUserInput[] | ProductLikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProductLikeCreateOrConnectWithoutUserInput | ProductLikeCreateOrConnectWithoutUserInput[]
+    upsert?: ProductLikeUpsertWithWhereUniqueWithoutUserInput | ProductLikeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProductLikeCreateManyUserInputEnvelope
+    set?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+    disconnect?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+    delete?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+    connect?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+    update?: ProductLikeUpdateWithWhereUniqueWithoutUserInput | ProductLikeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProductLikeUpdateManyWithWhereWithoutUserInput | ProductLikeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProductLikeScalarWhereInput | ProductLikeScalarWhereInput[]
+  }
+
+  export type ArticleLikeUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ArticleLikeCreateWithoutUserInput, ArticleLikeUncheckedCreateWithoutUserInput> | ArticleLikeCreateWithoutUserInput[] | ArticleLikeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ArticleLikeCreateOrConnectWithoutUserInput | ArticleLikeCreateOrConnectWithoutUserInput[]
+    upsert?: ArticleLikeUpsertWithWhereUniqueWithoutUserInput | ArticleLikeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ArticleLikeCreateManyUserInputEnvelope
+    set?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+    disconnect?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+    delete?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+    connect?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+    update?: ArticleLikeUpdateWithWhereUniqueWithoutUserInput | ArticleLikeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ArticleLikeUpdateManyWithWhereWithoutUserInput | ArticleLikeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ArticleLikeScalarWhereInput | ArticleLikeScalarWhereInput[]
+  }
+
   export type ProductCreatetagsInput = {
     set: string[]
   }
@@ -7148,11 +10106,25 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type ProductLikeCreateNestedManyWithoutProductInput = {
+    create?: XOR<ProductLikeCreateWithoutProductInput, ProductLikeUncheckedCreateWithoutProductInput> | ProductLikeCreateWithoutProductInput[] | ProductLikeUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: ProductLikeCreateOrConnectWithoutProductInput | ProductLikeCreateOrConnectWithoutProductInput[]
+    createMany?: ProductLikeCreateManyProductInputEnvelope
+    connect?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+  }
+
   export type CommentUncheckedCreateNestedManyWithoutProductInput = {
     create?: XOR<CommentCreateWithoutProductInput, CommentUncheckedCreateWithoutProductInput> | CommentCreateWithoutProductInput[] | CommentUncheckedCreateWithoutProductInput[]
     connectOrCreate?: CommentCreateOrConnectWithoutProductInput | CommentCreateOrConnectWithoutProductInput[]
     createMany?: CommentCreateManyProductInputEnvelope
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
+  export type ProductLikeUncheckedCreateNestedManyWithoutProductInput = {
+    create?: XOR<ProductLikeCreateWithoutProductInput, ProductLikeUncheckedCreateWithoutProductInput> | ProductLikeCreateWithoutProductInput[] | ProductLikeUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: ProductLikeCreateOrConnectWithoutProductInput | ProductLikeCreateOrConnectWithoutProductInput[]
+    createMany?: ProductLikeCreateManyProductInputEnvelope
+    connect?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
   }
 
   export type ProductUpdatetagsInput = {
@@ -7182,6 +10154,20 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProductsInput, UserUpdateWithoutProductsInput>, UserUncheckedUpdateWithoutProductsInput>
   }
 
+  export type ProductLikeUpdateManyWithoutProductNestedInput = {
+    create?: XOR<ProductLikeCreateWithoutProductInput, ProductLikeUncheckedCreateWithoutProductInput> | ProductLikeCreateWithoutProductInput[] | ProductLikeUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: ProductLikeCreateOrConnectWithoutProductInput | ProductLikeCreateOrConnectWithoutProductInput[]
+    upsert?: ProductLikeUpsertWithWhereUniqueWithoutProductInput | ProductLikeUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: ProductLikeCreateManyProductInputEnvelope
+    set?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+    disconnect?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+    delete?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+    connect?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+    update?: ProductLikeUpdateWithWhereUniqueWithoutProductInput | ProductLikeUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: ProductLikeUpdateManyWithWhereWithoutProductInput | ProductLikeUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: ProductLikeScalarWhereInput | ProductLikeScalarWhereInput[]
+  }
+
   export type CommentUncheckedUpdateManyWithoutProductNestedInput = {
     create?: XOR<CommentCreateWithoutProductInput, CommentUncheckedCreateWithoutProductInput> | CommentCreateWithoutProductInput[] | CommentUncheckedCreateWithoutProductInput[]
     connectOrCreate?: CommentCreateOrConnectWithoutProductInput | CommentCreateOrConnectWithoutProductInput[]
@@ -7194,6 +10180,48 @@ export namespace Prisma {
     update?: CommentUpdateWithWhereUniqueWithoutProductInput | CommentUpdateWithWhereUniqueWithoutProductInput[]
     updateMany?: CommentUpdateManyWithWhereWithoutProductInput | CommentUpdateManyWithWhereWithoutProductInput[]
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  }
+
+  export type ProductLikeUncheckedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<ProductLikeCreateWithoutProductInput, ProductLikeUncheckedCreateWithoutProductInput> | ProductLikeCreateWithoutProductInput[] | ProductLikeUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: ProductLikeCreateOrConnectWithoutProductInput | ProductLikeCreateOrConnectWithoutProductInput[]
+    upsert?: ProductLikeUpsertWithWhereUniqueWithoutProductInput | ProductLikeUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: ProductLikeCreateManyProductInputEnvelope
+    set?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+    disconnect?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+    delete?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+    connect?: ProductLikeWhereUniqueInput | ProductLikeWhereUniqueInput[]
+    update?: ProductLikeUpdateWithWhereUniqueWithoutProductInput | ProductLikeUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: ProductLikeUpdateManyWithWhereWithoutProductInput | ProductLikeUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: ProductLikeScalarWhereInput | ProductLikeScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutProductLikesInput = {
+    create?: XOR<UserCreateWithoutProductLikesInput, UserUncheckedCreateWithoutProductLikesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProductLikesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ProductCreateNestedOneWithoutLikesInput = {
+    create?: XOR<ProductCreateWithoutLikesInput, ProductUncheckedCreateWithoutLikesInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutLikesInput
+    connect?: ProductWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutProductLikesNestedInput = {
+    create?: XOR<UserCreateWithoutProductLikesInput, UserUncheckedCreateWithoutProductLikesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProductLikesInput
+    upsert?: UserUpsertWithoutProductLikesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProductLikesInput, UserUpdateWithoutProductLikesInput>, UserUncheckedUpdateWithoutProductLikesInput>
+  }
+
+  export type ProductUpdateOneRequiredWithoutLikesNestedInput = {
+    create?: XOR<ProductCreateWithoutLikesInput, ProductUncheckedCreateWithoutLikesInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutLikesInput
+    upsert?: ProductUpsertWithoutLikesInput
+    connect?: ProductWhereUniqueInput
+    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutLikesInput, ProductUpdateWithoutLikesInput>, ProductUncheckedUpdateWithoutLikesInput>
   }
 
   export type CommentCreateNestedManyWithoutArticleInput = {
@@ -7209,11 +10237,25 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type ArticleLikeCreateNestedManyWithoutArticleInput = {
+    create?: XOR<ArticleLikeCreateWithoutArticleInput, ArticleLikeUncheckedCreateWithoutArticleInput> | ArticleLikeCreateWithoutArticleInput[] | ArticleLikeUncheckedCreateWithoutArticleInput[]
+    connectOrCreate?: ArticleLikeCreateOrConnectWithoutArticleInput | ArticleLikeCreateOrConnectWithoutArticleInput[]
+    createMany?: ArticleLikeCreateManyArticleInputEnvelope
+    connect?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+  }
+
   export type CommentUncheckedCreateNestedManyWithoutArticleInput = {
     create?: XOR<CommentCreateWithoutArticleInput, CommentUncheckedCreateWithoutArticleInput> | CommentCreateWithoutArticleInput[] | CommentUncheckedCreateWithoutArticleInput[]
     connectOrCreate?: CommentCreateOrConnectWithoutArticleInput | CommentCreateOrConnectWithoutArticleInput[]
     createMany?: CommentCreateManyArticleInputEnvelope
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
+  export type ArticleLikeUncheckedCreateNestedManyWithoutArticleInput = {
+    create?: XOR<ArticleLikeCreateWithoutArticleInput, ArticleLikeUncheckedCreateWithoutArticleInput> | ArticleLikeCreateWithoutArticleInput[] | ArticleLikeUncheckedCreateWithoutArticleInput[]
+    connectOrCreate?: ArticleLikeCreateOrConnectWithoutArticleInput | ArticleLikeCreateOrConnectWithoutArticleInput[]
+    createMany?: ArticleLikeCreateManyArticleInputEnvelope
+    connect?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
   }
 
   export type CommentUpdateManyWithoutArticleNestedInput = {
@@ -7238,6 +10280,20 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutArticlesInput, UserUpdateWithoutArticlesInput>, UserUncheckedUpdateWithoutArticlesInput>
   }
 
+  export type ArticleLikeUpdateManyWithoutArticleNestedInput = {
+    create?: XOR<ArticleLikeCreateWithoutArticleInput, ArticleLikeUncheckedCreateWithoutArticleInput> | ArticleLikeCreateWithoutArticleInput[] | ArticleLikeUncheckedCreateWithoutArticleInput[]
+    connectOrCreate?: ArticleLikeCreateOrConnectWithoutArticleInput | ArticleLikeCreateOrConnectWithoutArticleInput[]
+    upsert?: ArticleLikeUpsertWithWhereUniqueWithoutArticleInput | ArticleLikeUpsertWithWhereUniqueWithoutArticleInput[]
+    createMany?: ArticleLikeCreateManyArticleInputEnvelope
+    set?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+    disconnect?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+    delete?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+    connect?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+    update?: ArticleLikeUpdateWithWhereUniqueWithoutArticleInput | ArticleLikeUpdateWithWhereUniqueWithoutArticleInput[]
+    updateMany?: ArticleLikeUpdateManyWithWhereWithoutArticleInput | ArticleLikeUpdateManyWithWhereWithoutArticleInput[]
+    deleteMany?: ArticleLikeScalarWhereInput | ArticleLikeScalarWhereInput[]
+  }
+
   export type CommentUncheckedUpdateManyWithoutArticleNestedInput = {
     create?: XOR<CommentCreateWithoutArticleInput, CommentUncheckedCreateWithoutArticleInput> | CommentCreateWithoutArticleInput[] | CommentUncheckedCreateWithoutArticleInput[]
     connectOrCreate?: CommentCreateOrConnectWithoutArticleInput | CommentCreateOrConnectWithoutArticleInput[]
@@ -7250,6 +10306,48 @@ export namespace Prisma {
     update?: CommentUpdateWithWhereUniqueWithoutArticleInput | CommentUpdateWithWhereUniqueWithoutArticleInput[]
     updateMany?: CommentUpdateManyWithWhereWithoutArticleInput | CommentUpdateManyWithWhereWithoutArticleInput[]
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  }
+
+  export type ArticleLikeUncheckedUpdateManyWithoutArticleNestedInput = {
+    create?: XOR<ArticleLikeCreateWithoutArticleInput, ArticleLikeUncheckedCreateWithoutArticleInput> | ArticleLikeCreateWithoutArticleInput[] | ArticleLikeUncheckedCreateWithoutArticleInput[]
+    connectOrCreate?: ArticleLikeCreateOrConnectWithoutArticleInput | ArticleLikeCreateOrConnectWithoutArticleInput[]
+    upsert?: ArticleLikeUpsertWithWhereUniqueWithoutArticleInput | ArticleLikeUpsertWithWhereUniqueWithoutArticleInput[]
+    createMany?: ArticleLikeCreateManyArticleInputEnvelope
+    set?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+    disconnect?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+    delete?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+    connect?: ArticleLikeWhereUniqueInput | ArticleLikeWhereUniqueInput[]
+    update?: ArticleLikeUpdateWithWhereUniqueWithoutArticleInput | ArticleLikeUpdateWithWhereUniqueWithoutArticleInput[]
+    updateMany?: ArticleLikeUpdateManyWithWhereWithoutArticleInput | ArticleLikeUpdateManyWithWhereWithoutArticleInput[]
+    deleteMany?: ArticleLikeScalarWhereInput | ArticleLikeScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutArticleLikesInput = {
+    create?: XOR<UserCreateWithoutArticleLikesInput, UserUncheckedCreateWithoutArticleLikesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutArticleLikesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ArticleCreateNestedOneWithoutLikesInput = {
+    create?: XOR<ArticleCreateWithoutLikesInput, ArticleUncheckedCreateWithoutLikesInput>
+    connectOrCreate?: ArticleCreateOrConnectWithoutLikesInput
+    connect?: ArticleWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutArticleLikesNestedInput = {
+    create?: XOR<UserCreateWithoutArticleLikesInput, UserUncheckedCreateWithoutArticleLikesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutArticleLikesInput
+    upsert?: UserUpsertWithoutArticleLikesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutArticleLikesInput, UserUpdateWithoutArticleLikesInput>, UserUncheckedUpdateWithoutArticleLikesInput>
+  }
+
+  export type ArticleUpdateOneRequiredWithoutLikesNestedInput = {
+    create?: XOR<ArticleCreateWithoutLikesInput, ArticleUncheckedCreateWithoutLikesInput>
+    connectOrCreate?: ArticleCreateOrConnectWithoutLikesInput
+    upsert?: ArticleUpsertWithoutLikesInput
+    connect?: ArticleWhereUniqueInput
+    update?: XOR<XOR<ArticleUpdateToOneWithWhereWithoutLikesInput, ArticleUpdateWithoutLikesInput>, ArticleUncheckedUpdateWithoutLikesInput>
   }
 
   export type ProductCreateNestedOneWithoutCommentsInput = {
@@ -7477,6 +10575,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     comments?: CommentCreateNestedManyWithoutProductInput
+    likes?: ProductLikeCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutUserInput = {
@@ -7488,6 +10587,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     comments?: CommentUncheckedCreateNestedManyWithoutProductInput
+    likes?: ProductLikeUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutUserInput = {
@@ -7506,6 +10606,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     comments?: CommentCreateNestedManyWithoutArticleInput
+    likes?: ArticleLikeCreateNestedManyWithoutArticleInput
   }
 
   export type ArticleUncheckedCreateWithoutUserInput = {
@@ -7515,6 +10616,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     comments?: CommentUncheckedCreateNestedManyWithoutArticleInput
+    likes?: ArticleLikeUncheckedCreateNestedManyWithoutArticleInput
   }
 
   export type ArticleCreateOrConnectWithoutUserInput = {
@@ -7549,6 +10651,48 @@ export namespace Prisma {
 
   export type CommentCreateManyUserInputEnvelope = {
     data: CommentCreateManyUserInput | CommentCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProductLikeCreateWithoutUserInput = {
+    createdAt?: Date | string
+    product: ProductCreateNestedOneWithoutLikesInput
+  }
+
+  export type ProductLikeUncheckedCreateWithoutUserInput = {
+    id?: number
+    productId: number
+    createdAt?: Date | string
+  }
+
+  export type ProductLikeCreateOrConnectWithoutUserInput = {
+    where: ProductLikeWhereUniqueInput
+    create: XOR<ProductLikeCreateWithoutUserInput, ProductLikeUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProductLikeCreateManyUserInputEnvelope = {
+    data: ProductLikeCreateManyUserInput | ProductLikeCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ArticleLikeCreateWithoutUserInput = {
+    createdAt?: Date | string
+    article: ArticleCreateNestedOneWithoutLikesInput
+  }
+
+  export type ArticleLikeUncheckedCreateWithoutUserInput = {
+    id?: number
+    articleId: number
+    createdAt?: Date | string
+  }
+
+  export type ArticleLikeCreateOrConnectWithoutUserInput = {
+    where: ArticleLikeWhereUniqueInput
+    create: XOR<ArticleLikeCreateWithoutUserInput, ArticleLikeUncheckedCreateWithoutUserInput>
+  }
+
+  export type ArticleLikeCreateManyUserInputEnvelope = {
+    data: ArticleLikeCreateManyUserInput | ArticleLikeCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -7638,6 +10782,58 @@ export namespace Prisma {
     userId?: IntFilter<"Comment"> | number
   }
 
+  export type ProductLikeUpsertWithWhereUniqueWithoutUserInput = {
+    where: ProductLikeWhereUniqueInput
+    update: XOR<ProductLikeUpdateWithoutUserInput, ProductLikeUncheckedUpdateWithoutUserInput>
+    create: XOR<ProductLikeCreateWithoutUserInput, ProductLikeUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProductLikeUpdateWithWhereUniqueWithoutUserInput = {
+    where: ProductLikeWhereUniqueInput
+    data: XOR<ProductLikeUpdateWithoutUserInput, ProductLikeUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ProductLikeUpdateManyWithWhereWithoutUserInput = {
+    where: ProductLikeScalarWhereInput
+    data: XOR<ProductLikeUpdateManyMutationInput, ProductLikeUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ProductLikeScalarWhereInput = {
+    AND?: ProductLikeScalarWhereInput | ProductLikeScalarWhereInput[]
+    OR?: ProductLikeScalarWhereInput[]
+    NOT?: ProductLikeScalarWhereInput | ProductLikeScalarWhereInput[]
+    id?: IntFilter<"ProductLike"> | number
+    userId?: IntFilter<"ProductLike"> | number
+    productId?: IntFilter<"ProductLike"> | number
+    createdAt?: DateTimeFilter<"ProductLike"> | Date | string
+  }
+
+  export type ArticleLikeUpsertWithWhereUniqueWithoutUserInput = {
+    where: ArticleLikeWhereUniqueInput
+    update: XOR<ArticleLikeUpdateWithoutUserInput, ArticleLikeUncheckedUpdateWithoutUserInput>
+    create: XOR<ArticleLikeCreateWithoutUserInput, ArticleLikeUncheckedCreateWithoutUserInput>
+  }
+
+  export type ArticleLikeUpdateWithWhereUniqueWithoutUserInput = {
+    where: ArticleLikeWhereUniqueInput
+    data: XOR<ArticleLikeUpdateWithoutUserInput, ArticleLikeUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ArticleLikeUpdateManyWithWhereWithoutUserInput = {
+    where: ArticleLikeScalarWhereInput
+    data: XOR<ArticleLikeUpdateManyMutationInput, ArticleLikeUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ArticleLikeScalarWhereInput = {
+    AND?: ArticleLikeScalarWhereInput | ArticleLikeScalarWhereInput[]
+    OR?: ArticleLikeScalarWhereInput[]
+    NOT?: ArticleLikeScalarWhereInput | ArticleLikeScalarWhereInput[]
+    id?: IntFilter<"ArticleLike"> | number
+    userId?: IntFilter<"ArticleLike"> | number
+    articleId?: IntFilter<"ArticleLike"> | number
+    createdAt?: DateTimeFilter<"ArticleLike"> | Date | string
+  }
+
   export type CommentCreateWithoutProductInput = {
     content: string
     createdAt?: Date | string
@@ -7672,6 +10868,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     articles?: ArticleCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
+    ProductLikes?: ProductLikeCreateNestedManyWithoutUserInput
+    ArticleLikes?: ArticleLikeCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProductsInput = {
@@ -7684,11 +10882,34 @@ export namespace Prisma {
     updatedAt?: Date | string
     articles?: ArticleUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
+    ProductLikes?: ProductLikeUncheckedCreateNestedManyWithoutUserInput
+    ArticleLikes?: ArticleLikeUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProductsInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutProductsInput, UserUncheckedCreateWithoutProductsInput>
+  }
+
+  export type ProductLikeCreateWithoutProductInput = {
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutProductLikesInput
+  }
+
+  export type ProductLikeUncheckedCreateWithoutProductInput = {
+    id?: number
+    userId: number
+    createdAt?: Date | string
+  }
+
+  export type ProductLikeCreateOrConnectWithoutProductInput = {
+    where: ProductLikeWhereUniqueInput
+    create: XOR<ProductLikeCreateWithoutProductInput, ProductLikeUncheckedCreateWithoutProductInput>
+  }
+
+  export type ProductLikeCreateManyProductInputEnvelope = {
+    data: ProductLikeCreateManyProductInput | ProductLikeCreateManyProductInput[]
+    skipDuplicates?: boolean
   }
 
   export type CommentUpsertWithWhereUniqueWithoutProductInput = {
@@ -7727,6 +10948,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     articles?: ArticleUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
+    ProductLikes?: ProductLikeUpdateManyWithoutUserNestedInput
+    ArticleLikes?: ArticleLikeUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProductsInput = {
@@ -7739,6 +10962,156 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     articles?: ArticleUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    ProductLikes?: ProductLikeUncheckedUpdateManyWithoutUserNestedInput
+    ArticleLikes?: ArticleLikeUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ProductLikeUpsertWithWhereUniqueWithoutProductInput = {
+    where: ProductLikeWhereUniqueInput
+    update: XOR<ProductLikeUpdateWithoutProductInput, ProductLikeUncheckedUpdateWithoutProductInput>
+    create: XOR<ProductLikeCreateWithoutProductInput, ProductLikeUncheckedCreateWithoutProductInput>
+  }
+
+  export type ProductLikeUpdateWithWhereUniqueWithoutProductInput = {
+    where: ProductLikeWhereUniqueInput
+    data: XOR<ProductLikeUpdateWithoutProductInput, ProductLikeUncheckedUpdateWithoutProductInput>
+  }
+
+  export type ProductLikeUpdateManyWithWhereWithoutProductInput = {
+    where: ProductLikeScalarWhereInput
+    data: XOR<ProductLikeUpdateManyMutationInput, ProductLikeUncheckedUpdateManyWithoutProductInput>
+  }
+
+  export type UserCreateWithoutProductLikesInput = {
+    email: string
+    nickname: string
+    image?: string | null
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductCreateNestedManyWithoutUserInput
+    articles?: ArticleCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutUserInput
+    ArticleLikes?: ArticleLikeCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutProductLikesInput = {
+    id?: number
+    email: string
+    nickname: string
+    image?: string | null
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductUncheckedCreateNestedManyWithoutUserInput
+    articles?: ArticleUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutUserInput
+    ArticleLikes?: ArticleLikeUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutProductLikesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutProductLikesInput, UserUncheckedCreateWithoutProductLikesInput>
+  }
+
+  export type ProductCreateWithoutLikesInput = {
+    name: string
+    description: string
+    price: number
+    tags?: ProductCreatetagsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: CommentCreateNestedManyWithoutProductInput
+    user: UserCreateNestedOneWithoutProductsInput
+  }
+
+  export type ProductUncheckedCreateWithoutLikesInput = {
+    id?: number
+    name: string
+    description: string
+    price: number
+    tags?: ProductCreatetagsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    comments?: CommentUncheckedCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductCreateOrConnectWithoutLikesInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutLikesInput, ProductUncheckedCreateWithoutLikesInput>
+  }
+
+  export type UserUpsertWithoutProductLikesInput = {
+    update: XOR<UserUpdateWithoutProductLikesInput, UserUncheckedUpdateWithoutProductLikesInput>
+    create: XOR<UserCreateWithoutProductLikesInput, UserUncheckedCreateWithoutProductLikesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutProductLikesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutProductLikesInput, UserUncheckedUpdateWithoutProductLikesInput>
+  }
+
+  export type UserUpdateWithoutProductLikesInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    nickname?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUpdateManyWithoutUserNestedInput
+    articles?: ArticleUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutUserNestedInput
+    ArticleLikes?: ArticleLikeUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutProductLikesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    nickname?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUncheckedUpdateManyWithoutUserNestedInput
+    articles?: ArticleUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    ArticleLikes?: ArticleLikeUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ProductUpsertWithoutLikesInput = {
+    update: XOR<ProductUpdateWithoutLikesInput, ProductUncheckedUpdateWithoutLikesInput>
+    create: XOR<ProductCreateWithoutLikesInput, ProductUncheckedCreateWithoutLikesInput>
+    where?: ProductWhereInput
+  }
+
+  export type ProductUpdateToOneWithWhereWithoutLikesInput = {
+    where?: ProductWhereInput
+    data: XOR<ProductUpdateWithoutLikesInput, ProductUncheckedUpdateWithoutLikesInput>
+  }
+
+  export type ProductUpdateWithoutLikesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
+    tags?: ProductUpdatetagsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: CommentUpdateManyWithoutProductNestedInput
+    user?: UserUpdateOneRequiredWithoutProductsNestedInput
+  }
+
+  export type ProductUncheckedUpdateWithoutLikesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
+    tags?: ProductUpdatetagsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    comments?: CommentUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type CommentCreateWithoutArticleInput = {
@@ -7775,6 +11148,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     products?: ProductCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
+    ProductLikes?: ProductLikeCreateNestedManyWithoutUserInput
+    ArticleLikes?: ArticleLikeCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutArticlesInput = {
@@ -7787,11 +11162,34 @@ export namespace Prisma {
     updatedAt?: Date | string
     products?: ProductUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
+    ProductLikes?: ProductLikeUncheckedCreateNestedManyWithoutUserInput
+    ArticleLikes?: ArticleLikeUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutArticlesInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutArticlesInput, UserUncheckedCreateWithoutArticlesInput>
+  }
+
+  export type ArticleLikeCreateWithoutArticleInput = {
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutArticleLikesInput
+  }
+
+  export type ArticleLikeUncheckedCreateWithoutArticleInput = {
+    id?: number
+    userId: number
+    createdAt?: Date | string
+  }
+
+  export type ArticleLikeCreateOrConnectWithoutArticleInput = {
+    where: ArticleLikeWhereUniqueInput
+    create: XOR<ArticleLikeCreateWithoutArticleInput, ArticleLikeUncheckedCreateWithoutArticleInput>
+  }
+
+  export type ArticleLikeCreateManyArticleInputEnvelope = {
+    data: ArticleLikeCreateManyArticleInput | ArticleLikeCreateManyArticleInput[]
+    skipDuplicates?: boolean
   }
 
   export type CommentUpsertWithWhereUniqueWithoutArticleInput = {
@@ -7830,6 +11228,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
+    ProductLikes?: ProductLikeUpdateManyWithoutUserNestedInput
+    ArticleLikes?: ArticleLikeUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutArticlesInput = {
@@ -7842,6 +11242,148 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    ProductLikes?: ProductLikeUncheckedUpdateManyWithoutUserNestedInput
+    ArticleLikes?: ArticleLikeUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ArticleLikeUpsertWithWhereUniqueWithoutArticleInput = {
+    where: ArticleLikeWhereUniqueInput
+    update: XOR<ArticleLikeUpdateWithoutArticleInput, ArticleLikeUncheckedUpdateWithoutArticleInput>
+    create: XOR<ArticleLikeCreateWithoutArticleInput, ArticleLikeUncheckedCreateWithoutArticleInput>
+  }
+
+  export type ArticleLikeUpdateWithWhereUniqueWithoutArticleInput = {
+    where: ArticleLikeWhereUniqueInput
+    data: XOR<ArticleLikeUpdateWithoutArticleInput, ArticleLikeUncheckedUpdateWithoutArticleInput>
+  }
+
+  export type ArticleLikeUpdateManyWithWhereWithoutArticleInput = {
+    where: ArticleLikeScalarWhereInput
+    data: XOR<ArticleLikeUpdateManyMutationInput, ArticleLikeUncheckedUpdateManyWithoutArticleInput>
+  }
+
+  export type UserCreateWithoutArticleLikesInput = {
+    email: string
+    nickname: string
+    image?: string | null
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductCreateNestedManyWithoutUserInput
+    articles?: ArticleCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutUserInput
+    ProductLikes?: ProductLikeCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutArticleLikesInput = {
+    id?: number
+    email: string
+    nickname: string
+    image?: string | null
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductUncheckedCreateNestedManyWithoutUserInput
+    articles?: ArticleUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutUserInput
+    ProductLikes?: ProductLikeUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutArticleLikesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutArticleLikesInput, UserUncheckedCreateWithoutArticleLikesInput>
+  }
+
+  export type ArticleCreateWithoutLikesInput = {
+    title: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    comments?: CommentCreateNestedManyWithoutArticleInput
+    user: UserCreateNestedOneWithoutArticlesInput
+  }
+
+  export type ArticleUncheckedCreateWithoutLikesInput = {
+    id?: number
+    title: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: number
+    comments?: CommentUncheckedCreateNestedManyWithoutArticleInput
+  }
+
+  export type ArticleCreateOrConnectWithoutLikesInput = {
+    where: ArticleWhereUniqueInput
+    create: XOR<ArticleCreateWithoutLikesInput, ArticleUncheckedCreateWithoutLikesInput>
+  }
+
+  export type UserUpsertWithoutArticleLikesInput = {
+    update: XOR<UserUpdateWithoutArticleLikesInput, UserUncheckedUpdateWithoutArticleLikesInput>
+    create: XOR<UserCreateWithoutArticleLikesInput, UserUncheckedCreateWithoutArticleLikesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutArticleLikesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutArticleLikesInput, UserUncheckedUpdateWithoutArticleLikesInput>
+  }
+
+  export type UserUpdateWithoutArticleLikesInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    nickname?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUpdateManyWithoutUserNestedInput
+    articles?: ArticleUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutUserNestedInput
+    ProductLikes?: ProductLikeUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutArticleLikesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    nickname?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUncheckedUpdateManyWithoutUserNestedInput
+    articles?: ArticleUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    ProductLikes?: ProductLikeUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ArticleUpsertWithoutLikesInput = {
+    update: XOR<ArticleUpdateWithoutLikesInput, ArticleUncheckedUpdateWithoutLikesInput>
+    create: XOR<ArticleCreateWithoutLikesInput, ArticleUncheckedCreateWithoutLikesInput>
+    where?: ArticleWhereInput
+  }
+
+  export type ArticleUpdateToOneWithWhereWithoutLikesInput = {
+    where?: ArticleWhereInput
+    data: XOR<ArticleUpdateWithoutLikesInput, ArticleUncheckedUpdateWithoutLikesInput>
+  }
+
+  export type ArticleUpdateWithoutLikesInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comments?: CommentUpdateManyWithoutArticleNestedInput
+    user?: UserUpdateOneRequiredWithoutArticlesNestedInput
+  }
+
+  export type ArticleUncheckedUpdateWithoutLikesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    comments?: CommentUncheckedUpdateManyWithoutArticleNestedInput
   }
 
   export type ProductCreateWithoutCommentsInput = {
@@ -7852,6 +11394,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutProductsInput
+    likes?: ProductLikeCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutCommentsInput = {
@@ -7863,6 +11406,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
+    likes?: ProductLikeUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutCommentsInput = {
@@ -7876,6 +11420,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutArticlesInput
+    likes?: ArticleLikeCreateNestedManyWithoutArticleInput
   }
 
   export type ArticleUncheckedCreateWithoutCommentsInput = {
@@ -7885,6 +11430,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
+    likes?: ArticleLikeUncheckedCreateNestedManyWithoutArticleInput
   }
 
   export type ArticleCreateOrConnectWithoutCommentsInput = {
@@ -7901,6 +11447,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     products?: ProductCreateNestedManyWithoutUserInput
     articles?: ArticleCreateNestedManyWithoutUserInput
+    ProductLikes?: ProductLikeCreateNestedManyWithoutUserInput
+    ArticleLikes?: ArticleLikeCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCommentsInput = {
@@ -7913,6 +11461,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     products?: ProductUncheckedCreateNestedManyWithoutUserInput
     articles?: ArticleUncheckedCreateNestedManyWithoutUserInput
+    ProductLikes?: ProductLikeUncheckedCreateNestedManyWithoutUserInput
+    ArticleLikes?: ArticleLikeUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCommentsInput = {
@@ -7939,6 +11489,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutProductsNestedInput
+    likes?: ProductLikeUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCommentsInput = {
@@ -7950,6 +11501,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+    likes?: ProductLikeUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ArticleUpsertWithoutCommentsInput = {
@@ -7969,6 +11521,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutArticlesNestedInput
+    likes?: ArticleLikeUpdateManyWithoutArticleNestedInput
   }
 
   export type ArticleUncheckedUpdateWithoutCommentsInput = {
@@ -7978,6 +11531,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+    likes?: ArticleLikeUncheckedUpdateManyWithoutArticleNestedInput
   }
 
   export type UserUpsertWithoutCommentsInput = {
@@ -8000,6 +11554,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUpdateManyWithoutUserNestedInput
     articles?: ArticleUpdateManyWithoutUserNestedInput
+    ProductLikes?: ProductLikeUpdateManyWithoutUserNestedInput
+    ArticleLikes?: ArticleLikeUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -8012,6 +11568,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUncheckedUpdateManyWithoutUserNestedInput
     articles?: ArticleUncheckedUpdateManyWithoutUserNestedInput
+    ProductLikes?: ProductLikeUncheckedUpdateManyWithoutUserNestedInput
+    ArticleLikes?: ArticleLikeUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProductCreateManyUserInput = {
@@ -8040,6 +11598,18 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type ProductLikeCreateManyUserInput = {
+    id?: number
+    productId: number
+    createdAt?: Date | string
+  }
+
+  export type ArticleLikeCreateManyUserInput = {
+    id?: number
+    articleId: number
+    createdAt?: Date | string
+  }
+
   export type ProductUpdateWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -8048,6 +11618,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: CommentUpdateManyWithoutProductNestedInput
+    likes?: ProductLikeUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutUserInput = {
@@ -8059,6 +11630,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: CommentUncheckedUpdateManyWithoutProductNestedInput
+    likes?: ProductLikeUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutUserInput = {
@@ -8077,6 +11649,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: CommentUpdateManyWithoutArticleNestedInput
+    likes?: ArticleLikeUpdateManyWithoutArticleNestedInput
   }
 
   export type ArticleUncheckedUpdateWithoutUserInput = {
@@ -8086,6 +11659,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: CommentUncheckedUpdateManyWithoutArticleNestedInput
+    likes?: ArticleLikeUncheckedUpdateManyWithoutArticleNestedInput
   }
 
   export type ArticleUncheckedUpdateManyWithoutUserInput = {
@@ -8119,12 +11693,52 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ProductLikeUpdateWithoutUserInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: ProductUpdateOneRequiredWithoutLikesNestedInput
+  }
+
+  export type ProductLikeUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductLikeUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ArticleLikeUpdateWithoutUserInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    article?: ArticleUpdateOneRequiredWithoutLikesNestedInput
+  }
+
+  export type ArticleLikeUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    articleId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ArticleLikeUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    articleId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type CommentCreateManyProductInput = {
     id?: number
     article_id?: number | null
     content: string
     createdAt?: Date | string
     userId: number
+  }
+
+  export type ProductLikeCreateManyProductInput = {
+    id?: number
+    userId: number
+    createdAt?: Date | string
   }
 
   export type CommentUpdateWithoutProductInput = {
@@ -8150,12 +11764,35 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
   }
 
+  export type ProductLikeUpdateWithoutProductInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutProductLikesNestedInput
+  }
+
+  export type ProductLikeUncheckedUpdateWithoutProductInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductLikeUncheckedUpdateManyWithoutProductInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type CommentCreateManyArticleInput = {
     id?: number
     product_id?: number | null
     content: string
     createdAt?: Date | string
     userId: number
+  }
+
+  export type ArticleLikeCreateManyArticleInput = {
+    id?: number
+    userId: number
+    createdAt?: Date | string
   }
 
   export type CommentUpdateWithoutArticleInput = {
@@ -8179,6 +11816,23 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ArticleLikeUpdateWithoutArticleInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutArticleLikesNestedInput
+  }
+
+  export type ArticleLikeUncheckedUpdateWithoutArticleInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ArticleLikeUncheckedUpdateManyWithoutArticleInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

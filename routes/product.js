@@ -123,18 +123,18 @@ router.patch('/change/:id', authenticate, async function (req, res, next) {
 
 // 상품 삭제 API : 로그인된 유저, 본인 상품만 삭제 가능 
 
-router.delete('/remove/:id', authenticate ,async function (req, res, next) {
+router.delete('/remove/:id', authenticate, async function (req, res, next) {
   try {
     const id = Number(req.params.id);
     const user = req.user;
     const product = await db.product.findUnique({
-      where: {id : id},
+      where: { id: id },
     });
-    if(!product) {
-      return res.status(404).json({message : "등록되지 않은 상품입니다."})
+    if (!product) {
+      return res.status(404).json({ message: "등록되지 않은 상품입니다." })
     }
-    if(product.userId !== user.id){
-      return res.status(401).json({message : "권한 없는 유저입니다."})
+    if (product.userId !== user.id) {
+      return res.status(401).json({ message: "권한 없는 유저입니다." })
     }
     const deleteProduct = await db.product.delete({
       where: { id: id }
@@ -145,6 +145,48 @@ router.delete('/remove/:id', authenticate ,async function (req, res, next) {
     res.status(500).json({ message: '서버에러' });
   }
 })
+
+// 로그인한 유저의 상품 좋아요 기능 
+
+router.post('/likes/:productId', authenticate, async function (req, res, next) {
+  const productId = Number(req.params.productId);
+  const product = await db.product.findUnique({
+    where: { id: productId },
+  });
+  if (!product) {
+    return res.status(404).json({ message: '상품을 찾을 수 없습니다.' });
+  }
+  const productLike = await db.product.update({
+    where: { id: productId },
+    data: {
+      likeCount: { increment: 1 }
+    }
+  });
+  return res.json({ likeCount: productLike.likeCount });
+
+});
+
+// 로그인한 유저의 상품 좋아요 취소
+router.delete('/likesCancel/:productId', authenticate, async function (req, res, next) {
+  const productId = Number(req.params.productId);
+  const product = await db.product.findUnique({
+    where: { id: productId },
+  });
+  if (!product) {
+    return res.status(404).json({ message: '상품을 찾을 수 없습니다.' });
+  }
+  if (product.likeCount > 0) {
+    const productLikeCancel = await db.product.update({
+      where: { id: productId },
+      data: {
+        likeCount: { decrement: 1 }
+      }
+    });
+    return res.json({ likeCount: productLikeCancel.likeCount });
+  } else {
+    return res.status(400).json({ message: '좋아요는 0보다 작아질 수 없습니다.' });
+  }
+});
 
 export default router;
 

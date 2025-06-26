@@ -138,4 +138,47 @@ router.delete('/remove/:id', authenticate, async function (req, res, next) {
   }
 });
 
+// 로그인 한 유저의 게시글 좋아요 추가
+
+router.post('/likes/:articleId', authenticate, async function (req, res, next) {
+  const articleId = Number(req.params.articleId);
+  const article = await db.article.findUnique({
+    where: { id: articleId },
+  });
+  if (!article) {
+    return res.status(404).json({ message: '게시글을 찾을 수 없습니다.' });
+  }
+  const articleLike = await db.article.update({
+    where: { id: articleId },
+    data: {
+      likeCount: { increment: 1 }
+    }
+  });
+  return res.json({ likeCount: articleLike.likeCount });
+
+});
+
+// 로그인 한 유저의 게시글 좋아요 취소 
+
+router.delete('/likesCancel/:articleId', authenticate, async function (req, res, next) {
+  const articleId = Number(req.params.articleId);
+  const article = await db.article.findUnique({
+    where: { id: articleId },
+  });
+  if (!article) {
+    return res.status(404).json({ message: '상품을 찾을 수 없습니다.' });
+  }
+  if (article.likeCount > 0) {
+    const articleLikeCancel = await db.article.update({
+      where: { id: articleId },
+      data: {
+        likeCount: { decrement: 1 }
+      }
+    });
+    return res.json({ likeCount: articleLikeCancel.likeCount });
+  } else {
+    return res.status(400).json({ message: '좋아요는 0보다 작아질 수 없습니다.' });
+  }
+});
+
 export default router;
