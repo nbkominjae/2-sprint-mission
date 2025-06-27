@@ -3,9 +3,9 @@ POST http://localhost:3000/users/create
 Content-Type: application/json
 
 {
-  "email" : "email7",
-  "nickname": "testuser7",
-  "password": "testpassword7"
+  "email" : "email11",
+  "nickname": "testuser11",
+  "password": "testpassword11"
 }
 
 ###로그인 (ACCESSTOKEN 발급)
@@ -14,19 +14,19 @@ POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-  "nickname": "testuser2",
-  "password": "testpassword2"
+  "nickname": "testuser11",
+  "password": "testpassword11"
 }
 
 
 ###
 #상품등록 
 POST http://localhost:3000/product/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwOTM0NjgyLCJleHAiOjE3NTA5MzgyODJ9.QcDiuClSYio3t_0aTgUQBwR_w5LS4-QFl6pIcL0BKkQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTc1MDk4OTYxNCwiZXhwIjoxNzUwOTkzMjE0fQ.mbZYR8vVZoEOsZ_r6RElGBSAqn6anV__cQN4i2eCvfU
 Content-Type: application/json
 
 {
-  "name" : "123123123", 
+  "name" : "유저13의제품3", 
   "description" : "최신형이에요", 
   "price" : 33032000, 
   "tags": ["가성비"]
@@ -166,8 +166,8 @@ Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MT
 
 ###
 # 상품 좋아요 추가
-POST http://localhost:3000/product/likes/13
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwOTM0NjgyLCJleHAiOjE3NTA5MzgyODJ9.QcDiuClSYio3t_0aTgUQBwR_w5LS4-QFl6pIcL0BKkQ
+POST http://localhost:3000/product/likes/16
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTc1MDk4OTk0NiwiZXhwIjoxNzUwOTkzNTQ2fQ.P_ypldEbEH3Fo4u5wpbwJ4P27HWraVddCCbiPwptw1A
 
 ###
 # 상품 좋아요 취소 
@@ -186,6 +186,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxN
 
 
 ###
-# 유저가 좋아요한 목록 조회
+# 유저가 좋아요한 상품목록 조회
 GET http://localhost:3000/product/likesList
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwOTM0NjgyLCJleHAiOjE3NTA5MzgyODJ9.QcDiuClSYio3t_0aTgUQBwR_w5LS4-QFl6pIcL0BKkQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTc1MDk5OTY2OSwiZXhwIjoxNzUxMDAzMjY5fQ.OofHBi7lbal8EbTL779JI57NJ-ObH4kSj0f497ovSeI
+
+###
+# 유저가 좋아요 했는지 안했는지 상품 목록 조회 ( isLiked )
+GET http://localhost:3000/product/isLiked
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTc1MDk5OTY2OSwiZXhwIjoxNzUxMDAzMjY5fQ.OofHBi7lbal8EbTL779JI57NJ-ObH4kSj0f497ovSeI
+
+
+###
+# 유저가 좋아요 했는지 안했는지 게시글 목록 조회 ( isLiked )
+GET http://localhost:3000/article/isLiked
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTc1MTAwMTM5NiwiZXhwIjoxNzUxMDA0OTk2fQ.9zIK945ZXokYnYXWvzKzMyBrGlSzoj9YZnPpTS2ok_4

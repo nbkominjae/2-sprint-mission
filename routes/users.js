@@ -36,12 +36,12 @@ async function login(req, res) {
     where: { nickname },
   });
   if (!user) {
-    return res.status(401).json({ message: " 없는 유저임 " })
+    return res.status(401).json({ message: " 아이디가 존재하지 않습니다. " })
   }
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
   if (!isPasswordValid) {
-    return res.status(401).json({ message: "유효하지 않은 비밀번호" })
+    return res.status(401).json({ message: "비밀번호가 틀렸습니다." })
   }
   const { accessToken, refreshToken } = createToken(user.id);
   setTokenCookies( res, refreshToken);

@@ -7,7 +7,7 @@ async function authenticate(req, res, next) {
     ? reqHeaders.slice(7)  // "Bearer " 길이만큼 잘라냄
     : null;
   if (!accessToken) {
-    return res.status(401).json({ message: '로그인되지 않음' });
+    return res.status(401).json({ message: '만료된 사용자' });
   }
   try {
     const { userId } = verifyAccessToken(accessToken);

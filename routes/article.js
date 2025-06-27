@@ -67,7 +67,6 @@ router.get('/list', async function (req, res, next) {
 
 // 게시물 등록 API assert , authenticate로 유저 인증 
 router.post('/create', authenticate, async function (req, res, next) {
-
   try {
     assert(req.body, articleDto);
     const { title, content } = req.body;
@@ -97,10 +96,10 @@ router.patch('/change/:id', authenticate, async function (req, res, next) {
       where: { id: id }
     });
     if (!article) {
-      return res.status(404).json({ message: '없는 게시물입니다.' });
+      return res.status(404).json({ message: '존재하지 않는 게시글입니다.' });
     }
     if (article.userId !== user.id) {
-      return res.status(401).json({ message: '권한 없는 유저입니다.' });
+      return res.status(401).json({ message: '본인이 등록한 게시글이 아닙니다.' });
     }
     const updatedArticle = await db.article.update({
       where: { id: id },
@@ -123,10 +122,10 @@ router.delete('/remove/:id', authenticate, async function (req, res, next) {
       where: { id: id }
     })
     if (!article) {
-      return res.status(404).json({ message: "없는 게시물입니다." })
+      return res.status(404).json({ message: "존재하지 않는 게시물입니다." })
     }
     if (article.userId !== user.id) {
-      return res.status(401).json({ message: "권한이 없습니다." })
+      return res.status(401).json({ message: "본인이 등록한 게시글이 아닙니다." })
     }
     const deleteArticle = await db.article.delete({
       where: { id: id }
@@ -209,5 +208,33 @@ router.delete('/likesCancel/:articleId', authenticate, async function (req, res,
 
 });
 
+// 유저가 좋아요 눌렀는지 안눌렀는지 나오는 게시글 목록 조회
+
+router.get('/isLiked', authenticate, async function (req, res, next) {
+  const user = req.user;
+  const article = await db.articleLike.findMany({
+    where: { userId: user.id },
+    select: { articleId: true }
+  });
+  const articleLikeIds = article.map((like) => like.articleId );
+  const allProducts = await db.article.findMany({
+    select: {
+      id: true,
+      title: true,
+      content: true,
+      createdAt: true,
+      updatedAt: true,
+      userId: true,
+    },
+    orderBy: {
+      createdAt: 'desc', // 필요에 따라 정렬
+    },
+  });
+  const articleListWithLikes = allProducts.map((article) => ({
+    ...article,
+    isLiked: articleLikeIds.includes(article.id),
+  }));
+  return res.status(200).json(articleListWithLikes);
+});
 
 export default router;
