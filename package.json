@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node dist/bin/www.js",
+    "start": "node dist/server.ts",
     "nodemon": "--watch src --ext ts --exec ts-node src/server.js",
     "build": "tsc"
   },
