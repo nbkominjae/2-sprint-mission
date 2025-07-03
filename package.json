@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node dist/bin/www.js",
-    "nodemon": "--watch src --ext ts --exec ts-node src/bin/www.ts",
+    "nodemon": "--watch src --ext ts --exec ts-node src/server.js",
     "build": "tsc"
   },
   "dependencies": {

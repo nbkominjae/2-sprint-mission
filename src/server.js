@@ -1,6 +1,4 @@
-#!/usr/bin/env node
-
-import app from '../app.js';
+import app from './app.js';
 import debugModule from 'debug';
 import http from 'http';
 
