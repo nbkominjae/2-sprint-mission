@@ -1,5 +1,5 @@
 import express from 'express';
-import { db } from '../utils/db.js';
+import { db } from '../lib/db.js';
 import { assert } from 'superstruct';
 import { createDto } from '../dtos/product.dto.js';
 import authenticate from '../middlewares/authenticate.js';
@@ -276,4 +276,3 @@ router.get('/isLiked', authenticate, async function (req, res, next) {
 
 
 export default router;
-

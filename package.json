@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www",
-    "seed": "node utils/seed.js"
+    "start": "node dist/bin/www.js",
+    "nodemon": "--watch src --ext ts --exec ts-node src/bin/www.ts",
+    "build": "tsc"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^6.8.2",
@@ -17,19 +17,25 @@
     "debug": "~2.6.9",
     "dotenv": "^16.5.0",
     "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "jade": "~1.11.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "~1.9.1",
     "multer": "^2.0.0",
     "superstruct": "^2.0.2"
   },
   "main": "app.js",
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cookie-parser": "^1.4.9",
+    "@types/cors": "^2.8.19",
+    "@types/debug": "^4.1.12",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.10",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^24.0.10",
     "nodemon": "^3.1.10",
-    "prisma": "^6.8.2"
+    "prisma": "^6.8.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }

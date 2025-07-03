@@ -1,5 +1,5 @@
 import { db } from "../utils/db.js";
-import { verifyAccessToken } from "../lib/token.js";
+import { verifyAccessToken } from "../../lib/token.js";
 
 async function authenticate(req, res, next) {
   const reqHeaders = req.headers.authorization;

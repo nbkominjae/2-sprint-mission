@@ -1,5 +1,5 @@
 import express from "express";
-import { db } from '../utils/db.js';
+import { db } from '../lib/db.js';
 import { articleDto } from '../dtos/article.dto.js';
 import { assert } from 'superstruct';
 import authenticate from "../middlewares/authenticate.js";

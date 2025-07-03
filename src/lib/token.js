@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { JWT_ACCESS_TOKEN_SECRET, JWT_REFRESH_TOKEN_SECRET } from "./constants.js";
+import { JWT_ACCESS_TOKEN_SECRET, JWT_REFRESH_TOKEN_SECRET } from "../src/utils/constants.js";
 
 // 토큰 생성 
 
