@@ -1,4 +1,4 @@
-import { db } from '../utils/db.js';
+import { db } from '../utils/db';
 
 export const userRepository = {
   createUser: (data: { email: string; nickname: string; password: string }) =>

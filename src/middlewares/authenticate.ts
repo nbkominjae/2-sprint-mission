@@ -1,4 +1,4 @@
-import { db } from "../utils/db.js";
+import { db } from "../utils/db";
 import { verifyAccessToken } from "../lib/token";
 import { Request, Response, NextFunction } from "express";
 

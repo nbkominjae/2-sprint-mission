@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { userService } from '../service/user-service.js';
+import { userService } from '../service/user-service';
 import { REFRESH_TOKEN_COOKIE_NAME } from '../lib/constants';
 
 class UserController {

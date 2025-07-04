@@ -1,4 +1,4 @@
-import { commentRepository } from '../repository/comment-repository.js';
+import { commentRepository } from '../repository/comment-repository';
 
 export const commentService = {
   async createProductComment(userId: number, product_id: number, content: string) {

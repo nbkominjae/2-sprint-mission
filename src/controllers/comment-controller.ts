@@ -4,7 +4,10 @@ import { commentService } from '../service/comment-service';
 class CommentController {
   async createProductComment(req: Request, res: Response) {
     try {
-      const { content, product_id } = req.body;
+      const { content, product_id } = req.body as {
+        content: string;
+        product_id: number;
+      };
       const user = req.user;
 
       if (!user) {
@@ -25,7 +28,10 @@ class CommentController {
 
   async createArticleComment(req: Request, res: Response) {
     try {
-      const { article_id, content } = req.body;
+      const { article_id, content } = req.body as {
+        article_id: number;
+        content: string;
+      };
       const user = req.user;
 
       if (!user) {
@@ -47,7 +53,9 @@ class CommentController {
   async changeComment(req: Request, res: Response) {
     try {
       const id = Number(req.params.id);
-      const { content } = req.body;
+      const { content } = req.body as {
+        content: string;
+      };
       const user = req.user;
 
       if (!user) {

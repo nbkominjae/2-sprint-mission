@@ -2,7 +2,6 @@
   "name": "used-shop",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "start": "node dist/server.js",
     "dev":  "nodemon --watch src --ext ts --exec \"npm run build && npm run start\"",
