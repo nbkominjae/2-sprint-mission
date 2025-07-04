@@ -9,7 +9,10 @@ export const productService = {
   },
 
   async getList(query: getListProductQuery) {
-    const { name = '', description = '', offset = 0, limit = 10, order = 'newest' } = query;
+    const { name = '', description = '', order = 'newest' } = query;
+    const offset = Number(query.offset) || 0;
+    const limit = Number(query.limit) || 10;
+
     let orderBy;
     switch (order) {
       case 'newest':
@@ -21,17 +24,25 @@ export const productService = {
       default:
         orderBy = { createdAt: 'desc' };
     }
+
     const filter = {
       OR: [
         { name: { contains: name, mode: 'insensitive' } },
         { description: { contains: description, mode: 'insensitive' } }
       ]
     };
-    return productRepository.findManyWithFilter(filter);
+
+    return await productRepository.findManyWithFilter({
+      where: filter,
+      orderBy,
+      skip: offset,
+      take: limit,
+    });
   },
 
+
   async create(userId: number, body: any) {
-    
+
     const { name, description, price, tags } = body;
     return productRepository.create({ userId, name, description, price, tags });
   },

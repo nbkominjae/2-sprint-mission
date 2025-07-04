@@ -21,6 +21,7 @@ class ProductController {
       const products = await productService.getList(req.query);
       res.json(products);
     } catch (err: unknown) {
+      console.error('[ProductController.getList] Error:', err instanceof Error ? err.message : err);
       res.status(500).json({ message: '서버 에러' });
     }
   }

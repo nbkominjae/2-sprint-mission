@@ -2,7 +2,15 @@ import { db } from '../utils/db';
 
 export const productRepository = {
   findById: (id: number) => db.product.findUnique({ where: { id } }),
-  findManyWithFilter: (query: any) => db.product.findMany(query),
+  findManyWithFilter: async (query: any) => {
+    try {
+      return await db.product.findMany(query);
+    } catch (err) {
+      console.error('[Repository.findManyWithFilter] Error:', err); // 이거 꼭!
+      throw err;
+    }
+  },
+
   create: (data: any) => db.product.create({ data }),
   update: (id: number, data: any) => db.product.update({ where: { id }, data }),
   delete: (id: number) => db.product.delete({ where: { id } }),

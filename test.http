@@ -3,9 +3,9 @@ POST http://localhost:3000/users/create
 Content-Type: application/json
 
 {
-  "email" : "email11",
-  "nickname": "testuser11",
-  "password": "testpassword11"
+  "email" : "email13",
+  "nickname": "testuser13",
+  "password": "testpassword13"
 }
 
 ###로그인 (ACCESSTOKEN 발급)
@@ -14,19 +14,19 @@ POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-  "nickname": "testuser11",
-  "password": "testpassword11"
+  "nickname": "testuser13",
+  "password": "testpassword13"
 }
 
 
 ###
 #상품등록 
 POST http://localhost:3000/product/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTc1MDk4OTYxNCwiZXhwIjoxNzUwOTkzMjE0fQ.mbZYR8vVZoEOsZ_r6RElGBSAqn6anV__cQN4i2eCvfU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsImlhdCI6MTc1MTYxNjY4NiwiZXhwIjoxNzUxNjIwMjg2fQ.5Iwoa3u3cY4OYtUvY9uONN6vnnZdhoe8LUCmWYC0uxU
 Content-Type: application/json
 
 {
-  "name" : "유저13의제품3", 
+  "name" : "바뀐의제품3", 
   "description" : "최신형이에요", 
   "price" : 33032000, 
   "tags": ["가성비"]
@@ -34,12 +34,12 @@ Content-Type: application/json
 
 ###
 #상품수정 
-PATCH http://localhost:3000/product/change/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzUwODM4ODIwLCJleHAiOjE3NTA4NDI0MjB9.WCD-bnGivbE94BnzVHrFUrhJC22BbNrY_DdhncENspY
+PATCH http://localhost:3000/product/change/17
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsImlhdCI6MTc1MTYxNjY4NiwiZXhwIjoxNzUxNjIwMjg2fQ.5Iwoa3u3cY4OYtUvY9uONN6vnnZdhoe8LUCmWYC0uxU
 Content-Type: application/json
 
 {
-  "name" : "세탁기", 
+  "name" : "세탁기333", 
   "description" : "상태안좋아요", 
   "price" : 230000, 
   "tags": ["가성비"]
@@ -47,8 +47,8 @@ Content-Type: application/json
 
 ###
 #상품삭제
-DELETE http://localhost:3000/product/remove/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzUwODM4ODIwLCJleHAiOjE3NTA4NDI0MjB9.WCD-bnGivbE94BnzVHrFUrhJC22BbNrY_DdhncENspY
+DELETE http://localhost:3000/product/remove/17
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsImlhdCI6MTc1MTYxNjY4NiwiZXhwIjoxNzUxNjIwMjg2fQ.5Iwoa3u3cY4OYtUvY9uONN6vnnZdhoe8LUCmWYC0uxU
 
 ###
 #상품목록조회
@@ -58,7 +58,8 @@ GET http://localhost:3000/product/list
 ###
 #게시글 등록
 POST http://localhost:3000/article/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwOTM0NjgyLCJleHAiOjE3NTA5MzgyODJ9.QcDiuClSYio3t_0aTgUQBwR_w5LS4-QFl6pIcL0BKkQ
+Authorization: Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsImlhdCI6MTc1MTYxNjY4NiwiZXhwIjoxNzUxNjIwMjg2fQ.5Iwoa3u3cY4OYtUvY9uONN6vnnZdhoe8LUCmWYC0uxU
+
 Content-Type: application/json
 
 {
