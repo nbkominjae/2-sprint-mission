@@ -1,12 +1,12 @@
 // repositories/article-repository.ts
-
-import { Article } from '@prisma/client';
 import { db } from '../utils/db';
+import { createArticle } from '../types/article';
+import { getListArticleQuery } from '../types/query';
 
 export const articleRepository = {
   findById: (id: number) => db.article.findUnique({ where: { id } }),
   findManyWithFilter: (query: any) => db.article.findMany(query),
-  create: (data: Article) => db.article.create({ data }),
+  create: (data: createArticle) => db.article.create({ data }),
   update: (id: number, data: any) => db.article.update({ where: { id }, data }),
   delete: (id: number) => db.article.delete({ where: { id } }),
 

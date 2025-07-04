@@ -1,6 +1,5 @@
-import { assert } from 'superstruct';
-import { productDto } from '../dtos/product-dto.js';
 import { productRepository } from '../repository/product-repository';
+import { getListProductQuery } from '../types/query';
 
 export const productService = {
   async getDetail(id: number) {
@@ -9,7 +8,7 @@ export const productService = {
     return product;
   },
 
-  async getList(query: any) {
+  async getList(query: getListProductQuery) {
     const { name = '', description = '', offset = 0, limit = 10, order = 'newest' } = query;
     let orderBy;
     switch (order) {
@@ -32,7 +31,7 @@ export const productService = {
   },
 
   async create(userId: number, body: any) {
-    assert(body, productDto);
+    
     const { name, description, price, tags } = body;
     return productRepository.create({ userId, name, description, price, tags });
   },

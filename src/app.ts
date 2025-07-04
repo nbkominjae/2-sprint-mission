@@ -12,10 +12,6 @@ import articleRouter from './routes/article-route';
 import commentRouter from './routes/comment-route';
 import imageRouter from './routes/image-route';
 
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-
 const app = express();
 
 app.use(cors());

@@ -1,143 +1,123 @@
-import { db } from '../utils/db.js';
+import { Request, Response } from 'express';
+import { commentService } from '../service/comment-service';
 
 class CommentController {
-  // 중고마켓 댓글 등록
-  async createProductComment(req, res) {
+  async createProductComment(req: Request, res: Response) {
     try {
       const { content, product_id } = req.body;
       const user = req.user;
 
-      const product = await db.product.findUnique({ where: { id: product_id } });
-      if (!product) {
-        return res.status(404).json({ message: '없는 제품입니다.' });
+      if (!user) {
+        res.status(401).json({ message: '권한이 없습니다.' });
       }
 
-      const productComments = await db.comment.create({
-        data: {
-          userId: user.id,
-          product_id,
-          content,
-        },
-      });
-      res.json({ productComments });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json({ message: '서버에러' });
+      const productComments = await commentService.createProductComment(user.id, Number(product_id), content);
+      res.json(productComments);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        if (err.message === 'PRODUCT_NOT_FOUND') {
+          res.status(404).json({ message: '없는 제품입니다.' });
+        }
+        res.status(500).json({ message: '서버에러' });
+      }
     }
   }
 
-  // 자유게시판 댓글 등록
-  async createArticleComment(req, res) {
+  async createArticleComment(req: Request, res: Response) {
     try {
       const { article_id, content } = req.body;
       const user = req.user;
 
-      const article = await db.article.findUnique({ where: { id: article_id } });
-      if (!article) {
-        return res.status(404).json({ message: '없는 게시판입니다.' });
+      if (!user) {
+        res.status(401).json({ message: '권한이 없습니다.' });
       }
 
-      const articleComments = await db.comment.create({
-        data: {
-          userId: user.id,
-          article_id,
-          content,
-        },
-      });
-      res.json({ articleComments });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json({ message: '서버에러' });
+      const articleComments = await commentService.createArticleComment(user.id, Number(article_id), content);
+      res.json(articleComments);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        if (err.message === 'ARTICLE_NOT_FOUND') {
+          res.status(404).json({ message: '없는 게시판입니다.' });
+        }
+        res.status(500).json({ message: '서버에러' });
+      }
     }
   }
 
-  // 댓글 수정
-  async changeComment(req, res) {
+  async changeComment(req: Request, res: Response) {
     try {
       const id = Number(req.params.id);
       const { content } = req.body;
       const user = req.user;
 
-      const comment = await db.comment.findUnique({ where: { id } });
-      if (!comment) {
-        return res.status(404).json({ message: '없는 댓글입니다.' });
-      }
-      if (comment.userId !== user.id) {
-        return res.status(401).json({ message: '없는 권한입니다.' });
+      if (!user) {
+        res.status(401).json({ message: '권한이 없습니다.' });
       }
 
-      const updatedComment = await db.comment.update({
-        where: { id },
-        data: { content },
-      });
+      const updatedComment = await commentService.changeComment(id, user.id, content);
       res.json(updatedComment);
-    } catch (err) {
-      console.log(err);
-      res.status(500).json({ message: '서버에러' });
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        if (err.message === 'COMMENT_NOT_FOUND') {
+          res.status(404).json({ message: '없는 댓글입니다.' });
+        }
+        if (err.message === 'UNAUTHORIZED') {
+          res.status(401).json({ message: '없는 권한입니다.' });
+        }
+        res.status(500).json({ message: '서버에러' });
+      }
     }
   }
 
-  // 댓글 삭제
-  async deleteComment(req, res) {
+  async deleteComment(req: Request, res: Response) {
     try {
       const id = Number(req.params.id);
       const user = req.user;
 
-      const comment = await db.comment.findUnique({ where: { id } });
-      if (!comment) {
-        return res.status(404).json({ message: '없는 댓글입니다.' });
-      }
-      if (comment.userId !== user.id) {
-        return res.status(401).json({ message: '권한이 없습니다.' });
+      if (!user) {
+        res.status(401).json({ message: '권한이 없습니다.' });
       }
 
-      const deleteComment = await db.comment.delete({ where: { id } });
-      res.json(deleteComment);
-    } catch (err) {
-      console.log(err);
-      res.status(500).json({ message: '서버에러' });
+      const deletedComment = await commentService.deleteComment(id, user.id);
+      res.json(deletedComment);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        if (err.message === 'COMMENT_NOT_FOUND') {
+          res.status(404).json({ message: '없는 댓글입니다.' });
+        }
+        if (err.message === 'UNAUTHORIZED') {
+          res.status(401).json({ message: '권한이 없습니다.' });
+        }
+        res.status(500).json({ message: '서버에러' });
+      }
     }
   }
 
-  // 중고마켓 댓글 목록 조회
-  async getProductCommentList(req, res) {
+  async getProductCommentList(req: Request, res: Response) {
     try {
-      const pdCommentList = await db.comment.findMany({
-        where: { article_id: null },
-        select: { id: true, content: true, createdAt: true },
-        take: 10,
-        skip: 0,
-        cursor: { id: 1 },
-        orderBy: { id: 'asc' },
-      });
-      if (pdCommentList.length === 0) {
-        return res.status(404).json({ message: '댓글을 찾지 못했습니다.' });
-      }
+      const pdCommentList = await commentService.getProductCommentList();
       res.json(pdCommentList);
-    } catch (err) {
-      console.log(err);
-      res.status(500).json({ message: '서버에러' });
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        if (err.message === 'NO_COMMENTS') {
+          res.status(404).json({ message: '댓글을 찾지 못했습니다.' });
+        }
+        res.status(500).json({ message: '서버에러' });
+      }
     }
   }
 
-  // 자유게시판 댓글 목록 조회
-  async getArticleCommentList(req, res) {
+  async getArticleCommentList(req: Request, res: Response) {
     try {
-      const artCommentList = await db.comment.findMany({
-        where: { product_id: null },
-        select: { id: true, content: true, createdAt: true },
-        take: 10,
-        skip: 0,
-        cursor: { id: 1 },
-        orderBy: { id: 'asc' },
-      });
-      if (artCommentList.length === 0) {
-        return res.status(404).json({ message: '댓글을 찾지 못했습니다.' });
-      }
+      const artCommentList = await commentService.getArticleCommentList();
       res.json(artCommentList);
-    } catch (err) {
-      console.log(err);
-      res.status(500).json({ message: '서버에러' });
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        if (err.message === 'NO_COMMENTS') {
+          res.status(404).json({ message: '댓글을 찾지 못했습니다.' });
+        }
+        res.status(500).json({ message: '서버에러' });
+      }
     }
   }
 }

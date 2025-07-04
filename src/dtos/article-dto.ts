@@ -1,4 +1,4 @@
-import { assert,object , string , size } from "superstruct";
+import { object , string , size } from "superstruct";
 
 
 export const articleDto = object({

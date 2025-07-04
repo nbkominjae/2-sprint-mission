@@ -4,13 +4,12 @@ import UserController from '../controllers/user-controller';
 
 const router = express.Router();
 
-router.post('/create', (req, res) => UserController.createUser(req, res));
-router.post('/login', (req, res) => UserController.login(req, res));
-router.post('/refresh', (req, res) => UserController.refreshTokens(req, res));
-router.get('/info', authenticate, (req, res) => UserController.inform(req, res));
-router.patch('/change', authenticate, (req, res) => UserController.change(req, res));
-router.get('/productList', authenticate, (req, res) => UserController.productList(req, res));
+// this 바인딩을 유지하기 위해 bind 사용
+router.post('/create', UserController.createUser.bind(UserController));
+router.post('/login', UserController.login.bind(UserController));
+router.post('/refresh', UserController.refreshTokens.bind(UserController));
+router.get('/info', authenticate, UserController.inform.bind(UserController));
+router.patch('/change', authenticate, UserController.change.bind(UserController));
+router.get('/productList', authenticate, UserController.productList.bind(UserController));
 
 export default router;
-
-

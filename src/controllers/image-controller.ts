@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import { Request, Response } from 'express';
 
 const uploadDir = path.join(process.cwd(), 'uploads');
 
@@ -9,9 +10,10 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 class UploadController {
-  uploadFile(req, res) {
+  uploadFile(req: Request, res: Response): void {
     if (!req.file) {
-      return res.status(404).json({ message: "파일 없음" });
+      res.status(400).json({ message: "파일 없음" });
+      return;
     }
 
     const filename = req.file.filename;
@@ -26,3 +28,4 @@ class UploadController {
 }
 
 export default new UploadController();
+
