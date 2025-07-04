@@ -2,7 +2,7 @@
 
 import { articleRepository } from '../repository/article-repository';
 import { getListArticleQuery } from '../types/query';
-
+import { Prisma } from '@prisma/client';
 
 export const articleService = {
   getDetail: async (id: number) => {
@@ -13,7 +13,7 @@ export const articleService = {
 
   getList: async (query: getListArticleQuery) => {
     const { title = '', content = '', offset = 0, limit = 10, order = 'newest' } = query;
-    const orderBy =
+    const orderBy: Prisma.ArticleOrderByWithRelationInput =
       order === 'oldest' ? { createdAt: 'asc' } : { createdAt: 'desc' };
     return articleRepository.findManyWithFilter({
       where: {

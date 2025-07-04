@@ -27,8 +27,8 @@ class ProductController {
 
   async create(req: Request, res: Response) {
     try {
-      const product = await productService.create(req.user.id, req.body);
       assert(req.body, productDto);
+      const product = await productService.create(req.user.id, req.body);
       res.json(product);
     } catch (err: unknown) {
       if (err instanceof Error) {

@@ -1,5 +1,5 @@
-import createError from 'http-errors';
-import express, {Request, Response, NextFunction}  from 'express';
+import createError, { HttpError } from 'http-errors';
+import express, { Request, Response, NextFunction } from 'express';
 
 import cors from 'cors';
 import path from 'path';
@@ -13,11 +13,7 @@ import commentRouter from './routes/comment-route';
 import imageRouter from './routes/image-route';
 
 const app = express();
-
 app.use(cors());
-
-// public 폴더 안 uploads.html 파일 브라우저 접속가능
-// http://localhost:3000/uploads.html
 app.use(express.static(path.join(__dirname, 'public')));
 
 // 업로드 한 파일 보기
@@ -37,13 +33,13 @@ app.use('/comment', commentRouter);
 app.use('/image', imageRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
 
-app.use(function (err: any, req: Request, res: Response, next: NextFunction) {
+app.use(function (err: HttpError, req: Request, res: Response, next: NextFunction) {
   res.status(err.status || 500).json({
     message: err.message,
     error: req.app.get('env') === 'development' ? err : {},

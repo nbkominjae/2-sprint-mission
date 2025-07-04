@@ -29,8 +29,8 @@ class ArticleController {
 
   async createArticle(req: Request, res: Response) {
     try {
-      const article = await articleService.create(req.user.id, req.body);
       assert(req.body, articleDto);
+      const article = await articleService.create(req.user.id, req.body);
       res.json(article);
     } catch (err: unknown) {
       if (err instanceof Error) {

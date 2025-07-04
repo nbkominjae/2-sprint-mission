@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node dist/server.ts",
-    "nodemon": "--watch src --ext ts --exec ts-node src/server.js",
+    "start": "node dist/server.js",
+    "dev":  "nodemon --watch src --ext ts --exec \"npm run build && npm run start\"",
     "build": "tsc"
   },
   "dependencies": {
