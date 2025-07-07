@@ -40,6 +40,7 @@ app.use(function (req, res, next) {
 // error handler
 
 app.use(function (err: HttpError, req: Request, res: Response, next: NextFunction) {
+  console.error(err);
   res.status(err.status || 500).json({
     message: err.message,
     error: req.app.get('env') === 'development' ? err : {},

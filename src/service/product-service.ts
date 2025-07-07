@@ -1,5 +1,7 @@
 import { productRepository } from '../repository/product-repository';
 import { getListProductQuery } from '../types/query';
+import { CreateOrUpdateProduct } from '../types/product';
+import { Prisma } from '@prisma/client';
 
 export const productService = {
   async getDetail(id: number) {
@@ -9,45 +11,36 @@ export const productService = {
   },
 
   async getList(query: getListProductQuery) {
-    const { name = '', description = '', order = 'newest' } = query;
-    const offset = Number(query.offset) || 0;
-    const limit = Number(query.limit) || 10;
-
-    let orderBy;
-    switch (order) {
-      case 'newest':
-        orderBy = { createdAt: 'desc' };
-        break;
-      case 'oldest':
-        orderBy = { createdAt: 'asc' };
-        break;
-      default:
-        orderBy = { createdAt: 'desc' };
-    }
-
-    const filter = {
-      OR: [
-        { name: { contains: name, mode: 'insensitive' } },
-        { description: { contains: description, mode: 'insensitive' } }
-      ]
-    };
-
-    return await productRepository.findManyWithFilter({
-      where: filter,
+    const { name = '', description = '', offset = 0, limit = 10, order = 'newest' } = query;
+    const orderBy: Prisma.ProductOrderByWithRelationInput =
+      order === 'oldest' ? { createdAt: 'asc' } : { createdAt: 'desc' };
+    return productRepository.findManyWithFilter({
+      where: {
+        OR: [
+          { name: { contains: name, mode: 'insensitive' } },
+          { description: { contains: description, mode: 'insensitive' } },
+        ]
+      },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        price: true,
+        createdAt: true,
+      },
       orderBy,
-      skip: offset,
-      take: limit,
+      skip: Number(offset),
+      take: Number(limit),
     });
   },
 
-
-  async create(userId: number, body: any) {
+  async create(userId: number, body: CreateOrUpdateProduct) {
 
     const { name, description, price, tags } = body;
     return productRepository.create({ userId, name, description, price, tags });
   },
 
-  async update(userId: number, id: number, data: any) {
+  async update(userId: number, id: number, data: CreateOrUpdateProduct) {
     const product = await productRepository.findById(id);
     if (!product) throw new Error('NOT_FOUND');
     if (product.userId !== userId) throw new Error('UNAUTHORIZED');

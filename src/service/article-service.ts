@@ -3,6 +3,8 @@
 import { articleRepository } from '../repository/article-repository';
 import { getListArticleQuery } from '../types/query';
 import { Prisma } from '@prisma/client';
+import { CreateOrUpdateArticle } from '../types/article';
+
 
 export const articleService = {
   getDetail: async (id: number) => {
@@ -29,13 +31,13 @@ export const articleService = {
     });
   },
 
-  create: async (userId: number, body: any) => {
-    
+  create: async (userId: number, body: CreateOrUpdateArticle) => {
+
     const { title, content } = body;
     return articleRepository.create({ title, content, userId });
   },
 
-  update: async (userId: number, id: number, data: any) => {
+  update: async (userId: number, id: number, data: CreateOrUpdateArticle) => {
     const article = await articleRepository.findById(id);
     if (!article) throw new Error('NOT_FOUND');
     if (article.userId !== userId) throw new Error('UNAUTHORIZED');

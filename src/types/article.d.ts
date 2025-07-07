@@ -1,16 +1,19 @@
 import { Request } from 'express';
 
 export interface User {
-  id: number;                 
-  email: string;          
-  nickname: string;    
-  image: string;       
-  password: string;    
-  createdAt: Date;    
-  updatedAt: Date; 
-}
+  id: number;
+  email: string;
+  nickname: string;
+  image: string;
+  password: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
 
-
+export interface CreateOrUpdateArticle {
+  title: string;
+  content: string;
+};
 
 declare global {
   namespace Express {
@@ -19,8 +22,6 @@ declare global {
     }
   }
 }
-
-
 
 export type createArticle = {
   title: string;

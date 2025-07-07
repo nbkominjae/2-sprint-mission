@@ -1,18 +1,13 @@
+import { Prisma, PrismaClient } from '@prisma/client';
 import { db } from '../utils/db';
+import { createProduct } from '../types/product';
+import { CreateOrUpdateProduct } from '../types/product';
 
 export const productRepository = {
   findById: (id: number) => db.product.findUnique({ where: { id } }),
-  findManyWithFilter: async (query: any) => {
-    try {
-      return await db.product.findMany(query);
-    } catch (err) {
-      console.error('[Repository.findManyWithFilter] Error:', err); // 이거 꼭!
-      throw err;
-    }
-  },
-
-  create: (data: any) => db.product.create({ data }),
-  update: (id: number, data: any) => db.product.update({ where: { id }, data }),
+  findManyWithFilter: async (query: Prisma.ProductFindManyArgs) => db.product.findMany(query),
+  create: (data: createProduct) => db.product.create({ data }),
+  update: (id: number, data: CreateOrUpdateProduct) => db.product.update({ where: { id }, data }),
   delete: (id: number) => db.product.delete({ where: { id } }),
 
   // 좋아요 관련

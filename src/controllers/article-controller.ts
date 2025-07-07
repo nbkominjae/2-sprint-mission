@@ -5,7 +5,6 @@ import { articleDto } from '../dtos/article-dto';
 import { assert } from 'superstruct';
 import { getListArticleQuery } from '../types/query';
 
-
 class ArticleController {
   async getDetail(req: Request, res: Response) {
     try {
@@ -14,7 +13,7 @@ class ArticleController {
       res.json(article);
     } catch (err: unknown) {
       if (err instanceof Error)
-      res.status(err.message === 'NOT_FOUND' ? 404 : 500).json({ message: err.message });
+        res.status(err.message === 'NOT_FOUND' ? 404 : 500).json({ message: err.message });
     }
   }
 
@@ -22,32 +21,36 @@ class ArticleController {
     try {
       const articles = await articleService.getList(req.query);
       res.json(articles);
-    } catch (err) {
+    } catch (err: unknown) {
       res.status(500).json({ message: '서버 에러' });
     }
   }
 
   async createArticle(req: Request, res: Response) {
     try {
-      assert(req.body, articleDto);
+      assert(req.body, articleDto); // 유효성 검사
       const article = await articleService.create(req.user.id, req.body);
-      res.json(article);
+       res.json(article); 
     } catch (err: unknown) {
-      if (err instanceof Error) {
-        res.status(400).json({ message: '유효성 검증 에러' });
+      console.error('[ArticleController.createArticle] Error:', err);
+
+      if (err instanceof Error && err.name === 'AssertionError') {
+         res.status(400).json({ message: '유효성 검증 에러' }); // ✅ 400 응답
       }
-      res.status(500).json({ message: "서버오류" });
+
+       res.status(500).json({ message: '서버오류' }); // ✅ 나머지는 500
     }
   }
+
 
   async changeArticle(req: Request, res: Response) {
     try {
       const updated = await articleService.update(req.user.id, Number(req.params.id), req.body);
       res.json(updated);
-    } catch (err :unknown) {
-      if(err instanceof Error){
-      const code = err.message === 'NOT_FOUND' ? 404 : err.message === 'UNAUTHORIZED' ? 401 : 500;
-      res.status(code).json({ message: err.message });
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        const code = err.message === 'NOT_FOUND' ? 404 : err.message === 'UNAUTHORIZED' ? 401 : 500;
+        res.status(code).json({ message: err.message });
       }
     }
   }
@@ -57,9 +60,9 @@ class ArticleController {
       const result = await articleService.remove(req.user.id, Number(req.params.id));
       res.json(result);
     } catch (err: unknown) {
-      if(err instanceof Error){
-      const code = err.message === 'NOT_FOUND' ? 404 : err.message === 'UNAUTHORIZED' ? 401 : 500;
-      res.status(code).json({ message: err.message });
+      if (err instanceof Error) {
+        const code = err.message === 'NOT_FOUND' ? 404 : err.message === 'UNAUTHORIZED' ? 401 : 500;
+        res.status(code).json({ message: err.message });
       }
     }
   }
@@ -69,9 +72,9 @@ class ArticleController {
       const result = await articleService.like(req.user.id, Number(req.params.articleId));
       res.json(result);
     } catch (err: unknown) {
-      if(err instanceof Error){
-      const code = err.message === 'NOT_FOUND' ? 404 : err.message === 'CONFLICT' ? 409 : 500;
-      res.status(code).json({ message: err.message });
+      if (err instanceof Error) {
+        const code = err.message === 'NOT_FOUND' ? 404 : err.message === 'CONFLICT' ? 409 : 500;
+        res.status(code).json({ message: err.message });
       }
     }
   }
@@ -81,9 +84,9 @@ class ArticleController {
       const result = await articleService.cancelLike(req.user.id, Number(req.params.articleId));
       res.json(result);
     } catch (err: unknown) {
-      if (err instanceof Error){
-      const code = err.message === 'NOT_FOUND' || err.message === 'NOT_LIKED' ? 404 : 500;
-      res.status(code).json({ message: err.message });
+      if (err instanceof Error) {
+        const code = err.message === 'NOT_FOUND' || err.message === 'NOT_LIKED' ? 404 : 500;
+        res.status(code).json({ message: err.message });
       }
     }
   }
@@ -93,8 +96,8 @@ class ArticleController {
       const result = await articleService.likedArticleList(req.user.id);
       res.json(result);
     } catch (err: unknown) {
-      if( err instanceof Error){
-      res.status(500).json({ message: err.message });
+      if (err instanceof Error) {
+        res.status(500).json({ message: err.message });
       }
     }
   }

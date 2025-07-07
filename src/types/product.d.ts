@@ -5,3 +5,10 @@ export type createProduct = {
   price: number;
   tags: string[];
 }
+
+export interface CreateOrUpdateProduct {
+  name: string; 
+  description: string; 
+  price: number;
+  tags: string[]
+};

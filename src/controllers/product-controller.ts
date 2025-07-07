@@ -3,6 +3,7 @@ import { productService } from '../service/product-service';
 import { assert } from 'superstruct';
 import { productDto } from '../dtos/product-dto';
 import { getListProductQuery } from '../types/query';
+
 class ProductController {
   async getDetail(req: Request, res: Response) {
     try {
