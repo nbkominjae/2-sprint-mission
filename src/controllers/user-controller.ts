@@ -5,19 +5,26 @@ import { REFRESH_TOKEN_COOKIE_NAME } from '../lib/constants';
 class UserController {
   async createUser(req: Request, res: Response) {
     try {
-      const { email, nickname, password } = req.body;
+      const { email, nickname, password } = req.body as {
+        email: string;
+        nickname: string;
+        password: string;
+      };
       const user = await userService.createUser(email, nickname, password);
       res.status(201).json(user);
     } catch (err: unknown) {
       console.error(err);
       res.status(500).json({ message: '서버 에러' });
     }
-  }
+  };
 
   async login(req: Request, res: Response) {
     try {
-      const { nickname, password } = req.body;
-      const { user, tokens } = await userService.login(nickname, password);
+      const { nickname, password } = req.body as {
+        nickname: string;
+        password: string;
+      };
+      const { tokens } = await userService.login(nickname, password);
 
       userService.setTokenCookies(res, tokens.refreshToken);
       res.status(200).json({ accessToken: tokens.accessToken });

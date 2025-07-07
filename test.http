@@ -3,9 +3,9 @@ POST http://localhost:3000/users/create
 Content-Type: application/json
 
 {
-  "email" : "email14",
-  "nickname": "testuser14",
-  "password": "testpassword14"
+  "email" : "email15",
+  "nickname": "testuser15",
+  "password": "testpassword15"
 }
 
 ###로그인 (ACCESSTOKEN 발급)
@@ -14,8 +14,8 @@ POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-  "nickname": "testuser14",
-  "password": "testpassword14"
+  "nickname": "testuser15",
+  "password": "testpassword15"
 }
 
 
@@ -139,7 +139,7 @@ GET http://localhost:3000/comment/article/list
 ###
 #유저 정보 조회 
 GET http://localhost:3000/users/info
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTc1MTg3MDQ3MiwiZXhwIjoxNzUxODc0MDcyfQ.stE2M8ZCpW2u2DuX1TPxHXhVoChH3PTo9X8zL7ZJog8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTc1MTg3MjMxOCwiZXhwIjoxNzUxODc1OTE4fQ.vSo00Tk_LX7bxlFfZs6EoPgYeOPABIW9Q7kFCeTkWCA
 ###
 #유저 정보 수정
 PATCH http://localhost:3000/users/change

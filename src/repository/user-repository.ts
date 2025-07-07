@@ -15,7 +15,6 @@ export const userRepository = {
         email: true,
         nickname: true,
         image: true,
-        password: true,
         createdAt: true,
         updatedAt: true,
       }
