@@ -58,7 +58,7 @@ class UserController {
 
       const userInfo = await userService.getUserInfo(user.id);
       res.json(userInfo);
-    } catch (err) {
+    } catch (err: unknown) {
       res.status(500).json({ message: '서버 에러' });
     }
   }
@@ -68,10 +68,16 @@ class UserController {
       const user = req.user;
       if (!user) res.status(401).json({ message: '권한이 없습니다.' });
 
-      const { email, nickname, image, password } = req.body;
+      const { email, nickname, image, password } = req.body as {
+        email: string;
+        nickname: string;
+        image: string;
+        password: string;
+      };
       const updatedUser = await userService.updateUser(user.id, email, nickname, image, password);
       res.json(updatedUser);
-    } catch (err) {
+    } catch (err: unknown) {
+      console.error(err);
       res.status(500).json({ message: '서버 에러' });
     }
   }
@@ -83,7 +89,7 @@ class UserController {
 
       const products = await userService.getUserProductList(user.id);
       res.json(products);
-    } catch (err) {
+    } catch (err: unknown) {
       res.status(500).json({ message: '서버 에러' });
     }
   }

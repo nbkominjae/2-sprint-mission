@@ -20,21 +20,21 @@ export const userRepository = {
       }
     }),
 
-  updateUser: (
-    id: number,
-    data: { email?: string; nickname?: string; image?: string; password?: string }
-  ) =>
-    db.user.update({
-      where: { id },
-      data,
-      select: {
-        id: true,
-        nickname: true,
-        image: true,
-        createdAt: true,
-        updatedAt: true,
-      }
-    }),
+ updateUser: (
+  userId: number, // access token에서 추출된 id
+  data: { email?: string; nickname?: string; image?: string; password?: string }
+) =>
+  db.user.update({
+    where: { id: userId },
+    data,
+    select: {
+      id: true,
+      nickname: true,
+      image: true,
+      createdAt: true,
+      updatedAt: true,
+    }
+  }),
 
   findProductsByUserId: (userId: number) =>
     db.product.findMany({ where: { userId } }),

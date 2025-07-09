@@ -3,6 +3,7 @@ import { userRepository } from '../repository/user-repository';
 import { createToken, verifyRefreshToken } from '../lib/token';
 import { REFRESH_TOKEN_COOKIE_NAME } from '../lib/constants';
 import type { Response } from 'express';
+import { number } from 'superstruct';
 
 export const userService = {
   async createUser(email: string, nickname: string, password: string) {
@@ -53,9 +54,16 @@ export const userService = {
     return userInform;
   },
 
-  async updateUser(userId: number, email: string, nickname: string, image: string, password: string) {
+  async updateUser(
+    userId: number, 
+    email: string,
+    nickname: string,
+    image: string,
+    password: string
+  ) {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
+
     const updatedUser = await userRepository.updateUser(userId, {
       email,
       nickname,
