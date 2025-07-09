@@ -1,0 +1,202 @@
+###회원가입 
+POST http://localhost:3000/users/create
+Content-Type: application/json
+
+{
+  "email" : "email11",
+  "nickname": "testuser11",
+  "password": "testpassword11"
+}
+
+###로그인 (ACCESSTOKEN 발급)
+
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+  "nickname": "testuser11",
+  "password": "testpassword11"
+}
+
+
+###
+#상품등록 
+POST http://localhost:3000/product/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTc1MDk4OTYxNCwiZXhwIjoxNzUwOTkzMjE0fQ.mbZYR8vVZoEOsZ_r6RElGBSAqn6anV__cQN4i2eCvfU
+Content-Type: application/json
+
+{
+  "name" : "유저13의제품3", 
+  "description" : "최신형이에요", 
+  "price" : 33032000, 
+  "tags": ["가성비"]
+}
+
+###
+#상품수정 
+PATCH http://localhost:3000/product/change/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzUwODM4ODIwLCJleHAiOjE3NTA4NDI0MjB9.WCD-bnGivbE94BnzVHrFUrhJC22BbNrY_DdhncENspY
+Content-Type: application/json
+
+{
+  "name" : "세탁기", 
+  "description" : "상태안좋아요", 
+  "price" : 230000, 
+  "tags": ["가성비"]
+}
+
+###
+#상품삭제
+DELETE http://localhost:3000/product/remove/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzUwODM4ODIwLCJleHAiOjE3NTA4NDI0MjB9.WCD-bnGivbE94BnzVHrFUrhJC22BbNrY_DdhncENspY
+
+###
+#상품목록조회
+GET http://localhost:3000/product/list
+
+
+###
+#게시글 등록
+POST http://localhost:3000/article/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwOTM0NjgyLCJleHAiOjE3NTA5MzgyODJ9.QcDiuClSYio3t_0aTgUQBwR_w5LS4-QFl6pIcL0BKkQ
+Content-Type: application/json
+
+{
+  "title" : "게시글좋아요테스2트", 
+  "content" : "test내용231"
+}
+###
+#게시글 수정
+PATCH  http://localhost:3000/article/change/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwODQzMDUzLCJleHAiOjE3NTA4NDY2NTN9.lK6F7lR78y__7dv1YH7fMX5i5POotcmLakD6BYX0ZW4
+Content-Type: application/json
+
+{
+  "title" : "수정된제목1", 
+  "content" : "수정된내용1"
+}
+
+###
+#게시글 삭제
+DELETE http://localhost:3000/article/remove/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwODQzMDUzLCJleHAiOjE3NTA4NDY2NTN9.lK6F7lR78y__7dv1YH7fMX5i5POotcmLakD6BYX0ZW4
+
+###
+#게시글 조회
+GET http://localhost:3000/article/list 
+
+
+
+###
+#중고마켓 댓글 등록
+POST http://localhost:3000/comment/product/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzUwOTAyMTA5LCJleHAiOjE3NTA5MDU3MDl9.uFU8fSxyOxlW1kqvm9R-1xHcSIL1wbawsfafeXcDEN0
+Content-Type: application/json
+
+{
+  "product_id" : 1,
+  "content" : "댓글쓸게요"
+}
+
+###
+#게시판 댓글 등록
+POST http://localhost:3000/comment/article/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzUwODk3Mjk0LCJleHAiOjE3NTA5MDA4OTR9.SwW-HbNhEuQ_hqvMDaf5DdR9lo23MVXytBvbypq5QMc
+Content-Type: application/json
+
+{
+  "article_id" : 3,
+  "content" : "게시판에 댓글쓸게요"
+}
+
+###
+#댓글 수정
+PATCH  http://localhost:3000/comment/change/11
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzUwOTAxNTM5LCJleHAiOjE3NTA5MDUxMzl9.06C275jkwHW29e70WnwuqWP9C7h5PBO-FBEQXuDaTOs
+Content-Type: application/json
+
+{
+  "content" : "댓글수정할게요123"
+}
+
+
+###
+#댓글 삭제
+DELETE http://localhost:3000/comment/remove/13
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzUwOTAyMTA5LCJleHAiOjE3NTA5MDU3MDl9.uFU8fSxyOxlW1kqvm9R-1xHcSIL1wbawsfafeXcDEN0
+
+###
+#중고마켓 댓글 조회 
+
+GET http://localhost:3000/comment/product/list
+
+
+###
+#게시판 댓글 조회 
+GET http://localhost:3000/comment/article/list
+
+
+###
+#유저 정보 조회 
+GET http://localhost:3000/users/info
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MTc1MDkyMzQ4OCwiZXhwIjoxNzUwOTIzNTE4fQ.wWq0lP0d_x3Uw2a85blpBd--QCKZsm8YNvN_iFCnS6I
+###
+#유저 정보 수정
+PATCH http://localhost:3000/users/change
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzUwOTA1ODY2LCJleHAiOjE3NTA5OTIyNjZ9.F_Jp8GWYh7mbeF4fCru0hqw07VOzhuXQechWTTdxsTg
+Content-Type: application/json
+
+{
+  "email" : "email수정",
+  "nickname" : "아이디수정",
+  "password" : "비밀번호수정",
+  "image" : "이미지수정"
+}
+
+###
+#유저 상품 조회 
+GET http://localhost:3000/users/productList
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwOTM0NjgyLCJleHAiOjE3NTA5MzgyODJ9.QcDiuClSYio3t_0aTgUQBwR_w5LS4-QFl6pIcL0BKkQ
+###
+# refresh 토큰 
+POST http://localhost:3000/users/refresh
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MTc1MDkxOTIwNywiZXhwIjoxNzUxNTI0MDA3fQ.v-BguPeGEZOx3jAxzwNVUG1qnZioYmLjTTQtMJfB2fA
+
+
+
+###
+# 상품 좋아요 추가
+POST http://localhost:3000/product/likes/16
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTc1MDk4OTk0NiwiZXhwIjoxNzUwOTkzNTQ2fQ.P_ypldEbEH3Fo4u5wpbwJ4P27HWraVddCCbiPwptw1A
+
+###
+# 상품 좋아요 취소 
+DELETE http://localhost:3000/product/likesCancel/13
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwOTM0NjgyLCJleHAiOjE3NTA5MzgyODJ9.QcDiuClSYio3t_0aTgUQBwR_w5LS4-QFl6pIcL0BKkQ
+
+###
+# 게시글 좋아요 추가
+POST http://localhost:3000/article/likes/9
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwOTM0NjgyLCJleHAiOjE3NTA5MzgyODJ9.QcDiuClSYio3t_0aTgUQBwR_w5LS4-QFl6pIcL0BKkQ
+
+###
+# 게시글 좋아요 취소 
+DELETE http://localhost:3000/article/likesCancel/9
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzUwOTM0NjgyLCJleHAiOjE3NTA5MzgyODJ9.QcDiuClSYio3t_0aTgUQBwR_w5LS4-QFl6pIcL0BKkQ
+
+
+###
+# 유저가 좋아요한 상품목록 조회
+GET http://localhost:3000/product/likesList
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTc1MDk5OTY2OSwiZXhwIjoxNzUxMDAzMjY5fQ.OofHBi7lbal8EbTL779JI57NJ-ObH4kSj0f497ovSeI
+
+###
+# 유저가 좋아요 했는지 안했는지 상품 목록 조회 ( isLiked )
+GET http://localhost:3000/product/isLiked
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTc1MDk5OTY2OSwiZXhwIjoxNzUxMDAzMjY5fQ.OofHBi7lbal8EbTL779JI57NJ-ObH4kSj0f497ovSeI
+
+
+###
+# 유저가 좋아요 했는지 안했는지 게시글 목록 조회 ( isLiked )
+GET http://localhost:3000/article/isLiked
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTc1MTAwMTM5NiwiZXhwIjoxNzUxMDA0OTk2fQ.9zIK945ZXokYnYXWvzKzMyBrGlSzoj9YZnPpTS2ok_4
