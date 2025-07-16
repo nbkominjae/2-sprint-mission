@@ -15,7 +15,7 @@ WHERE id = 423
 
 -- 3. `orders` 테이블에서 총 주문 건수를 `total_orders`라는 이름으로 구하세요.
 
-SELECT COUNT(id) AS total_orders
+SELECT COUNT(*) AS total_orders
 FROM orders
 ;
 
@@ -65,6 +65,7 @@ WHERE date BETWEEN '2025-03-01' AND '2025-03-31'
 SELECT *
 FROM orders
 WHERE date = '2025-03-12' AND time < '12:00:00'
+ORDER BY time DESC
 ;
 
 -- 10. `pizza_types` 테이블에서 이름에 'Cheese' 혹은 'Chicken'이 포함된 피자 종류를 조회하세요. (대소문자를 구분합니다)
@@ -78,9 +79,9 @@ WHERE name LIKE '%Cheese%' OR name LIKE '%Chicken%'
 
 -- 1. `order_details` 테이블에서 각 피자(`pizza_id`)별로 주문된 건 수(`order_id`)를 보여주세요.
 
-SELECT pizza_id , order_id
+SELECT pizza_id , COUNT(order_id)
 FROM order_details
-GROUP BY pizza_id, order_id
+GROUP BY pizza_id
 ;
 
 -- 2. `order_details` 테이블에서 각 피자(`pizza_id`)별로 총 주문 수량을 구하세요.
@@ -102,12 +103,11 @@ WHERE pizza_id IN (
 
 -- 4. `orders` 테이블에서 각 날짜별 총 주문 건수를 `order_count` 라는 이름으로 계산하고, 하루 총 주문 건수가 80건 이상인 날짜만 조회한 뒤, 주문 건수가 많은 순서대로 정렬하세요.
 
-SELECT orders.date, SUM(quantity) AS order_count
+SELECT date, COUNT(*) AS order_count
 FROM orders
-	JOIN order_details ON order_id = orders.id
-GROUP BY orders.date
-HAVING SUM(quantity) >= 80
-ORDER BY order_count DESC
+GROUP BY date
+HAVING COUNT(*) >= 80
+ORDER BY COUNT(*) DESC
 ;
 
 -- 5. `order_details` 테이블에서 피자별(`pizza_id`) 총 주문 수량이 10개 이상인 피자만 조회하고, 총 주문 수량 기준으로 내림차순 정렬하세요.
@@ -157,11 +157,11 @@ ORDER BY orders.date DESC
         ```
 */
  
-SELECT pizzas.id, pizzas.type_id , pizzas.size, pizzas.price, SUM(order_details.quantity) AS total_quantity
-FROM pizzas
-	JOIN order_details ON pizzas.id = order_details.pizza_id
-GROUP BY pizzas.id
-ORDER BY SUM(order_details.quantity) DESC
+SELECT P.id, P.type_id , P.size, P.price, SUM(OD.quantity) AS total_quantity
+FROM pizzas AS P
+	JOIN order_details AS OD ON P.id = OD.pizza_id
+GROUP BY P.id
+ORDER BY SUM(OD.quantity) DESC
 LIMIT 10
 ;
 
@@ -179,13 +179,13 @@ LIMIT 10
         ```
 */
 
-SELECT orders.date, COUNT(order_id) AS total_orders , SUM(quantity * pizzas.price) AS total_amount
-FROM order_details
-	JOIN orders ON orders.id = order_details.order_id
-	JOIN pizzas ON pizzas.id = order_details.pizza_id
-GROUP BY orders.date
-HAVING orders.date BETWEEN '2025-03-01' AND '2025-03-31'
-ORDER BY orders.date ASC
+SELECT O.date, COUNT(order_id) AS total_orders , SUM(quantity * P.price) AS total_amount
+FROM order_details AS OD
+	JOIN orders AS O ON O.id = OD.order_id
+	JOIN pizzas AS P ON P.id = OD.pizza_id
+GROUP BY O.date
+HAVING O.date BETWEEN '2025-03-01' AND '2025-03-31'
+ORDER BY O.date ASC
 ;
 
 /*
