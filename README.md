@@ -14,6 +14,7 @@ erDiagram
         STRING email 
         STRING nickname
         STRING password
+        TIMESTAMPTZ created_at
     }
 
     PRODUCTS {
@@ -24,12 +25,14 @@ erDiagram
         INT price
         STRING tag
         INT user_id FK
+        TIMESTAMPTZ   created_at
     }
 
     PRODUCTS_LIKES {
         INT id PK
         INT user_id FK
         INT product_id FK
+        TIMESTAMPTZ   created_at
     }
 
     ARTICLES {
@@ -38,6 +41,7 @@ erDiagram
         STRING content
         STRING imageurl
         INT user_id FK
+        TIMESTAMPTZ   created_at
     }
 
     COMMENTS {
@@ -46,6 +50,6 @@ erDiagram
         INT user_id FK
         INT product_id FK
         INT article_id FK
+        TIMESTAMPTZ   created_at
     }
-
 ```
