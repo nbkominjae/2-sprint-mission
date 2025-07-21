@@ -11,6 +11,11 @@ CREATE TABLE users(
 		LENGTH(TRIM(nickname)) >= 2 AND LENGTH(TRIM(password)) >= 8)
 );
 
+-- 생성일 추가
+
+ALTER TABLE users ADD COLUMN created_at TIMESTAMPTZ DEFAULT NOW();
+
+
 DROP TABLE IF EXISTS products;
 CREATE TABLE products(
 	id SERIAL PRIMARY KEY,
@@ -24,6 +29,16 @@ CREATE TABLE products(
 		LENGTH(TRIM(name)) >= 2 AND LENGTH(TRIM(description)) >= 10)
 );
 
+-- 생성일 추가
+
+ALTER TABLE products ADD COLUMN created_at TIMESTAMPTZ DEFAULT NOW();
+
+-- 글자수 제한
+
+ALTER TABLE products ALTER COLUMN tag TYPE VARCHAR(30); 
+ALTER TABLE products ALTER COLUMN name TYPE VARCHAR(50);
+
+
 DROP TABLE IF EXISTS products_likes;
 CREATE TABLE products_likes (
 	id SERIAL PRIMARY KEY,
@@ -31,7 +46,9 @@ CREATE TABLE products_likes (
 	product_id INT REFERENCES products(id) ON DELETE CASCADE,
 	UNIQUE(user_id, product_id)
 );
+-- 생성일
 
+ALTER TABLE products_likes ADD COLUMN created_at TIMESTAMPTZ DEFAULT NOW();
  
 DROP TABLE IF EXISTS articles;
 CREATE TABLE articles(
@@ -44,7 +61,10 @@ CREATE TABLE articles(
 		LENGTH(TRIM(title)) >= 2 AND LENGTH(TRIM(content)) >= 10
 	)
 );
+-- 생성일
 
+ALTER TABLE articles ADD COLUMN created_at TIMESTAMPTZ DEFAULT NOW();
+ 
 
 DROP TABLE IF EXISTS comments;
 CREATE TABLE comments(
@@ -59,4 +79,7 @@ CREATE TABLE comments(
 		(product_id IS NULL AND article_id IS NOT NULL)
 	)
 );
-	
+-- 생성일
+
+ALTER TABLE comments ADD COLUMN created_at TIMESTAMPTZ DEFAULT NOW();
+ 
