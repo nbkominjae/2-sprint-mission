@@ -3,6 +3,8 @@ import { productService } from '../service/product-service';
 import { assert } from 'superstruct';
 import { productDto } from '../dtos/product-dto';
 import { getListProductQuery } from '../types/query';
+import { notificationService } from '../service/notification-service';
+
 
 class ProductController {
   async getDetail(req: Request, res: Response) {
@@ -105,6 +107,38 @@ class ProductController {
       res.status(200).json(products);
     } catch (err: unknown) {
       res.status(500).json({ message: '서버 에러' });
+    }
+  }
+
+
+  // 가격 변동 일어날 때 알림
+  async isLikedPriceChange(req: Request, res: Response) {
+    try {
+      const user = req.user;
+      const productId = Number(req.params.productId);
+
+      // 좋아요한 상품 가져오기
+      const likedProducts = await productService.isLiked(user.id);
+      // 좋아요 여부 추출
+      const myLikedProducts = likedProducts.filter((list) => list.isLiked);
+      const targetProduct = myLikedProducts.find((p) => p.id === productId);
+      if (!targetProduct) {
+        res.status(400).json({ message: '좋아요한 상품이 없음' });
+      }
+      // 기존 가격
+      const oldPrice = targetProduct?.price;
+      // 가격 업데이트
+      const updatedProduct = await productService.update(user.id, productId, req.body);
+      // 가격 변동 확인
+      if (updatedProduct.price !== oldPrice) {
+        const message = `"${updatedProduct.name}" 가격이 ${oldPrice} → ${updatedProduct.price}원으로 변경되었습니다.`;
+        await notificationService.sendNotification(user.id, "PRICE_CHANGE", message);
+
+      }
+      res.status(200).json({ updatedProduct });
+    }
+    catch (err: unknown) {
+       console.error("sendNotification 에러:", err);
     }
   }
 }

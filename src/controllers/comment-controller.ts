@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import { commentService } from '../service/comment-service';
+import { articleService } from '../service/article-service';
+import { notificationService } from '../service/notification-service';
 
 class CommentController {
   async createProductComment(req: Request, res: Response) {
@@ -26,6 +28,7 @@ class CommentController {
     }
   }
 
+  // 게시글에 댓글 달면 알림
   async createArticleComment(req: Request, res: Response) {
     try {
       const { article_id, content } = req.body as {
@@ -39,7 +42,15 @@ class CommentController {
       }
 
       const articleComments = await commentService.createArticleComment(user.id, Number(article_id), content);
+      const article = await articleService.getDetail(article_id);
+      if (article.userId && article.userId !== user.id) {
+        const message = `"${user.nickname}"님이 당신의 게시글에 댓글을 남겼습니다.`;
+        await notificationService.sendNotification(article.userId, 'COMMENT', message);
+      }
+
+
       res.json(articleComments);
+
     } catch (err: unknown) {
       if (err instanceof Error) {
         if (err.message === 'ARTICLE_NOT_FOUND') {

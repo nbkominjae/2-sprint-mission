@@ -9,10 +9,10 @@ const router = express.Router();
 router.get('/detail/:id', ProductController.getDetail.bind(productController));
 
 // 상품 목록조회 - 검색어, 페이징, 정렬 옵션에 따른 상품 리스트 반환
-router.get('/list',  ProductController.getList.bind(productController));
+router.get('/list', ProductController.getList.bind(productController));
 
 // 상품 등록 - 로그인한 유저만 상품 등록 가능 (유효성 검사 포함)
-router.post('/create', authenticate,  ProductController.create.bind(productController));
+router.post('/create', authenticate, ProductController.create.bind(productController));
 
 // 상품 수정 - 로그인한 유저, 본인 상품만 수정 가능
 router.patch('/change/:id', authenticate, ProductController.change.bind(productController));
@@ -32,4 +32,5 @@ router.get('/likesList', authenticate, ProductController.likesList.bind(productC
 // 상품 목록 조회 시, 로그인 유저가 좋아요 눌렀는지 여부(isLiked 필드 포함)
 router.get('/isLiked', authenticate, ProductController.isLiked.bind(productController));
 
+router.patch('/price/:productId', authenticate, ProductController.isLikedPriceChange.bind(productController))
 export default router;

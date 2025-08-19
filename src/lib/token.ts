@@ -4,7 +4,7 @@ import { JWT_ACCESS_TOKEN_SECRET, JWT_REFRESH_TOKEN_SECRET } from "../lib/consta
 // 토큰 생성 
 function createToken(userId: number) {
   const accessToken = jwt.sign({ id: userId }, JWT_ACCESS_TOKEN_SECRET, {
-    expiresIn: '1h',
+    expiresIn: '10h',
   });
   const refreshToken = jwt.sign({ id: userId }, JWT_REFRESH_TOKEN_SECRET, {
     expiresIn: '7d',

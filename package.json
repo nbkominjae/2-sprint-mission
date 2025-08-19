@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node dist/server.js",
-    "dev":  "nodemon --watch src --ext ts --exec \"npm run build && npm run start\"",
-    "build": "tsc"
+    "dev": "nodemon --watch src --ext ts --exec \"npm run build && npm run start\"",
+    "build": "tsc",
+    "test-client": "ts-node --loader ts-node/esm src/client.ts"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^6.8.2",
@@ -19,6 +20,8 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "~1.9.1",
     "multer": "^2.0.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
     "superstruct": "^2.0.2"
   },
   "main": "app.js",

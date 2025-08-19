@@ -41,7 +41,7 @@ class ArticleController {
        res.status(500).json({ message: '서버오류' }); // ✅ 나머지는 500
     }
   }
-
+ 
 
   async changeArticle(req: Request, res: Response) {
     try {
