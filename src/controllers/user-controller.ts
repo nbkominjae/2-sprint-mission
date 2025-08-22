@@ -10,11 +10,20 @@ class UserController {
         nickname: string;
         password: string;
       };
-      const user = await userService.createUser(email, nickname, password);
-      res.status(201).json(user);
-    } catch (err: unknown) {
-      console.error(err);
-      res.status(500).json({ message: '서버 에러' });
+      if (!email || !nickname || !password) {
+        res.status(400).json({ message: "Username and password and email are required" });
+      } else {
+        const user = await userService.createUser(email, nickname, password);
+        res.status(201).json(user);
+      }
+    } catch (err: any) {
+      if (err.message === "DUPLICATE_EMAIL") {
+        res.status(400).json({ message: "이미 존재하는 이메일입니다" });
+      } else if (err.message === "DUPLICATE_NICKNAME") {
+        res.status(400).json({ message: "이미 존재하는 닉네임입니다" });
+      } else {
+        res.status(500).json({ message: "서버 에러" });
+      }
     }
   };
 
@@ -24,22 +33,26 @@ class UserController {
         nickname: string;
         password: string;
       };
-      const { tokens } = await userService.login(nickname, password);
+      if (!nickname || !password) {
+        res.status(400).json({ message: "Nickname and password are required" });
+      } else {
+        const { tokens } = await userService.login(nickname, password);
 
-      userService.setTokenCookies(res, tokens.refreshToken);
-      res.status(200).json({ accessToken: tokens.accessToken });
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        if (err.message === 'USER_NOT_FOUND') {
-          res.status(401).json({ message: '아이디가 존재하지 않습니다.' });
-        }
-        if (err.message === 'INVALID_PASSWORD') {
-          res.status(401).json({ message: '비밀번호가 틀렸습니다.' });
-        }
+        userService.setTokenCookies(res, tokens.refreshToken);
+        res.status(200).json({ accessToken: tokens.accessToken });
       }
-      res.status(500).json({ message: '서버 에러' });
+
+    } catch (err: any) {
+      if (err.message === 'USER_NOT_FOUND') {
+        res.status(400).json({ message: '유저 닉네임이 존재하지 않습니다.' });
+      } else if (err.message === 'INVALID_PASSWORD') {
+        res.status(401).json({ message: '비밀번호가 틀렸습니다.' });
+      } else {
+        res.status(500).json({ message: '서버 에러' });
+      }
     }
   }
+
 
   async refreshTokens(req: Request, res: Response) {
     try {

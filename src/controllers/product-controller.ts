@@ -10,7 +10,8 @@ class ProductController {
   async getDetail(req: Request, res: Response) {
     try {
       const product = await productService.getDetail(Number(req.params.id));
-      res.json(product);
+  
+      res.status(200).json(product);
     } catch (err: unknown) {
       if (err instanceof Error) {
         const status = err.message === 'NOT_FOUND' ? 404 : 500;
@@ -22,6 +23,7 @@ class ProductController {
   async getList(req: Request<{}, {}, {}, getListProductQuery>, res: Response) {
     try {
       const products = await productService.getList(req.query);
+      
       res.json(products);
     } catch (err: unknown) {
       console.error('[ProductController.getList] Error:', err instanceof Error ? err.message : err);
