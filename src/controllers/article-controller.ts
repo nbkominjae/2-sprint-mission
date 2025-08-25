@@ -30,26 +30,33 @@ class ArticleController {
     try {
       assert(req.body, articleDto); // 유효성 검사
       const article = await articleService.create(req.user.id, req.body);
-       res.json(article); 
+      res.status(201).json(article);
     } catch (err: unknown) {
-      console.error('[ArticleController.createArticle] Error:', err);
-
-      if (err instanceof Error && err.name === 'AssertionError') {
-         res.status(400).json({ message: '유효성 검증 에러' }); // ✅ 400 응답
+      if (err instanceof Error) {
+        if (err.name === 'StructError') {
+          res.status(400).json({ message: '유효성 검증 에러' });
+        } else {
+          res.status(500).json({ message: err.message });
+        }
       }
 
-       res.status(500).json({ message: '서버오류' }); // ✅ 나머지는 500
+
     }
   }
- 
+
 
   async changeArticle(req: Request, res: Response) {
     try {
       const updated = await articleService.update(req.user.id, Number(req.params.id), req.body);
-      res.json(updated);
+      res.status(200).json(updated);
     } catch (err: unknown) {
       if (err instanceof Error) {
-        const code = err.message === 'NOT_FOUND' ? 404 : err.message === 'UNAUTHORIZED' ? 401 : 500;
+        const code = 
+        err.message === 'NOT_FOUND' ? 404 : 
+        err.message === 'UNAUTHORIZED' ? 401 : 
+        err.message === 'FORBIDDEN' ? 403 : 
+        err.message ==='title and content are required' ? 400:
+        500;
         res.status(code).json({ message: err.message });
       }
     }
@@ -58,10 +65,14 @@ class ArticleController {
   async deleteArticle(req: Request, res: Response) {
     try {
       const result = await articleService.remove(req.user.id, Number(req.params.id));
-      res.json(result);
+      res.status(200).json(result);
     } catch (err: unknown) {
       if (err instanceof Error) {
-        const code = err.message === 'NOT_FOUND' ? 404 : err.message === 'UNAUTHORIZED' ? 401 : 500;
+        const code = 
+        err.message === 'NOT_FOUND' ? 404 : 
+        err.message === 'UNAUTHORIZED' ? 401 : 
+        err.message === 'FORBIDDEN' ? 403 :
+        500;
         res.status(code).json({ message: err.message });
       }
     }
@@ -70,10 +81,14 @@ class ArticleController {
   async articleLike(req: Request, res: Response) {
     try {
       const result = await articleService.like(req.user.id, Number(req.params.articleId));
-      res.json(result);
+      res.status(200).json(result);
     } catch (err: unknown) {
       if (err instanceof Error) {
-        const code = err.message === 'NOT_FOUND' ? 404 : err.message === 'CONFLICT' ? 409 : 500;
+        const code = 
+        err.message === 'UNAUTHORIZED' ? 401:
+        err.message === 'NOT_FOUND' ? 404 : 
+        err.message === 'CONFLICT' ? 409 : 
+        500;
         res.status(code).json({ message: err.message });
       }
     }
@@ -82,10 +97,13 @@ class ArticleController {
   async articleLikeCancel(req: Request, res: Response) {
     try {
       const result = await articleService.cancelLike(req.user.id, Number(req.params.articleId));
-      res.json(result);
+      res.status(200).json(result);
     } catch (err: unknown) {
       if (err instanceof Error) {
-        const code = err.message === 'NOT_FOUND' || err.message === 'NOT_LIKED' ? 404 : 500;
+        const code = 
+        err.message === 'UNAUTHORIZED' ? 401:
+        err.message === 'NOT_FOUND' || 
+        err.message === 'NOT_LIKED' ? 404 : 500;
         res.status(code).json({ message: err.message });
       }
     }
@@ -94,10 +112,16 @@ class ArticleController {
   async isLikedArticleList(req: Request, res: Response) {
     try {
       const result = await articleService.likedArticleList(req.user.id);
-      res.json(result);
+      res.status(200).json(result);
     } catch (err: unknown) {
       if (err instanceof Error) {
-        res.status(500).json({ message: err.message });
+        const code = 
+        err.message === 'UNAUTHORIZED' ? 401:
+        err.message === 'NOT_FOUND' ? 404:
+         
+        500;
+
+        res.status(code).json({ message: err.message });
       }
     }
   }

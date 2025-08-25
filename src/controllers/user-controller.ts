@@ -39,7 +39,7 @@ class UserController {
         const { tokens } = await userService.login(nickname, password);
 
         userService.setTokenCookies(res, tokens.refreshToken);
-        res.status(200).json({ accessToken: tokens.accessToken });
+        res.status(201).json({ accessToken: tokens.accessToken });
       }
 
     } catch (err: any) {

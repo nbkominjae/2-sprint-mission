@@ -94,6 +94,7 @@ describe("POST /users/login", () => {
   const password = "test";
 
   beforeAll(async () => {
+    await db.productLike.deleteMany({});
     await db.article.deleteMany({});
     await db.comment.deleteMany({});
     await db.product.deleteMany({});
@@ -114,7 +115,7 @@ describe("POST /users/login", () => {
       nickname,
       password,
     });
-    expect(response.statusCode).toBe(200);
+    expect(response.statusCode).toBe(201);
     expect(response.body.accessToken).toBeTruthy();
   });
 

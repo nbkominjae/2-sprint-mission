@@ -41,20 +41,36 @@ export const productService = {
   },
 
   async update(userId: number, id: number, data: CreateOrUpdateProduct) {
+    if(!data.name || !data.description || !data.price || !data.tags){
+      throw new Error('data are required')
+    }
+
+    if(!userId){
+      throw new Error('UNAUTHORIZED');
+    }
+    
     const product = await productRepository.findById(id);
     if (!product) throw new Error('NOT_FOUND');
-    if (product.userId !== userId) throw new Error('UNAUTHORIZED');
+    if (product.userId !== userId) throw new Error('FORBIDDEN');
     return productRepository.update(id, data);
   },
 
   async remove(userId: number, id: number) {
+
+    if(!userId){
+      throw new Error('UNAUTHORIZED');
+    }
     const product = await productRepository.findById(id);
     if (!product) throw new Error('NOT_FOUND');
-    if (product.userId !== userId) throw new Error('UNAUTHORIZED');
+    if (product.userId !== userId) throw new Error('FORBIDDEN');
     return productRepository.delete(id);
   },
 
   async like(userId: number, productId: number) {
+
+    if(!userId){
+      throw new Error('UNAUTHORIZED');
+    }
     const product = await productRepository.findById(productId);
     if (!product) throw new Error('NOT_FOUND');
 
@@ -65,6 +81,10 @@ export const productService = {
   },
 
   async cancelLike(userId: number, productId: number) {
+    if(!userId){
+      throw new Error('UNAUTHORIZED');
+    }
+
     const product = await productRepository.findById(productId);
     if (!product) throw new Error('NOT_FOUND');
 
@@ -75,15 +95,29 @@ export const productService = {
   },
 
   async likesList(userId: number) {
+     if(!userId){
+      throw new Error('UNAUTHORIZED');
+    }
     const likeProducts = await productRepository.findUserLikes(userId);
     const likeProductIds = likeProducts.map(lp => lp.productId);
     return productRepository.findProductsByIds(likeProductIds);
   },
 
   async isLiked(userId: number) {
-    // 좋아요한 상품 id 전부 추출
-    const productLikes = await productRepository.findUserLikes(userId); 
     
+    if(!userId){
+      throw new Error('UNAUTHORIZED');
+    }
+    // 유저가 좋아요한 상품 id 전부 추출
+    const productLikes = await productRepository.findUserLikes(userId); 
+
+    
+    if(productLikes.length === 0){
+      throw new Error ("NOT_FOUND")
+    }
+
+    // 좋아요 id로 상품 id추출
+
     const likedProductIds = productLikes.map(pl => pl.productId);
     const allProducts = await productRepository.findAllProducts();
     return allProducts.map(product => ({

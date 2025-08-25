@@ -34,24 +34,41 @@ export const articleService = {
   create: async (userId: number, body: CreateOrUpdateArticle) => {
 
     const { title, content } = body;
+    if (!title || !content) {
+      throw new Error('AssertionError')
+    }
+
     return articleRepository.create({ title, content, userId });
   },
 
   update: async (userId: number, id: number, data: CreateOrUpdateArticle) => {
+    if (!userId) {
+      throw new Error('UNAUTHORIZED')
+    }
+
+    if (!data.title || !data.content) {
+      throw new Error('title and content are required');
+    }
     const article = await articleRepository.findById(id);
     if (!article) throw new Error('NOT_FOUND');
-    if (article.userId !== userId) throw new Error('UNAUTHORIZED');
+    if (article.userId !== userId) throw new Error('FORBIDDEN');
     return articleRepository.update(id, data);
   },
 
   remove: async (userId: number, id: number) => {
+    if (!userId) {
+      throw new Error('UNAUTHORIZED')
+    }
     const article = await articleRepository.findById(id);
     if (!article) throw new Error('NOT_FOUND');
-    if (article.userId !== userId) throw new Error('UNAUTHORIZED');
+    if (article.userId !== userId) throw new Error('FORBIDDEN');
     return articleRepository.delete(id);
   },
 
   like: async (userId: number, articleId: number) => {
+    if (!userId) {
+      throw new Error('UNAUTHORIZED')
+    }
     const article = await articleRepository.findById(articleId);
     if (!article) throw new Error('NOT_FOUND');
     const exist = await articleRepository.findLike(userId, articleId);
@@ -60,6 +77,9 @@ export const articleService = {
   },
 
   cancelLike: async (userId: number, articleId: number) => {
+    if (!userId) {
+      throw new Error('UNAUTHORIZED')
+    }
     const article = await articleRepository.findById(articleId);
     if (!article) throw new Error('NOT_FOUND');
     const exist = await articleRepository.findLike(userId, articleId);
@@ -68,7 +88,14 @@ export const articleService = {
   },
 
   likedArticleList: async (userId: number) => {
+    if (!userId) {
+      throw new Error('UNAUTHORIZED')
+    }
     const liked = await articleRepository.findLikedArticlesByUser(userId);
+    if (liked.length === 0) {
+      throw new Error("NOT_FOUND")
+    }
+
     const ids = liked.map(l => l.articleId);
     const all = await articleRepository.findAllArticles();
     return all.map(a => ({ ...a, isLiked: ids.includes(a.id) }));
