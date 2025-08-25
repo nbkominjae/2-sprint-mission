@@ -32,5 +32,6 @@ router.get('/likesList', authenticate, ProductController.likesList.bind(productC
 // 상품 목록 조회 시, 로그인 유저가 좋아요 눌렀는지 여부(isLiked 필드 포함)
 router.get('/isLiked', authenticate, ProductController.isLiked.bind(productController));
 
+// 가격 변동 
 router.patch('/price/:productId', authenticate, ProductController.isLikedPriceChange.bind(productController))
 export default router;
