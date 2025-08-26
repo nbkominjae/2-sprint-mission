@@ -1,14 +1,14 @@
-jest.mock("../service/notification-service", () => ({
-  notificationService: {
-    sendNotification: jest.fn().mockResolvedValue(true),
-  },
-}));
-
 import app from '../app';
 import request from 'supertest';
 import { db } from '../utils/db';
 import TestAgent from "supertest/lib/agent";
 
+
+jest.mock("../service/notification-service", () => ({
+  notificationService: {
+    sendNotification: jest.fn().mockResolvedValue(true),
+  },
+}));
 
 let agent: TestAgent;
 let productId = 0;
