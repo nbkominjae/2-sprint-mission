@@ -2,13 +2,19 @@ import app from './app';
 import debugModule from 'debug';
 import http from 'http';
 import { AddressInfo } from 'net'; 
+import { connectSocket } from './socket';
+
 
 const debug = debugModule('used-shop:server');
 
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+// 기존 http 서버 생성
 const server = http.createServer(app);
+
+// socket.io 연결
+const io = connectSocket(server);
 
 server.listen(port);
 server.on('error', onError);

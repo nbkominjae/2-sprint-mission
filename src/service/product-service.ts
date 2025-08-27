@@ -81,7 +81,9 @@ export const productService = {
   },
 
   async isLiked(userId: number) {
-    const productLikes = await productRepository.findUserLikes(userId);
+    // 좋아요한 상품 id 전부 추출
+    const productLikes = await productRepository.findUserLikes(userId); 
+    
     const likedProductIds = productLikes.map(pl => pl.productId);
     const allProducts = await productRepository.findAllProducts();
     return allProducts.map(product => ({
