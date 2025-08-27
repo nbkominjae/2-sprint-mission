@@ -37,6 +37,9 @@ export const productService = {
   async create(userId: number, body: CreateOrUpdateProduct) {
 
     const { name, description, price, tags } = body;
+    if(!name || !description || !price || !tags){
+      throw new Error('유효성 검증 에러');
+    }
     return productRepository.create({ userId, name, description, price, tags });
   },
 
