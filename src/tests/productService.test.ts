@@ -81,6 +81,7 @@ describe("create 테스트", () => {
     // 예외 발생 검증
     expect(productService.create(userId, incompleteData as any))
       .rejects
+      .toThrow('유효성 검증 에러')
 
 
     expect(spy).toHaveBeenCalledTimes(1);
@@ -300,6 +301,54 @@ describe('제품 좋아요 함수 테스트', () => {
     spyLike.mockRestore();
     spyCreateLike.mockRestore();
   })
+
+
+  test('제품이 없는 경우', async () => {
+    const userId = 1;
+    const productId = 1;
+
+    const spyFind = jest.spyOn(productRepository, 'findById').mockResolvedValue(null);
+
+    await expect(productService.like(userId, productId))
+      .rejects.toThrow('NOT_FOUND');
+
+    expect(spyFind).toHaveBeenCalledWith(productId);
+
+    spyFind.mockRestore();
+
+  });
+
+  test('중복 좋아요를 누를 경우', async () => {
+    const userId = 1;
+    const productId = 1;
+
+    jest.spyOn(productRepository, 'findById').mockResolvedValue({
+      id: productId,
+      name: "닌텐도",
+      description: "별로",
+      price: 123123,
+      tags: ["애들", "장난감"],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      userId,
+    })
+
+    jest.spyOn(productRepository, 'findProductLike').mockResolvedValue({
+      id: 99,
+      userId,
+      productId,
+      createdAt: new Date(),
+    });
+
+    const spyCreateLike = jest.spyOn(productRepository, 'createProductLike');
+
+
+    await expect(productService.like(userId, productId))
+      .rejects.toThrow('CONFLICT');
+
+    expect(spyCreateLike).not.toHaveBeenCalled();
+  })
+
 });
 
 
@@ -357,6 +406,48 @@ describe('좋아요 취소 함수 테스트 ', () => {
     spyLike.mockRestore();
     spyCancelLike.mockRestore();
   });
+
+  test('없는 제품 좋아요 취소', async () => {
+    const userId = 1;
+    const productId = 1;
+
+    const spyFind = jest.spyOn(productRepository, 'findById').mockResolvedValue(null);
+
+    await expect(productService.cancelLike(userId, productId))
+      .rejects.toThrow('NOT_FOUND');
+
+    expect(spyFind).toHaveBeenCalledWith(productId);
+
+    spyFind.mockRestore();
+  });
+
+  test('좋아요 누르지 않은 제품 좋아요 취소', async () => {
+    const userId = 1;
+    const productId = 1;
+
+    const spyFind = jest.spyOn(productRepository, 'findById').mockResolvedValue({
+      id: productId,
+      name: "닌텐도",
+      description: "별로",
+      price: 123123,
+      tags: ["애들", "장난감"],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      userId,
+    });
+
+    const spyLike = jest.spyOn(productRepository, 'findProductLike').mockResolvedValue(null);
+
+   
+    await expect(productService.cancelLike(userId, productId))
+      .rejects.toThrow('NOT_LIKED');
+
+    spyFind.mockRestore();
+    spyLike.mockRestore();
+
+  })
+
+
 })
 
 
