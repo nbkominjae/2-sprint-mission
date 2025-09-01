@@ -10,6 +10,7 @@
     "test:watch": "dotenv -e .env.test -- prisma migrate deploy && dotenv -e .env.test -- jest --runInBand --watchAll"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.879.0",
     "@prisma/adapter-pg": "^6.8.2",
     "@prisma/client": "^6.8.2",
     "bcrypt": "^6.0.0",
