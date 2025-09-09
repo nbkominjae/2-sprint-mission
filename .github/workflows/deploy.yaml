@@ -1,0 +1,36 @@
+name : Deploy to AWS
+
+on: 
+  push:
+    branches: ["main"]
+
+jobs: 
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+
+      # AWS IAMUSER ID, SECRET
+      - name: Setup AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET }}
+          aws-region: ap-northeast-2 
+      # AWS 배포변수
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          script: 
+            cd /home/ec2-user/2-sprint-mission
+            git pull origin main
+            npm install --production
+            npm run build
+            pm2 restart all || pm2 start dist/server.js --name used-shop
